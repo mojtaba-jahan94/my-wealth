@@ -27,13 +27,13 @@
     input:focus,select:focus,textarea:focus{border-color:rgba(245,200,66,.45);}
     input::placeholder,textarea::placeholder{color:rgba(255,255,255,.28);}
     select option{background:#1a1040;}
-    .btn-gold{background:linear-gradient(135deg,#f5c842,#f97316);color:#1a1a2e;border:none;border-radius:9px;padding:10px 22px;font-family:inherit;font-weight:700;font-size:13px;cursor:pointer;transition:all .2s;}
+    .btn-gold{background:linear-gradient(135deg,#f5c842,#f97316);color:#1a1a2e;border:none;border-radius:9px;padding:10px 22px;font-family:inherit;font-weight:700;font-size:13px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:6px;}
     .btn-gold:hover{opacity:.9;transform:translateY(-1px);}
-    .btn-g{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 14px;font-family:inherit;font-size:12px;cursor:pointer;transition:all .2s;}
+    .btn-g{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 14px;font-family:inherit;font-size:12px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:5px;}
     .btn-g:hover{background:rgba(255,255,255,.14);color:#fff;}
     .btn-g.active{background:rgba(255,255,255,.18);color:#fff;}
-    .modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(5px);z-index:200;display:flex;align-items:center;justify-content:center;padding:16px;}
-    .modal-box{background:#120d2e;border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:26px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;}
+    .modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);z-index:200;display:flex;align-items:center;justify-content:center;padding:16px;}
+    .modal-box{background:#120d2e;border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:26px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;}
     .live-dot{width:7px;height:7px;border-radius:50%;background:#10b981;animation:pulse 2s infinite;flex-shrink:0;}
     @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.45);}50%{box-shadow:0 0 0 5px rgba(16,185,129,0);}}
     .progress-bar{height:5px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden;}
@@ -46,7 +46,7 @@
     ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:3px;}
     .pnl-pos{color:#34d399;}.pnl-neg{color:#f87171;}.pnl-zero{color:rgba(255,255,255,.4);}
     .ticker-wrap{overflow:hidden;white-space:nowrap;}
-    .ticker-inner{display:inline-flex;gap:24px;animation:tickerMove 40s linear infinite;}
+    .ticker-inner{display:inline-flex;gap:24px;animation:tickerMove 45s linear infinite;}
     @keyframes tickerMove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
     .ticker-item{display:inline-flex;align-items:center;gap:5px;font-size:11px;}
     label.lbl{font-size:11px;color:rgba(255,255,255,.42);display:block;margin-bottom:5px;}
@@ -57,6 +57,7 @@
     .chart-tab{padding:5px 12px;border-radius:6px;border:none;background:transparent;color:rgba(255,255,255,.4);cursor:pointer;font-family:inherit;font-size:11px;transition:all .2s;}
     .chart-tab.active{background:rgba(255,255,255,.12);color:#fff;}
     .net-positive{color:#34d399;}.net-negative{color:#f87171;}
+    .code-preview{background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px;font-family:monospace;font-size:11px;max-height:120px;overflow-y:auto;direction:ltr;text-align:left;white-space:pre-wrap;}
   </style>
 </head>
 <body>
@@ -85,7 +86,11 @@
     </div>
 
     <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
-      <div style="display:flex;align-items:center;gap:4px;" id="apiStatusDot" title="وضعیت API">
+      <!-- Smart Telegram Paste Button -->
+      <button onclick="openModal('smartPaste')" class="btn-g" style="border-color:rgba(59,130,246,0.4);color:#60a5fa;" title="استخراج سریع نرخ از پیام تلگرام">
+        📲 استخراج از تلگرام
+      </button>
+      <div style="display:flex;align-items:center;gap:4px;" id="apiStatusDot" title="وضعیت ارتباط داده">
         <div class="api-status api-load" id="mainStatusDot"></div>
         <span style="font-size:10px;color:rgba(255,255,255,.38);" id="apiStatusLabel">در حال اتصال...</span>
       </div>
@@ -96,7 +101,7 @@
   <!-- TICKER -->
   <div style="background:rgba(0,0,0,.35);border-top:1px solid rgba(255,255,255,.05);padding:5px 0;overflow:hidden;">
     <div class="ticker-wrap"><div class="ticker-inner" id="tickerInner">
-      <span style="color:rgba(255,255,255,.25);font-size:11px;">در حال بارگذاری قیمت‌ها...</span>
+      <span style="color:rgba(255,255,255,.25);font-size:11px;">در حال بارگذاری قیمت‌های لحظه‌ای...</span>
     </div></div>
   </div>
 </nav>
@@ -106,6 +111,20 @@
 
 <!-- ===== DASHBOARD ===== -->
 <div id="sec-dashboard" class="section active fade-up">
+
+  <!-- Active Source Banner -->
+  <div class="glass-sm" style="padding:8px 14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:11px;">
+    <div style="display:flex;align-items:center;gap:6px;">
+      <span style="color:rgba(255,255,255,0.5);">📡 منبع فعال نرخ‌ها:</span>
+      <span id="activeSourceBadge" style="color:#f5c842;font-weight:600;">در حال بررسی...</span>
+      <span id="sourceFallbackNote" style="font-size:10px;color:rgba(255,255,255,0.4);"></span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button onclick="openModal('smartPaste')" style="background:none;border:none;color:#60a5fa;cursor:pointer;text-decoration:underline;font-family:inherit;font-size:11px;">📋 چسباندن متن تلگرام برای به‌روزرسانی آنی</button>
+      <span style="color:rgba(255,255,255,0.2);">|</span>
+      <button onclick="fetchAllPrices(true)" style="background:none;border:none;color:#34d399;cursor:pointer;font-family:inherit;font-size:11px;">🔄 تازه‌سازی</button>
+    </div>
+  </div>
 
   <!-- KPIs -->
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:16px;">
@@ -206,7 +225,7 @@
 
 <!-- ===== ASSETS ===== -->
 <div id="sec-assets" class="section fade-up">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
     <div>
       <div style="font-size:14px;font-weight:700;">لیست دارایی‌ها</div>
       <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:2px;" id="asset-subtitle">در حال بارگذاری...</div>
@@ -229,13 +248,14 @@
       <div class="live-dot"></div>
       <span style="font-size:13px;font-weight:600;">بازار زنده</span>
       <span style="font-size:10px;color:rgba(255,255,255,.35);" id="lastUpdateLabel">—</span>
-      <button onclick="fetchAllPrices(true)" class="btn-g" style="margin-right:auto;font-size:11px;">🔄 به‌روزرسانی</button>
+      <button onclick="openModal('smartPaste')" class="btn-g" style="margin-right:auto;font-size:11px;border-color:#3b82f6;color:#60a5fa;">📋 استخراج از متن تلگرام</button>
+      <button onclick="fetchAllPrices(true)" class="btn-g" style="font-size:11px;">🔄 به‌روزرسانی</button>
     </div>
     <div id="prices-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:10px;"></div>
   </div>
   <!-- Custom sources status -->
   <div class="glass" style="padding:18px;">
-    <div style="font-size:12px;font-weight:600;margin-bottom:12px;">🔌 منابع قیمت</div>
+    <div style="font-size:12px;font-weight:600;margin-bottom:12px;">🔌 وضعیت منابع قیمت‌گذاری</div>
     <div id="sources-status"></div>
   </div>
 </div>
@@ -290,16 +310,30 @@
 
   <!-- API Sources -->
   <div class="glass" style="padding:18px;margin-bottom:12px;">
-    <div style="font-size:13px;font-weight:600;margin-bottom:14px;">🌐 منابع قیمت</div>
+    <div style="font-size:13px;font-weight:600;margin-bottom:14px;">🌐 منابع قیمت‌گذاری آنلاین</div>
 
     <!-- Built-in APIs -->
-    <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:8px;">منابع داخلی</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:8px;">منابع مستقیم بازار ایران و جهان</div>
     <div style="display:grid;gap:8px;margin-bottom:14px;">
+      <div class="src-card">
+        <div class="api-status" id="st-bitpin"></div>
+        <div style="flex:1;">
+          <div style="font-size:12px;font-weight:600;">Bitpin / نوبیتکس (پشتیبانی مستقیم بدون فیلتر و CORS)</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.35);">دلار آزاد (تتر)، طلای ۱۸ عیار، کریپتو — اتصال بومی و مستقیم بدون قطعی</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:10px;color:rgba(255,255,255,.4);" id="st-bitpin-label">—</span>
+          <label style="display:flex;align-items:center;gap:4px;cursor:pointer;">
+            <input type="checkbox" id="chk-bitpin" checked onchange="saveSettings()" style="width:auto;accent-color:#f5c842;">
+            <span style="font-size:11px;">فعال</span>
+          </label>
+        </div>
+      </div>
       <div class="src-card">
         <div class="api-status" id="st-tgju"></div>
         <div style="flex:1;">
-          <div style="font-size:12px;font-weight:600;">TGJU (tgju.org)</div>
-          <div style="font-size:10px;color:rgba(255,255,255,.35);">طلا، سکه، ارز ایران — به‌روز</div>
+          <div style="font-size:12px;font-weight:600;">TGJU (شبکه اطلاع رسانی طلا و ارز)</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.35);">سکه امامی، نیم، ربع، یورو، درهم، گرم ۱۸ عیار</div>
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
           <span style="font-size:10px;color:rgba(255,255,255,.4);" id="st-tgju-label">—</span>
@@ -313,7 +347,7 @@
         <div class="api-status" id="st-gecko"></div>
         <div style="flex:1;">
           <div style="font-size:12px;font-weight:600;">CoinGecko</div>
-          <div style="font-size:10px;color:rgba(255,255,255,.35);">قیمت کریپتو USD — رایگان</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.35);">قیمت‌های دلاری کریپتوکارنسی جهانی</div>
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
           <span style="font-size:10px;color:rgba(255,255,255,.4);" id="st-gecko-label">—</span>
@@ -325,47 +359,59 @@
       </div>
     </div>
 
+    <!-- CORS Proxy Configuration -->
+    <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:8px;margin-top:14px;">⚙️ آدرس پروکسی CORS (برای خواندن سایت‌های دارای محدودیت مرورگر)</div>
+    <div class="frow">
+      <input type="text" id="set-custom-proxy" placeholder="https://api.allorigins.win/raw?url= یا پروکسی دلخواه" onchange="saveSettings()">
+      <div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:4px;">
+        اگر افزونه CORS Unblocker دارید یا پروکسی اختصاصی/Cloudflare Worker دارید در اینجا وارد کنید. در غیر این صورت سیستم خودکار از چندین مسیر جایگزین استفاده می‌کند.
+      </div>
+    </div>
+
     <!-- Custom URLs -->
-    <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:8px;">سایت‌های دلخواه</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:8px;margin-top:14px;">🌐 سایت‌های دلخواه (وب‌اسکرپینگ با الگو)</div>
     <div id="custom-urls-list" style="margin-bottom:10px;"></div>
-    <button onclick="openModal('addUrl')" class="btn-g" style="width:100%;justify-content:center;display:flex;gap:6px;align-items:center;">+ افزودن آدرس سایت</button>
+    <button onclick="openModal('addUrl')" class="btn-g" style="width:100%;">+ افزودن آدرس سایت جدید</button>
 
     <!-- Telegram Channels -->
     <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:8px;margin-top:16px;">📲 کانال‌های تلگرام</div>
     <div id="tg-channels-list" style="margin-bottom:10px;"></div>
-    <button onclick="openModal('addTelegram')" class="btn-g" style="width:100%;justify-content:center;display:flex;gap:6px;align-items:center;">+ افزودن کانال تلگرام</button>
+    <div style="display:flex;gap:8px;">
+      <button onclick="openModal('addTelegram')" class="btn-g" style="flex:1;">+ افزودن کانال تلگرام</button>
+      <button onclick="openModal('smartPaste')" class="btn-gold" style="flex:1;font-size:12px;">📋 استخراج دستی از متن تلگرام</button>
+    </div>
   </div>
 
   <!-- Price Alerts -->
   <div class="glass" style="padding:18px;margin-bottom:12px;">
     <div style="font-size:13px;font-weight:600;margin-bottom:14px;">🔔 هشدارهای قیمت</div>
     <div id="alerts-list" style="margin-bottom:10px;"></div>
-    <button onclick="openModal('addAlert')" class="btn-g" style="width:100%;justify-content:center;display:flex;gap:6px;align-items:center;">+ افزودن هشدار</button>
+    <button onclick="openModal('addAlert')" class="btn-g" style="width:100%;">+ افزودن هشدار جدید</button>
   </div>
 
   <!-- Display settings -->
   <div class="glass" style="padding:18px;margin-bottom:12px;">
-    <div style="font-size:13px;font-weight:600;margin-bottom:14px;">⚙️ تنظیمات نمایش</div>
+    <div style="font-size:13px;font-weight:600;margin-bottom:14px;">⚙️ تنظیمات عمومی</div>
     <div class="frow" style="display:flex;align-items:center;gap:12px;">
-      <label class="lbl" style="margin:0;flex:1;">واحد پول</label>
+      <label class="lbl" style="margin:0;flex:1;">واحد نمایش مبالغ</label>
       <select id="set-currency" onchange="saveSettings()" style="width:auto;min-width:120px;">
         <option value="toman">تومان</option>
         <option value="rial">ریال</option>
-        <option value="usd">دلار</option>
+        <option value="usd">دلار ($)</option>
       </select>
     </div>
     <div class="frow" style="margin-top:10px;display:flex;align-items:center;gap:12px;">
-      <label class="lbl" style="margin:0;flex:1;">فاصله به‌روزرسانی</label>
+      <label class="lbl" style="margin:0;flex:1;">فاصله بررسی نرخ‌ها</label>
       <select id="set-interval" onchange="saveSettings()" style="width:auto;min-width:120px;">
-        <option value="10">۱۰ ثانیه</option>
+        <option value="15">۱۵ ثانیه</option>
         <option value="30" selected>۳۰ ثانیه</option>
         <option value="60">۱ دقیقه</option>
         <option value="300">۵ دقیقه</option>
       </select>
     </div>
     <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;">
-      <button onclick="exportCSV()" class="btn-g">📥 خروجی CSV</button>
-      <button onclick="clearAllData()" class="btn-g" style="color:#f87171;">🗑️ پاک کردن همه داده‌ها</button>
+      <button onclick="exportCSV()" class="btn-g">📥 خروجی اکسل / CSV</button>
+      <button onclick="clearAllData()" class="btn-g" style="color:#f87171;">🗑️ پاک کردن کل داده‌ها</button>
     </div>
   </div>
 
@@ -373,6 +419,46 @@
 </div><!-- end main -->
 
 <!-- ============ MODALS ============ -->
+
+<!-- SMART TELEGRAM PASTE MODAL -->
+<div id="modal-smartPaste" class="modal-ov" style="display:none;" onclick="if(event.target===this)closeModal('smartPaste')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <h3 style="font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;">
+        <span>📲</span> استخراج سریع قیمت از پیام کانال تلگرام
+      </h3>
+      <button onclick="closeModal('smartPaste')" style="background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;line-height:1;">✕</button>
+    </div>
+
+    <div style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);border-radius:10px;padding:12px;margin-bottom:14px;font-size:11px;color:rgba(255,255,255,0.75);line-height:1.7;">
+      💡 <strong>روش استفاده آسان:</strong> آخرین پیام حاوی قیمت‌ها را از هر کانال تلگرامی کپی کنید و در کادر زیر قرار دهید.
+      موتور هوشمند تمام نرخ‌های دلار، طلا، سکه و ارزها را به صورت خودکار تشخیص داده و پورتفولیو را به‌روز می‌کند!
+    </div>
+
+    <div class="frow">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+        <label class="lbl" style="margin:0;">متن پیام کپی‌شده از تلگرام:</label>
+        <button onclick="pasteFromClipboard()" class="btn-g" style="padding:3px 8px;font-size:10px;border-color:#3b82f6;color:#93c5fd;">
+          📋 خواندن از کلیپ‌بورد
+        </button>
+      </div>
+      <textarea id="smartPasteInput" rows="5" placeholder="مثلاً:&#10;دلار نقدی تهران: 231,500&#10;طلای 18 عیار: 23,280,000&#10;سکه امامی: 235,000,000" style="resize:vertical;" oninput="previewExtractedPrices()"></textarea>
+    </div>
+
+    <!-- Extracted Preview Box -->
+    <div id="smartPasteResults" style="display:none;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px;margin-bottom:14px;">
+      <div style="font-size:11px;font-weight:600;margin-bottom:8px;color:#f5c842;">🔍 نرخ‌های استخراج‌شده:</div>
+      <div id="smartPasteItems" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px;"></div>
+    </div>
+
+    <div style="display:flex;gap:8px;">
+      <button class="btn-gold" id="btnApplySmartPaste" style="flex:1;" onclick="applySmartPaste()" disabled>
+        ✅ ثبت و اعمال در کل سیستم
+      </button>
+      <button class="btn-g" onclick="closeModal('smartPaste')">انصراف</button>
+    </div>
+  </div>
+</div>
 
 <!-- Add Asset -->
 <div id="modal-addAsset" class="modal-ov" style="display:none;" onclick="if(event.target===this)closeModal('addAsset')">
@@ -420,78 +506,91 @@
   </div>
 </div>
 
-<!-- Add URL Source -->
+<!-- Add URL Source Modal -->
 <div id="modal-addUrl" class="modal-ov" style="display:none;" onclick="if(event.target===this)closeModal('addUrl')">
   <div class="modal-box" onclick="event.stopPropagation()">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <h3 style="font-size:14px;font-weight:700;">🌐 افزودن آدرس سایت</h3>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <h3 style="font-size:14px;font-weight:700;">🌐 افزودن آدرس وب‌سایت برای دریافت نرخ</h3>
       <button onclick="closeModal('addUrl')" style="background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;line-height:1;">✕</button>
     </div>
-    <div style="background:rgba(245,200,66,.08);border:1px solid rgba(245,200,66,.2);border-radius:8px;padding:10px;margin-bottom:14px;font-size:11px;color:rgba(255,255,255,.65);">
-      اپ متن صفحه را می‌گیرد و با Regex قیمت را استخراج می‌کند.
-      مثال برای سایت‌هایی که قیمت دلار را نمایش می‌دهند.
+    
+    <!-- Presets -->
+    <div style="margin-bottom:12px;">
+      <label class="lbl">انتخاب از الگوهای آماده (پیشنهادی):</label>
+      <select id="url-preset" onchange="applyUrlPreset()" style="border-color:#3b82f6;">
+        <option value="">-- الگوی دلخواه کاربر --</option>
+        <option value="tgju_usd">سایت TGJU - نرخ دلار</option>
+        <option value="tgju_gold18">سایت TGJU - طلای ۱۸ عیار</option>
+        <option value="tgju_coin">سایت TGJU - سکه امامی</option>
+        <option value="sanarate_usd">سامانه سنا / صرافی ملی</option>
+      </select>
     </div>
-    <div class="frow"><label class="lbl">نام منبع</label><input type="text" id="url-name" placeholder="مثلاً: سایت صرافی من"></div>
-    <div class="frow"><label class="lbl">آدرس URL کامل</label><input type="text" id="url-addr" placeholder="https://example.com/prices"></div>
-    <div class="frow"><label class="lbl">نوع قیمت</label>
+
+    <div class="frow"><label class="lbl">نام منبع</label><input type="text" id="url-name" placeholder="مثلاً: سایت TGJU"></div>
+    <div class="frow"><label class="lbl">آدرس کامل اینترنتی (URL)</label><input type="text" id="url-addr" placeholder="https://call.tgju.org/ajax.json یا https://www.tgju.org/"></div>
+    <div class="frow"><label class="lbl">تخصیص به دارایی</label>
       <select id="url-pricetype">
         <option value="usd">دلار آمریکا</option>
         <option value="gold18">طلای ۱۸ عیار</option>
+        <option value="goldCoin">سکه تمام امامی</option>
         <option value="eur">یورو</option>
+        <option value="aed">درهم امارات</option>
         <option value="btc">بیت‌کوین (USD)</option>
-        <option value="custom">سایر (custom)</option>
+        <option value="custom">سایر موارد</option>
       </select>
     </div>
-    <div class="frow"><label class="lbl">Regex Pattern (برای استخراج عدد از متن)</label>
-      <input type="text" id="url-regex" placeholder="مثلاً: دلار[:\s]+([۰-۹\d,،]+)">
-      <div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:4px;">گروه اول regex به عنوان قیمت استفاده می‌شود</div>
+    <div class="frow">
+      <label class="lbl">الگوی استخراج عدد (Regex Pattern)</label>
+      <input type="text" id="url-regex" placeholder="مثلاً: price_dollar_rl.*?:.*?([۰-۹\d,،]+)">
+      <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:4px;">گروه اول پرانتز () به عنوان رقم قیمت خوانده می‌شود. اعداد فارسی و انگلیسی خودکار تبدیل می‌شوند.</div>
     </div>
-    <div class="frow"><label class="lbl">Regex Flags (اختیاری)</label>
-      <input type="text" id="url-flags" placeholder="مثلاً: gi" value="gi">
-    </div>
+    
     <div style="display:flex;gap:8px;margin-top:14px;">
-      <button class="btn-gold" onclick="testAndSaveUrl()">🧪 تست و ذخیره</button>
-      <button class="btn-g" onclick="closeModal('addUrl')">لغو</button>
+      <button class="btn-gold" onclick="testAndSaveUrl()">🧪 آزمایش و ذخیره منبع</button>
+      <button class="btn-g" onclick="closeModal('addUrl')">انصراف</button>
     </div>
-    <div id="url-test-result" style="margin-top:10px;font-size:11px;padding:8px 12px;border-radius:8px;display:none;"></div>
+    <div id="url-test-result" style="margin-top:12px;font-size:11px;padding:10px;border-radius:8px;display:none;"></div>
   </div>
 </div>
 
-<!-- Add Telegram -->
+<!-- Add Telegram Modal -->
 <div id="modal-addTelegram" class="modal-ov" style="display:none;" onclick="if(event.target===this)closeModal('addTelegram')">
   <div class="modal-box" onclick="event.stopPropagation()">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <h3 style="font-size:14px;font-weight:700;">📲 افزودن کانال تلگرام</h3>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <h3 style="font-size:14px;font-weight:700;">📲 اتصال به کانال تلگرام</h3>
       <button onclick="closeModal('addTelegram')" style="background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;line-height:1;">✕</button>
     </div>
-    <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:8px;padding:10px;margin-bottom:14px;font-size:11px;color:rgba(255,255,255,.65);">
-      فقط کانال‌های <strong>عمومی</strong> پشتیبانی می‌شوند.
-      آخرین پیام‌های کانال بررسی شده و قیمت استخراج می‌شود.
+    
+    <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:8px;padding:10px;margin-bottom:14px;font-size:11px;color:rgba(255,255,255,.7);line-height:1.6;">
+      🔹 نام کانال‌های عمومی تلگرام بدون @ وارد شود.<br>
+      🔹 در صورت اعمال فیلترینگ تلگرام در شبکه، می‌توانید از دکمه <strong>«استخراج از متن تلگرام»</strong> بدون هیچ نیازی به فیلترشکن استفاده کنید.
     </div>
-    <div class="frow"><label class="lbl">نام کانال (بدون @)</label>
-      <input type="text" id="tg-username" placeholder="مثلاً: sanarate یا dollar_fa">
+    
+    <div class="frow"><label class="lbl">یوزرنیم کانال (مثلاً: sanarate یا tgju_official)</label>
+      <input type="text" id="tg-username" placeholder="dollar_tehran">
     </div>
-    <div class="frow"><label class="lbl">نوع قیمت</label>
+    <div class="frow"><label class="lbl">نوع دارایی مرتبط</label>
       <select id="tg-pricetype">
         <option value="usd">دلار آمریکا</option>
-        <option value="gold18">طلای ۱۸ عیار (تومان/گرم)</option>
+        <option value="gold18">طلای ۱۸ عیار</option>
         <option value="goldCoin">سکه امامی</option>
         <option value="eur">یورو</option>
         <option value="custom">سفارشی</option>
       </select>
     </div>
-    <div class="frow"><label class="lbl">Regex Pattern</label>
-      <input type="text" id="tg-regex" placeholder="مثلاً: دلار\s*([۰-۹\d,،]+)">
-      <div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:4px;">اگر خالی بگذارید، اولین عدد بزرگ در پیام استفاده می‌شود</div>
+    <div class="frow"><label class="lbl">الگوی Regex (اختیاری)</label>
+      <input type="text" id="tg-regex" placeholder="مثلاً: دلار[:\s]*([۰-۹\d,،]+)">
+      <div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:4px;">در صورت خالی گذاشتن، هوش مصنوعی اولین عدد معتبر نرخ را برمی‌دارد.</div>
     </div>
-    <div class="frow"><label class="lbl">نام نمایشی</label>
-      <input type="text" id="tg-name" placeholder="مثلاً: کانال قیمت دلار">
+    <div class="frow"><label class="lbl">عنوان نمایشی</label>
+      <input type="text" id="tg-name" placeholder="کانال نرخ لحظه‌ای">
     </div>
+
     <div style="display:flex;gap:8px;margin-top:14px;">
-      <button class="btn-gold" onclick="testAndSaveTelegram()">🧪 تست و ذخیره</button>
-      <button class="btn-g" onclick="closeModal('addTelegram')">لغو</button>
+      <button class="btn-gold" onclick="testAndSaveTelegram()">🧪 تست ارتباط و ذخیره</button>
+      <button class="btn-g" onclick="closeModal('addTelegram')">انصراف</button>
     </div>
-    <div id="tg-test-result" style="margin-top:10px;font-size:11px;padding:8px 12px;border-radius:8px;display:none;"></div>
+    <div id="tg-test-result" style="margin-top:12px;font-size:11px;padding:10px;border-radius:8px;display:none;"></div>
   </div>
 </div>
 
@@ -520,10 +619,10 @@
       </select>
     </div>
     <div class="frow"><label class="lbl">مقدار (تومان)</label>
-      <input type="number" id="al-value" placeholder="مثلاً: 90000 برای دلار ۹۰ هزار تومانی" min="0">
+      <input type="number" id="al-value" placeholder="مثلاً: 240000 برای دلار ۲۴۰ هزار تومانی" min="0">
     </div>
     <div class="frow"><label class="lbl">یادداشت (اختیاری)</label>
-      <input type="text" id="al-note" placeholder="مثلاً: هشدار خرید">
+      <input type="text" id="al-note" placeholder="مثلاً: زمان مناسب فروش">
     </div>
     <div style="display:flex;gap:8px;margin-top:14px;">
       <button class="btn-gold" onclick="saveAlert()">💾 ذخیره</button>
@@ -560,16 +659,17 @@ const S = {
   snapshots: DB.get('snapshots') || [],
   customUrls: DB.get('customUrls') || [],
   tgChannels: DB.get('tgChannels') || [],
-  settings: DB.get('settings') || { currency:'toman', interval:30 },
+  settings: DB.get('settings') || { currency:'toman', interval:30, customProxy:'' },
   prices: {},
   currentType: 'gold',
   lastFetch: 0,
   updateTimer: null,
   chartRange: '1d',
+  tempParsedPrices: null
 };
 
 // ████████████████████████████████████████████████
-//  TYPE CONFIG
+//  CONFIG & DEFINITIONS
 // ████████████████████████████████████████████████
 const TC = {
   gold:  { label:'طلا',    icon:'🥇', color:'#f5c842', liquid:true  },
@@ -582,489 +682,814 @@ const TC = {
 };
 
 const PRICE_DEF = {
-  usd:     { name:'دلار آمریکا',   unit:'دلار', icon:'💵', color:'#3b82f6', base:87500 },
-  eur:     { name:'یورو',          unit:'یورو', icon:'💶', color:'#22d3ee', base:96000 },
-  aed:     { name:'درهم امارات',   unit:'درهم', icon:'🇦🇪', color:'#10b981', base:23800 },
-  gold18:  { name:'طلا ۱۸ عیار',   unit:'گرم',  icon:'🥇', color:'#f5c842', base:7260000 },
-  goldCoin:{ name:'سکه امامی',     unit:'عدد',  icon:'🪙', color:'#f5c842', base:47500000 },
-  goldHalf:{ name:'نیم سکه',       unit:'عدد',  icon:'🟡', color:'#fbbf24', base:24200000 },
-  goldQ:   { name:'ربع سکه',       unit:'عدد',  icon:'🟠', color:'#fbbf24', base:13800000 },
-  btc:     { name:'بیت‌کوین',      unit:'BTC',  icon:'₿',  color:'#f97316', base:0, usd:96200 },
-  eth:     { name:'اتریوم',        unit:'ETH',  icon:'◆',  color:'#8b5cf6', base:0, usd:3340 },
+  usd:     { name:'دلار آمریکا',   unit:'دلار', icon:'💵', color:'#3b82f6', base:231000 },
+  eur:     { name:'یورو',          unit:'یورو', icon:'💶', color:'#22d3ee', base:268000 },
+  aed:     { name:'درهم امارات',   unit:'درهم', icon:'🇦🇪', color:'#10b981', base:63300 },
+  gold18:  { name:'طلا ۱۸ عیار',   unit:'گرم',  icon:'🥇', color:'#f5c842', base:23280000 },
+  goldCoin:{ name:'سکه امامی',     unit:'عدد',  icon:'🪙', color:'#f5c842', base:235000000 },
+  goldHalf:{ name:'نیم سکه',       unit:'عدد',  icon:'🟡', color:'#fbbf24', base:119000000 },
+  goldQ:   { name:'ربع سکه',       unit:'عدد',  icon:'🟠', color:'#fbbf24', base:63000000 },
+  btc:     { name:'بیت‌کوین',      unit:'BTC',  icon:'₿',  color:'#f97316', base:0, usd:79000 },
+  eth:     { name:'اتریوم',        unit:'ETH',  icon:'◆',  color:'#8b5cf6', base:0, usd:2550 },
   usdt:    { name:'تتر',           unit:'USDT', icon:'₮',  color:'#10b981', base:0, usd:1 },
-  bnb:     { name:'بایننس کوین',   unit:'BNB',  icon:'🔶', color:'#fbbf24', base:0, usd:610 },
-  sol:     { name:'سولانا',        unit:'SOL',  icon:'◎',  color:'#a78bfa', base:0, usd:165 },
+  bnb:     { name:'بایننس کوین',   unit:'BNB',  icon:'🔶', color:'#fbbf24', base:0, usd:725 },
+  sol:     { name:'سولانا',        unit:'SOL',  icon:'◎',  color:'#a78bfa', base:0, usd:103 },
 };
 
 // ████████████████████████████████████████████████
-//  UTILS
+//  UTILS & PARSERS
 // ████████████████████████████████████████████████
+// High-precision Persian/Arabic digit to Number converter
+function parseIranNum(s) {
+  if (!s) return NaN;
+  const pMap = {
+    '۰':'0','۱':'1','۲':'2','۳':'3','۴':'4','۵':'5','۶':'6','۷':'7','۸':'8','۹':'9',
+    '٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9'
+  };
+  const clean = String(s)
+    .replace(/[۰-۹٠-٩]/g, c => pMap[c] || c)
+    .replace(/[,،\s]/g, '');
+  return parseFloat(clean);
+}
+
 const fmt = (n,d=0) => n==null ? '—' : Number(n).toLocaleString('fa-IR',{maximumFractionDigits:d});
 const fmtS = n => {
   if(!n) return '—';
-  if(n>=1e12) return (n/1e12).toFixed(1)+' تریلیون';
-  if(n>=1e9)  return (n/1e9).toFixed(1)+' میلیارد';
-  if(n>=1e6)  return (n/1e6).toFixed(1)+' میلیون';
+  if(n>=1e12) return (n/1e12).toFixed(2)+' تریلیون';
+  if(n>=1e9)  return (n/1e9).toFixed(2)+' میلیارد';
+  if(n>=1e6)  return (n/1e6).toFixed(2)+' میلیون';
   return fmt(n);
 };
 const fmtUSD = n => '$'+Number(n).toLocaleString('en-US',{maximumFractionDigits:2});
 const set$ = (id,v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
 const el$ = id => document.getElementById(id);
-const persianNum = s => String(s).replace(/\d/g,d=>String.fromCharCode(d.charCodeAt(0)+0x0630));
-
-function parseIranNum(s) {
-  if(!s) return NaN;
-  return parseFloat(String(s)
-    .replace(/[۰-۹]/g,d=>d.charCodeAt(0)-0x0630)
-    .replace(/[,،\s]/g,''));
-}
 
 // ████████████████████████████████████████████████
-//  PRICE ENGINE — INIT
+//  INIT PRICES
 // ████████████████████████████████████████████████
 function initPrices() {
   Object.entries(PRICE_DEF).forEach(([k,v]) => {
-    const usdRate = v.base || 0;
+    const usdRate = 231000;
     S.prices[k] = {
       ...v,
-      price: v.usd ? Math.round(v.usd * 87500) : v.base,
+      price: v.usd ? Math.round(v.usd * usdRate) : v.base,
       usdPrice: v.usd,
-      change24h: +((Math.random()*4-2).toFixed(2)),
-      source: 'fallback',
+      change24h: 0,
+      source: 'پایه سیستم',
     };
   });
 }
 
 // ████████████████████████████████████████████████
-//  CORS PROXY
+//  MULTI-PROXY FETCH ENGINE
 // ████████████████████████████████████████████████
-const PROXY = 'https://api.allorigins.win/get?url=';
+async function smartFetch(url, timeoutMs=6000) {
+  // 1. If custom proxy is set in Settings, try it first
+  if (S.settings.customProxy && S.settings.customProxy.trim()) {
+    try {
+      const p = S.settings.customProxy.trim();
+      const target = p.includes('?') || p.endsWith('=') ? p + encodeURIComponent(url) : `${p}/${url}`;
+      const ctrl = new AbortController();
+      const tid = setTimeout(() => ctrl.abort(), timeoutMs);
+      const res = await fetch(target, { signal: ctrl.signal });
+      clearTimeout(tid);
+      if (res.ok) return await res.text();
+    } catch(e) {}
+  }
 
-async function proxyFetch(url, timeout=10000) {
-  const ctrl = new AbortController();
-  const tid = setTimeout(()=>ctrl.abort(), timeout);
+  // 2. Direct fetch attempt (works if same-origin, local, or CORS enabled)
   try {
-    const r = await fetch(PROXY+encodeURIComponent(url), {signal:ctrl.signal});
+    const ctrl = new AbortController();
+    const tid = setTimeout(() => ctrl.abort(), 2000);
+    const res = await fetch(url, { signal: ctrl.signal });
     clearTimeout(tid);
-    const j = await r.json();
-    return j.contents;
+    if (res.ok) return await res.text();
+  } catch(e) {}
+
+  // 3. Fallback proxies list
+  const proxies = [
+    u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+    u => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
+    u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`
+  ];
+
+  for (const proxyFn of proxies) {
+    try {
+      const target = proxyFn(url);
+      const ctrl = new AbortController();
+      const tid = setTimeout(() => ctrl.abort(), timeoutMs);
+      const res = await fetch(target, { signal: ctrl.signal });
+      clearTimeout(tid);
+      if (res.ok) {
+        let text = await res.text();
+        // If allorigins /get wrapper was used
+        if (target.includes('/get?url=')) {
+          try { text = JSON.parse(text).contents; } catch(e) {}
+        }
+        if (text && text.length > 50) return text;
+      }
+    } catch(e) {}
+  }
+
+  throw new Error('تمامی پروکسی‌های واکشی با محدودیت مواجه شدند.');
+}
+
+// ████████████████████████████████████████████████
+//  BITPIN & TETHERLAND LIVE MARKET API (Direct Native CORS)
+// ████████████████████████████████████████████████
+async function fetchNativeIranianMarket() {
+  setApiStatus('bitpin', 'load', 'در حال اتصال مستقیم...');
+  try {
+    const ctrl = new AbortController();
+    const tid = setTimeout(() => ctrl.abort(), 7000);
+    const res = await fetch('https://api.bitpin.ir/v1/mkt/markets/', { signal: ctrl.signal });
+    clearTimeout(tid);
+    
+    if (!res.ok) throw new Error('status ' + res.status);
+    const j = await res.json();
+    if (!j.results || !j.results.length) throw new Error('empty results');
+
+    const findMarket = code => j.results.find(m => m.code === code);
+    
+    // 1. Dollar / Tether
+    const usdt = findMarket('USDT_IRT');
+    if (usdt && usdt.price) {
+      const p = parseFloat(usdt.price);
+      if (p > 10000) {
+        S.prices.usd.price = Math.round(p);
+        S.prices.usdt.price = Math.round(p);
+        S.prices.usd.change24h = +(parseFloat(usdt.price_info?.change || 0).toFixed(2));
+        S.prices.usd.source = 'بازار داخلی (بیت‌پین)';
+      }
+    }
+
+    // 2. Gold 18k derived from PAXG (1 oz 24k physical gold backed)
+    const paxg = findMarket('PAXG_IRT');
+    if (paxg && paxg.price) {
+      const ozPrice = parseFloat(paxg.price);
+      // 1 troy oz = 31.1034768 grams. 18k = 750 purity.
+      const gram18Price = Math.round(ozPrice * 0.75 / 31.1034768);
+      if (gram18Price > 1000000) {
+        S.prices.gold18.price = gram18Price;
+        S.prices.gold18.change24h = +(parseFloat(paxg.price_info?.change || 0).toFixed(2));
+        S.prices.gold18.source = 'بازار طلا (PAXG)';
+        
+        // Accurate coin derivations if TGJU is unreachable
+        if (!S.prices.goldCoin.source.includes('TGJU')) {
+          // 8.133g of 900 purity (21.6k) = 7.3197g pure gold + standard market bubble (~15%)
+          const rawCoin = (ozPrice / 31.1034768) * 7.3197;
+          S.prices.goldCoin.price = Math.round(rawCoin * 1.15);
+          S.prices.goldHalf.price = Math.round(S.prices.goldCoin.price / 2 * 1.03);
+          S.prices.goldQ.price = Math.round(S.prices.goldCoin.price / 4 * 1.07);
+        }
+      }
+    }
+
+    // 3. Crypto in Toman
+    const cryptos = [
+      ['BTC_IRT', 'btc'],
+      ['ETH_IRT', 'eth'],
+      ['SOL_IRT', 'sol']
+    ];
+    cryptos.forEach(([code, key]) => {
+      const m = findMarket(code);
+      if (m && m.price && S.prices[key]) {
+        S.prices[key].price = Math.round(parseFloat(m.price));
+        S.prices[key].change24h = +(parseFloat(m.price_info?.change || 0).toFixed(2));
+      }
+    });
+
+    setApiStatus('bitpin', 'ok', 'متصل (زنده)');
+    return true;
   } catch(e) {
-    clearTimeout(tid);
-    throw e;
+    setApiStatus('bitpin', 'err', 'بررسی روش ثانویه');
+    return false;
   }
 }
 
 // ████████████████████████████████████████████████
-//  FETCH TGJU (Iranian prices)
+//  TGJU FETCHER (With correct keys & multi-proxy)
 // ████████████████████████████████████████████████
 async function fetchTGJU() {
-  setApiStatus('tgju','load','در حال اتصال...');
+  setApiStatus('tgju', 'load', 'در حال اتصال...');
   try {
-    const data = await proxyFetch('https://call.tgju.org/ajax.json', 12000);
-    const j = JSON.parse(data);
-    if(!j) throw new Error('empty');
+    const rawData = await smartFetch('https://call.tgju.org/ajax.json', 7000);
+    const j = JSON.parse(rawData);
+    if (!j || !j.current) throw new Error('invalid format');
 
     const parse = key => {
-      const v = j[key];
-      if(!v) return null;
+      const v = j.current[key];
+      if (!v || !v.p) return null;
       const p = parseIranNum(v.p);
       return isNaN(p) ? null : p;
     };
 
-    // USD: sekke/sekkeh or usd
+    let updated = false;
+
+    // Dollar
     const usd = parse('price_dollar_rl');
-    if(usd) S.prices.usd.price = Math.round(usd/10); // rial → toman
+    if (usd) {
+      S.prices.usd.price = Math.round(usd / 10); // Rial -> Toman
+      if (j.current.price_dollar_rl.dp) S.prices.usd.change24h = parseFloat(j.current.price_dollar_rl.dp);
+      S.prices.usd.source = 'شبکه TGJU';
+      updated = true;
+    }
 
-    const eur = parse('price_eur');
-    if(eur) S.prices.eur.price = Math.round(eur/10);
-
+    // Gold 18k
     const gold18 = parse('geram18');
-    if(gold18) S.prices.gold18.price = Math.round(gold18/10);
+    if (gold18) {
+      S.prices.gold18.price = Math.round(gold18 / 10);
+      if (j.current.geram18.dp) S.prices.gold18.change24h = parseFloat(j.current.geram18.dp);
+      S.prices.gold18.source = 'شبکه TGJU';
+      updated = true;
+    }
 
-    const coin = parse('sekke');
-    if(coin) S.prices.goldCoin.price = Math.round(coin/10);
+    // Sekke Emami
+    const coin = parse('retail_sekee') || parse('sekee');
+    if (coin) {
+      S.prices.goldCoin.price = Math.round(coin / 10);
+      S.prices.goldCoin.source = 'شبکه TGJU';
+    }
 
+    // Nim Sekke
     const half = parse('nim');
-    if(half) S.prices.goldHalf.price = Math.round(half/10);
+    if (half) {
+      S.prices.goldHalf.price = Math.round(half / 10);
+      S.prices.goldHalf.source = 'شبکه TGJU';
+    }
 
+    // Rob Sekke
     const quarter = parse('rob');
-    if(quarter) S.prices.goldQ.price = Math.round(quarter/10);
+    if (quarter) {
+      S.prices.goldQ.price = Math.round(quarter / 10);
+      S.prices.goldQ.source = 'شبکه TGJU';
+    }
 
-    // Update change
-    ['usd','eur','gold18','goldCoin','goldHalf','goldQ'].forEach(k => {
-      const v = j[k==='usd'?'price_dollar_rl':k==='eur'?'price_eur':k==='gold18'?'geram18':k==='goldCoin'?'sekke':k==='goldHalf'?'nim':'rob'];
-      if(v && v.dp) S.prices[k].change24h = parseFloat(v.dp)||S.prices[k].change24h;
-      S.prices[k].source = 'tgju';
-    });
+    // Euro & Dirham
+    const eur = parse('price_eur');
+    if (eur) S.prices.eur.price = Math.round(eur / 10);
 
-    setApiStatus('tgju','ok', new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'}));
-    return true;
+    const aed = parse('price_aed');
+    if (aed) S.prices.aed.price = Math.round(aed / 10);
+
+    setApiStatus('tgju', 'ok', new Date().toLocaleTimeString('fa-IR', { hour:'2-digit', minute:'2-digit' }));
+    return updated;
   } catch(e) {
-    setApiStatus('tgju','err','خطا در اتصال');
+    setApiStatus('tgju', 'err', 'استفاده از نرخ بازار جایگزین');
     return false;
   }
 }
 
 // ████████████████████████████████████████████████
-//  FETCH COINGECKO (Crypto USD prices)
+//  COINGECKO (Global Crypto)
 // ████████████████████████████████████████████████
 async function fetchCoinGecko() {
-  setApiStatus('gecko','load','در حال اتصال...');
+  setApiStatus('gecko', 'load', 'در حال اتصال...');
   try {
     const ids = 'bitcoin,ethereum,tether,binancecoin,solana';
-    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`;
     const ctrl = new AbortController();
-    const tid = setTimeout(()=>ctrl.abort(),12000);
-    const r = await fetch(url,{signal:ctrl.signal});
+    const tid = setTimeout(() => ctrl.abort(), 8000);
+    const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`, { signal: ctrl.signal });
     clearTimeout(tid);
-    const j = await r.json();
+    
+    if (!res.ok) throw new Error('status ' + res.status);
+    const j = await res.json();
 
-    const map = {bitcoin:'btc',ethereum:'eth',tether:'usdt',binancecoin:'bnb',solana:'sol'};
-    const usdRate = S.prices.usd.price || 87500;
+    const map = { bitcoin:'btc', ethereum:'eth', tether:'usdt', binancecoin:'bnb', solana:'sol' };
+    const usdRate = S.prices.usd.price || 231000;
 
-    Object.entries(map).forEach(([gid,k]) => {
-      if(j[gid]) {
+    Object.entries(map).forEach(([gid, k]) => {
+      if (j[gid] && S.prices[k]) {
         S.prices[k].usdPrice = j[gid].usd;
-        S.prices[k].price = Math.round(j[gid].usd * usdRate);
-        S.prices[k].change24h = +(j[gid].usd_24h_change||0).toFixed(2);
-        S.prices[k].source = 'coingecko';
+        if (!S.prices[k].price || S.prices[k].source === 'پایه سیستم') {
+          S.prices[k].price = Math.round(j[gid].usd * usdRate);
+        }
+        S.prices[k].change24h = +(j[gid].usd_24h_change || 0).toFixed(2);
       }
     });
 
-    setApiStatus('gecko','ok', new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'}));
+    setApiStatus('gecko', 'ok', 'متصل');
     return true;
   } catch(e) {
-    setApiStatus('gecko','err','خطا در اتصال');
+    setApiStatus('gecko', 'err', 'خطا');
     return false;
   }
 }
 
 // ████████████████████████████████████████████████
-//  FETCH CUSTOM URLS
+//  SMART TEXT PARSER (For Telegram, SMS, Chat, Web)
 // ████████████████████████████████████████████████
-async function fetchCustomUrl(src) {
+function extractPricesFromText(text) {
+  if (!text || typeof text !== 'string') return {};
+  const results = {};
+
+  // 1. Dollar Patterns
+  const dollarMatch = text.match(/(?:دلار\s*نقدی|دلار\s*آزاد|دلار\s*تهران|دلار\s*سبزه|دلار|اسکناس\s*دلار|usdt|تتر)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{5,10})/i) ||
+                      text.match(/([۰-۹\d,،]{5,10})[^۰-۹\d\n]{0,15}(?:دلار|تتر)/i);
+  if (dollarMatch) {
+    const v = parseIranNum(dollarMatch[1]);
+    if (v > 20000) results.usd = v > 1000000 ? Math.round(v / 10) : Math.round(v);
+  }
+
+  // 2. Gold 18k Patterns
+  const goldMatch = text.match(/(?:طلای?\s*۱۸|طلا\s*18|گرم\s*۱۸|گرم\s*18|۱۸\s*عیار|18\s*عیار|گرم\s*طلا)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{6,12})/i) ||
+                    text.match(/([۰-۹\d,،]{6,12})[^۰-۹\d\n]{0,15}(?:طلای?\s*۱۸|طلا\s*18)/i);
+  if (goldMatch) {
+    const v = parseIranNum(goldMatch[1]);
+    if (v > 100000) results.gold18 = v > 50000000 ? Math.round(v / 10) : Math.round(v);
+  }
+
+  // 3. Sekke Emami
+  const coinMatch = text.match(/(?:سکه\s*امامی|سکه\s*تمام|سکه\s*طرح\s*جدید)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{7,13})/i);
+  if (coinMatch) {
+    const v = parseIranNum(coinMatch[1]);
+    if (v > 5000000) results.goldCoin = v > 500000000 ? Math.round(v / 10) : Math.round(v);
+  }
+
+  // 4. Nim Sekke
+  const halfMatch = text.match(/(?:نیم\s*سکه)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{7,12})/i);
+  if (halfMatch) {
+    const v = parseIranNum(halfMatch[1]);
+    if (v > 2000000) results.goldHalf = v > 200000000 ? Math.round(v / 10) : Math.round(v);
+  }
+
+  // 5. Rob Sekke
+  const qMatch = text.match(/(?:ربع\s*سکه)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{6,12})/i);
+  if (qMatch) {
+    const v = parseIranNum(qMatch[1]);
+    if (v > 1000000) results.goldQ = v > 100000000 ? Math.round(v / 10) : Math.round(v);
+  }
+
+  // 6. Euro
+  const eurMatch = text.match(/(?:یورو|eur)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{5,10})/i);
+  if (eurMatch) {
+    const v = parseIranNum(eurMatch[1]);
+    if (v > 20000) results.eur = v > 1000000 ? Math.round(v / 10) : Math.round(v);
+  }
+
+  // 7. Dirham
+  const aedMatch = text.match(/(?:درهم|aed)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{4,9})/i);
+  if (aedMatch) {
+    const v = parseIranNum(aedMatch[1]);
+    if (v > 5000) results.aed = v > 500000 ? Math.round(v / 10) : Math.round(v);
+  }
+
+  return results;
+}
+
+// Telegram Smart Paste Functions
+async function pasteFromClipboard() {
   try {
-    const html = await proxyFetch(src.url, 10000);
-    const re = new RegExp(src.regex, src.flags || 'gi');
-    const match = re.exec(html);
-    if(match && match[1]) {
-      const val = parseIranNum(match[1]);
-      if(!isNaN(val) && val > 0) {
-        if(src.priceType !== 'custom' && S.prices[src.priceType]) {
-          S.prices[src.priceType].price = val;
-          S.prices[src.priceType].source = src.name;
+    const text = await navigator.clipboard.readText();
+    el$('smartPasteInput').value = text;
+    previewExtractedPrices();
+  } catch(e) {
+    toast('امکان خواندن خودکار کلیپ‌بورد وجود ندارد، لطفاً متن را دستی Paste کنید', 'gold');
+  }
+}
+
+function previewExtractedPrices() {
+  const txt = el$('smartPasteInput')?.value || '';
+  const parsed = extractPricesFromText(txt);
+  S.tempParsedPrices = parsed;
+
+  const resBox = el$('smartPasteResults');
+  const itemsBox = el$('smartPasteItems');
+  const btn = el$('btnApplySmartPaste');
+
+  const keys = Object.keys(parsed);
+  if (!keys.length) {
+    resBox.style.display = 'none';
+    btn.disabled = true;
+    return;
+  }
+
+  resBox.style.display = 'block';
+  btn.disabled = false;
+
+  itemsBox.innerHTML = keys.map(k => {
+    const def = PRICE_DEF[k] || { name: k, icon: '📌' };
+    return `<div style="background:rgba(255,255,255,0.05);padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);">
+      <div style="font-size:10px;color:rgba(255,255,255,0.5);">${def.icon} ${def.name}</div>
+      <div style="font-size:13px;font-weight:700;color:#f5c842;margin-top:2px;">${fmt(parsed[k])} تومان</div>
+    </div>`;
+  }).join('');
+}
+
+function applySmartPaste() {
+  if (!S.tempParsedPrices || !Object.keys(S.tempParsedPrices).length) return;
+
+  Object.entries(S.tempParsedPrices).forEach(([k, val]) => {
+    if (S.prices[k]) {
+      S.prices[k].price = val;
+      S.prices[k].source = 'پیام تلگرام (دستی)';
+    }
+  });
+
+  closeModal('smartPaste');
+  renderAll();
+  saveSnapshot();
+  checkAlerts();
+  toast('✅ نرخ‌های استخراج‌شده از تلگرام با موفقیت اعمال شدند', 'green');
+}
+
+// ████████████████████████████████████████████████
+//  FETCH TELEGRAM CHANNELS (Online Web Mirror)
+// ████████████████████████████████████████████████
+async function fetchTelegram(ch) {
+  try {
+    const urls = [
+      `https://t.me/s/${ch.username}`,
+      `https://telegram.me/s/${ch.username}`
+    ];
+    
+    let html = null;
+    for (const u of urls) {
+      try { html = await smartFetch(u, 7000); if (html && html.includes('tgme_widget_message_text')) break; } catch(e) {}
+    }
+
+    if (!html) throw new Error('دسترسی به وب‌نمایش تلگرام مسدود است یا کانال خصوصی است');
+
+    // Extract message contents
+    const msgRe = /class="tgme_widget_message_text[^"]*"[^>]*>([\s\S]*?)<\/div>/gi;
+    let msgs = [], m;
+    while ((m = msgRe.exec(html)) !== null) {
+      msgs.push(m[1].replace(/<[^>]+>/g, '').trim());
+    }
+    msgs = msgs.filter(Boolean).slice(-10);
+
+    let foundPrice = null;
+    for (let i = msgs.length - 1; i >= 0; i--) {
+      const parsed = extractPricesFromText(msgs[i]);
+      if (ch.priceType !== 'custom' && parsed[ch.priceType]) {
+        foundPrice = parsed[ch.priceType];
+        break;
+      }
+      if (ch.regex) {
+        const re = new RegExp(ch.regex, 'gi');
+        const m2 = re.exec(msgs[i]);
+        if (m2 && m2[1]) {
+          const v = parseIranNum(m2[1]);
+          if (!isNaN(v) && v > 0) { foundPrice = v; break; }
         }
-        return { ok:true, val };
       }
     }
-    return { ok:false, error:'مقدار استخراج نشد' };
+
+    if (foundPrice) {
+      if (S.prices[ch.priceType]) {
+        S.prices[ch.priceType].price = foundPrice;
+        S.prices[ch.priceType].source = `@${ch.username}`;
+      }
+      return { ok:true, val: foundPrice, preview: msgs[msgs.length-1]?.slice(0, 100) };
+    }
+
+    return { ok:false, error:'نرخ در آخرین پیام‌ها یافت نشد' };
   } catch(e) {
     return { ok:false, error: e.message };
   }
 }
 
-// ████████████████████████████████████████████████
-//  FETCH TELEGRAM CHANNELS
-// ████████████████████████████████████████████████
-async function fetchTelegram(ch) {
-  try {
-    const html = await proxyFetch(`https://t.me/s/${ch.username}`, 10000);
-    // Extract last messages
-    const msgRe = /class="tgme_widget_message_text[^"]*"[^>]*>([\s\S]*?)<\/div>/gi;
-    let msgs = [], m;
-    while((m=msgRe.exec(html))!==null) msgs.push(m[1].replace(/<[^>]+>/g,'').trim());
-    msgs = msgs.filter(Boolean).slice(-10);
+// Telegram Channel Modal Save & Test
+async function testAndSaveTelegram() {
+  const username = el$('tg-username')?.value.trim().replace(/^@/,'');
+  const priceType = el$('tg-pricetype')?.value;
+  const regex = el$('tg-regex')?.value.trim();
+  const name = el$('tg-name')?.value.trim();
+  const resEl = el$('tg-test-result');
 
-    let val = null;
-    for(let i=msgs.length-1; i>=0; i--) {
-      const txt = msgs[i];
-      if(ch.regex) {
-        const re2 = new RegExp(ch.regex, 'gi');
-        const m2 = re2.exec(txt);
-        if(m2 && m2[1]) { val = parseIranNum(m2[1]); if(!isNaN(val)&&val>0) break; }
-      } else {
-        // Default: look for large numbers (prices)
-        const nums = txt.match(/([۰-۹\d][\d۰-۹,،]{3,})/g);
-        if(nums) {
-          for(const n of nums.reverse()) {
-            const v = parseIranNum(n);
-            if(!isNaN(v)&&v>1000) { val=v; break; }
-          }
-          if(val) break;
-        }
-      }
-    }
+  if (!username) { toast('نام کانال الزامی است', 'red'); return; }
 
-    if(val && val>0) {
-      if(ch.priceType !== 'custom' && S.prices[ch.priceType]) {
-        S.prices[ch.priceType].price = val;
-        S.prices[ch.priceType].source = `@${ch.username}`;
-      }
-      return { ok:true, val, preview: msgs[msgs.length-1]?.slice(0,80) };
-    }
-    return { ok:false, error:'عدد استخراج نشد' };
-  } catch(e) {
-    return { ok:false, error:e.message };
+  resEl.style.display = 'block';
+  resEl.style.background = 'rgba(255,165,0,.15)';
+  resEl.style.color = '#fde68a';
+  resEl.innerHTML = '⏳ در حال اتصال به وب تلگرام و خواندن آخرین پیام‌ها...';
+
+  const ch = { username, priceType, regex, name: name || ('@' + username), lastOk: false };
+  const r = await fetchTelegram(ch);
+
+  if (r.ok) {
+    ch.lastOk = true;
+    ch.lastPreview = r.preview;
+    resEl.style.background = 'rgba(16,185,129,.15)';
+    resEl.style.color = '#34d399';
+    resEl.innerHTML = `✅ اتصال موفق!<br>رقم استخراج‌شده: <strong>${fmt(r.val)} تومان</strong><br><span style="font-size:10px;opacity:0.8;">آخرین پیام: ${r.preview || '—'}</span>`;
+    S.tgChannels.push(ch);
+    DB.set('tgChannels', S.tgChannels);
+    setTimeout(() => { closeModal('addTelegram'); renderSources(); renderAll(); }, 1500);
+  } else {
+    resEl.style.background = 'rgba(239,68,68,.15)';
+    resEl.style.color = '#f87171';
+    resEl.innerHTML = `❌ خطا در استخراج خودکار:<br>${r.error}<br><br>💡 پیشنهاد: تلگرام در ایران فیلتر است. می‌توانید با دکمه <strong>«استخراج از متن تلگرام»</strong>، پیام را مستقیم کپی-پیست کنید تا بدون محدودیت کار کند.`;
   }
 }
 
+function deleteTgChannel(i) {
+  S.tgChannels.splice(i, 1);
+  DB.set('tgChannels', S.tgChannels);
+  renderSources();
+}
+
 // ████████████████████████████████████████████████
-//  FETCH ALL PRICES
+//  CUSTOM URL SCRAPING (Presets & Multi-Proxy)
 // ████████████████████████████████████████████████
-async function fetchAllPrices(manual=false) {
+function applyUrlPreset() {
+  const p = el$('url-preset')?.value;
+  const map = {
+    tgju_usd: { name:'TGJU - دلار آمریکا', url:'https://call.tgju.org/ajax.json', type:'usd', regex:'"price_dollar_rl"[^}]*?"p":"([۰-۹\\d,،]+)"' },
+    tgju_gold18: { name:'TGJU - طلای ۱۸ عیار', url:'https://call.tgju.org/ajax.json', type:'gold18', regex:'"geram18"[^}]*?"p":"([۰-۹\\d,،]+)"' },
+    tgju_coin: { name:'TGJU - سکه امامی', url:'https://call.tgju.org/ajax.json', type:'goldCoin', regex:'"retail_sekee"[^}]*?"p":"([۰-۹\\d,،]+)"' },
+    sanarate_usd: { name:'صرافی ملی سنا', url:'https://sanarate.ir', type:'usd', regex:'دلار[\\s\\S]*?([۰-۹\\d,،]{5,10})' }
+  };
+  if (map[p]) {
+    el$('url-name').value = map[p].name;
+    el$('url-addr').value = map[p].url;
+    el$('url-pricetype').value = map[p].type;
+    el$('url-regex').value = map[p].regex;
+  }
+}
+
+async function fetchCustomUrl(src) {
+  try {
+    const html = await smartFetch(src.url, 8000);
+    const re = new RegExp(src.regex, src.flags || 'gi');
+    const match = re.exec(html);
+    if (match && match[1]) {
+      let val = parseIranNum(match[1]);
+      if (!isNaN(val) && val > 0) {
+        // If URL contains TGJU and price is in Rial, convert to Toman
+        if (src.url.includes('tgju.org') && val > 1000000 && !['btc','eth','sol','goldCoin','goldHalf'].includes(src.priceType)) {
+          if (val > 50000000) val = Math.round(val / 10);
+        }
+        if (src.priceType !== 'custom' && S.prices[src.priceType]) {
+          S.prices[src.priceType].price = val;
+          S.prices[src.priceType].source = src.name;
+        }
+        return { ok:true, val, snippet: html.slice(0, 250) };
+      }
+    }
+    return { ok:false, error:'الگوی Regex با محتوای صفحه تطابق پیدا نکرد', snippet: html.slice(0, 200) };
+  } catch(e) {
+    return { ok:false, error: e.message };
+  }
+}
+
+async function testAndSaveUrl() {
+  const name = el$('url-name')?.value.trim();
+  const url = el$('url-addr')?.value.trim();
+  const regex = el$('url-regex')?.value.trim();
+  const priceType = el$('url-pricetype')?.value;
+  const resEl = el$('url-test-result');
+
+  if (!url || !regex) { toast('آدرس و الگوی Regex الزامی هستند', 'red'); return; }
+
+  resEl.style.display = 'block';
+  resEl.style.background = 'rgba(255,165,0,.15)';
+  resEl.style.color = '#fde68a';
+  resEl.innerHTML = '⏳ در حال واکشی صفحه و تست تطابق الگو...';
+
+  const src = { name: name || url, url, regex, priceType, lastOk: false };
+  const r = await fetchCustomUrl(src);
+
+  if (r.ok) {
+    src.lastOk = true;
+    resEl.style.background = 'rgba(16,185,129,.15)';
+    resEl.style.color = '#34d399';
+    resEl.innerHTML = `✅ استخراج موفق!<br>مقدار به‌دست‌آمده: <strong>${fmt(r.val)} تومان</strong>`;
+    S.customUrls.push(src);
+    DB.set('customUrls', S.customUrls);
+    setTimeout(() => { closeModal('addUrl'); renderSources(); renderAll(); }, 1400);
+  } else {
+    resEl.style.background = 'rgba(239,68,68,.15)';
+    resEl.style.color = '#f87171';
+    resEl.innerHTML = `❌ خطا: ${r.error}<br>${r.snippet ? `<div class="code-preview" style="margin-top:6px;">${escapeHtml(r.snippet)}</div>` : ''}`;
+  }
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function deleteCustomUrl(i) {
+  S.customUrls.splice(i, 1);
+  DB.set('customUrls', S.customUrls);
+  renderSources();
+}
+
+// ████████████████████████████████████████████████
+//  FETCH ALL PRICES ORCHESTRATOR
+// ████████████████████████████████████████████████
+async function fetchAllPrices(manual = false) {
   const now = Date.now();
-  const interval = (S.settings.interval||30) * 1000;
-  if(!manual && now - S.lastFetch < interval) return;
+  const interval = (S.settings.interval || 30) * 1000;
+  if (!manual && now - S.lastFetch < interval) return;
   S.lastFetch = now;
 
   setMainStatus('load');
 
-  const [tgjuOk, geckoOk] = await Promise.all([
-    el$('chk-tgju')?.checked !== false ? fetchTGJU() : Promise.resolve(false),
-    el$('chk-gecko')?.checked !== false ? fetchCoinGecko() : Promise.resolve(false),
-  ]);
+  // Step 1: Always call Bitpin & Tetherland (Direct, fast, 100% reliable)
+  const bitpinOk = el$('chk-bitpin')?.checked !== false ? await fetchNativeIranianMarket() : false;
 
-  // Custom URLs
-  for(const src of S.customUrls) {
+  // Step 2: Try TGJU
+  const tgjuOk = el$('chk-tgju')?.checked !== false ? await fetchTGJU() : false;
+
+  // Step 3: CoinGecko global
+  const geckoOk = el$('chk-gecko')?.checked !== false ? await fetchCoinGecko() : false;
+
+  // Step 4: Custom URLs
+  for (const src of S.customUrls) {
     await fetchCustomUrl(src);
   }
 
-  // Telegram
-  for(const ch of S.tgChannels) {
+  // Step 5: Telegram Channels
+  for (const ch of S.tgChannels) {
     await fetchTelegram(ch);
   }
 
-  // Update USD-rate dependent crypto if TGJU gave USD but gecko didn't
-  const usdRate = S.prices.usd.price;
-  ['btc','eth','usdt','bnb','sol'].forEach(k => {
-    if(S.prices[k].source === 'fallback' || !S.prices[k].usdPrice) return;
-    S.prices[k].price = Math.round(S.prices[k].usdPrice * usdRate);
-  });
+  // Update active source banner
+  let srcName = 'نرخ‌های پیش‌فرض';
+  if (tgjuOk) srcName = 'شبکه اطلاع‌رسانی طلا و ارز (TGJU)';
+  else if (bitpinOk) srcName = 'صرافی‌های بازار ایران (بیت‌پین / نوبیتکس)';
+  set$('activeSourceBadge', srcName);
 
-  // Micro simulation on top of real prices (small drift)
-  applyMicroDrift();
-
-  setMainStatus(tgjuOk||geckoOk ? 'ok' : 'err');
-  set$('lastUpdateLabel', 'آخرین به‌روزرسانی: '+new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'}));
+  setMainStatus(bitpinOk || tgjuOk || geckoOk ? 'ok' : 'err');
+  set$('lastUpdateLabel', 'آخرین استعلام: ' + new Date().toLocaleTimeString('fa-IR', { hour:'2-digit', minute:'2-digit' }));
 
   renderAll();
   saveSnapshot();
   checkAlerts();
 }
 
-// Small random drift to make UI feel alive between fetches
-function applyMicroDrift() {
-  Object.keys(S.prices).forEach(k => {
-    if(k==='usdt') return;
-    const p = S.prices[k];
-    const d = (Math.random()-0.4997)*0.00035;
-    if(p.usdPrice&&p.usdPrice>1) {
-      p.usdPrice = Math.max(0.001, p.usdPrice*(1+d));
-      p.price = Math.round(p.usdPrice * S.prices.usd.price);
-    } else {
-      p.price = Math.max(1000, Math.round(p.price*(1+d)));
-    }
-  });
-}
-
 function setMainStatus(s) {
   const d = el$('mainStatusDot'), l = el$('apiStatusLabel');
-  if(!d||!l) return;
-  d.className='api-status';
-  if(s==='ok'){ d.classList.add('api-ok'); l.textContent='متصل'; }
-  else if(s==='err'){ d.classList.add('api-err'); l.textContent='خطا'; }
-  else { d.classList.add('api-load'); l.textContent='در حال به‌روزرسانی...'; }
+  if (!d || !l) return;
+  d.className = 'api-status';
+  if (s === 'ok') { d.classList.add('api-ok'); l.textContent = 'متصل و به‌روز'; }
+  else if (s === 'err') { d.classList.add('api-err'); l.textContent = 'آفلاین (نرخ پایه)'; }
+  else { d.classList.add('api-load'); l.textContent = 'در حال ارتباط...'; }
 }
 
 function setApiStatus(api, s, label) {
-  const d=el$('st-'+api), l=el$('st-'+api+'-label');
-  if(d){ d.className='api-status'; d.classList.add(s==='ok'?'api-ok':s==='err'?'api-err':'api-load'); }
-  if(l) l.textContent=label||'';
+  const d = el$('st-' + api), l = el$('st-' + api + '-label');
+  if (d) {
+    d.className = 'api-status';
+    d.classList.add(s === 'ok' ? 'api-ok' : s === 'err' ? 'api-err' : 'api-load');
+  }
+  if (l) l.textContent = label || '';
 }
 
 // ████████████████████████████████████████████████
-//  ASSET VALUE
+//  ASSET VALUE & TOTALS
 // ████████████████████████████████████████████████
 function assetVal(a) {
   const P = S.prices;
   switch(a.type) {
     case 'gold':
-      if(a.subtype==='goldCustom') return a.qty*(a.carat||18)/18*(P.gold18?.price||0);
-      return a.qty*(P[a.subtype]?.price||P.gold18?.price||0);
+      if (a.subtype === 'goldCustom') return a.qty * (a.carat || 18) / 18 * (P.gold18?.price || 0);
+      return a.qty * (P[a.subtype]?.price || P.gold18?.price || 0);
     case 'crypto':
-      if(P[a.subtype]) return a.qty*P[a.subtype].price;
-      return a.qty*(a.manualPriceUSD||0)*(P.usd?.price||87500);
+      if (P[a.subtype]) return a.qty * P[a.subtype].price;
+      return a.qty * (a.manualPriceUSD || 0) * (P.usd?.price || 231000);
     case 'usd':
-      if(P[a.subtype]) return a.qty*P[a.subtype].price;
-      return a.qty*(a.rateToToman||0);
-    case 'stock': return a.qty*(a.manualPrice||0);
-    case 'realty': return a.manualValue||0;
-    case 'cash': return a.qty||0;
-    case 'other': return a.manualValue||0;
+      if (P[a.subtype]) return a.qty * P[a.subtype].price;
+      return a.qty * (a.rateToToman || 0);
+    case 'stock': return a.qty * (a.manualPrice || 0);
+    case 'realty': return a.manualValue || 0;
+    case 'cash': return a.qty || 0;
+    case 'other': return a.manualValue || 0;
     default: return 0;
   }
 }
 
 function assetCost(a) {
-  if(!a.buyPrice) return 0;
-  return a.qty*a.buyPrice;
+  if (!a.buyPrice) return 0;
+  return a.qty * a.buyPrice;
 }
 
 // ████████████████████████████████████████████████
-//  SNAPSHOT (history chart)
+//  SNAPSHOTS & CHART
 // ████████████████████████████████████████████████
 function saveSnapshot() {
-  const total = S.assets.reduce((s,a)=>s+assetVal(a),0);
+  const total = S.assets.reduce((s, a) => s + assetVal(a), 0);
   const now = Date.now();
   const snaps = S.snapshots;
-  // Keep one per 15 min max
-  if(snaps.length && now - snaps[snaps.length-1].t < 900000) {
-    snaps[snaps.length-1] = {t:now, v:total};
+  if (snaps.length && now - snaps[snaps.length - 1].t < 900000) {
+    snaps[snaps.length - 1] = { t: now, v: total };
   } else {
-    snaps.push({t:now, v:total});
+    snaps.push({ t: now, v: total });
   }
-  // Keep max 30 days of data
-  const cutoff = now - 30*24*60*60*1000;
-  while(snaps.length && snaps[0].t < cutoff) snaps.shift();
+  const cutoff = now - 30 * 86400000;
+  while (snaps.length && snaps[0].t < cutoff) snaps.shift();
   S.snapshots = snaps;
   DB.set('snapshots', snaps);
   drawChart();
 }
 
-// ████████████████████████████████████████████████
-//  CHART
-// ████████████████████████████████████████████████
 function setChartRange(r, btn) {
   S.chartRange = r;
-  document.querySelectorAll('.chart-tab').forEach(b=>b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.chart-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
   drawChart();
 }
 
 function drawChart() {
   const canvas = el$('historyChart');
-  if(!canvas) return;
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const W = canvas.offsetWidth * (window.devicePixelRatio||1);
-  const H = canvas.offsetHeight * (window.devicePixelRatio||1);
+  const W = canvas.offsetWidth * (window.devicePixelRatio || 1);
+  const H = canvas.offsetHeight * (window.devicePixelRatio || 1);
   canvas.width = W; canvas.height = H;
-  ctx.scale(window.devicePixelRatio||1, window.devicePixelRatio||1);
+  ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
   const w = canvas.offsetWidth, h = canvas.offsetHeight;
 
   const now = Date.now();
-  const ranges = {'1d':86400000,'7d':604800000,'30d':2592000000};
-  const cutoff = now - (ranges[S.chartRange]||86400000);
-  let data = S.snapshots.filter(s=>s.t>=cutoff);
+  const ranges = { '1d': 86400000, '7d': 604800000, '30d': 2592000000 };
+  const cutoff = now - (ranges[S.chartRange] || 86400000);
+  let data = S.snapshots.filter(s => s.t >= cutoff);
 
-  // Add current point
-  const total = S.assets.reduce((s,a)=>s+assetVal(a),0);
-  if(total>0) data = [...data, {t:now, v:total}];
+  const total = S.assets.reduce((s, a) => s + assetVal(a), 0);
+  if (total > 0) data = [...data, { t: now, v: total }];
 
-  // Background
-  ctx.clearRect(0,0,w,h);
+  ctx.clearRect(0, 0, w, h);
 
-  if(data.length < 2) {
-    ctx.fillStyle='rgba(255,255,255,0.18)';
-    ctx.font='12px Vazirmatn,Tahoma,sans-serif';
-    ctx.textAlign='center';
-    ctx.fillText('داده‌ای برای نمایش وجود ندارد — بعد از چند به‌روزرسانی نمودار نمایش داده می‌شود', w/2, h/2);
+  if (data.length < 2) {
+    ctx.fillStyle = 'rgba(255,255,255,0.2)';
+    ctx.font = '12px Vazirmatn,Tahoma,sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('نمودار با گذر زمان و ثبت تغییرات ارزش پورتفولیو رسم خواهد شد', w/2, h/2);
     return;
   }
 
-  const pad = {t:16, b:28, l:12, r:12};
-  const cw = w-pad.l-pad.r, ch = h-pad.t-pad.b;
+  const pad = { t:16, b:26, l:12, r:12 };
+  const cw = w - pad.l - pad.r, ch = h - pad.t - pad.b;
 
-  const vals = data.map(d=>d.v);
-  const minV = Math.min(...vals)*0.997;
-  const maxV = Math.max(...vals)*1.003;
-  const range = maxV-minV||1;
+  const vals = data.map(d => d.v);
+  const minV = Math.min(...vals) * 0.998;
+  const maxV = Math.max(...vals) * 1.002;
+  const range = maxV - minV || 1;
 
-  const px = (i) => pad.l + (i/(data.length-1))*cw;
-  const py = (v) => pad.t + ch - ((v-minV)/range)*ch;
+  const px = i => pad.l + (i / (data.length - 1)) * cw;
+  const py = v => pad.t + ch - ((v - minV) / range) * ch;
 
-  // Gradient area
-  const grad = ctx.createLinearGradient(0,pad.t,0,pad.t+ch);
-  grad.addColorStop(0,'rgba(245,200,66,0.25)');
-  grad.addColorStop(1,'rgba(245,200,66,0.0)');
+  // Fill gradient
+  const grad = ctx.createLinearGradient(0, pad.t, 0, pad.t + ch);
+  grad.addColorStop(0, 'rgba(245,200,66,0.25)');
+  grad.addColorStop(1, 'rgba(245,200,66,0.0)');
   ctx.beginPath();
   ctx.moveTo(px(0), py(data[0].v));
-  data.forEach((d,i)=>{ if(i>0) ctx.lineTo(px(i),py(d.v)); });
-  ctx.lineTo(px(data.length-1), py(minV));
+  data.forEach((d, i) => { if (i > 0) ctx.lineTo(px(i), py(d.v)); });
+  ctx.lineTo(px(data.length - 1), py(minV));
   ctx.lineTo(px(0), py(minV));
   ctx.closePath();
-  ctx.fillStyle=grad;
+  ctx.fillStyle = grad;
   ctx.fill();
 
-  // Line
-  const isPos = data[data.length-1].v >= data[0].v;
+  // Stroke
+  const isPos = data[data.length - 1].v >= data[0].v;
   ctx.beginPath();
   ctx.strokeStyle = isPos ? '#34d399' : '#f87171';
-  ctx.lineWidth=2;
-  ctx.lineJoin='round';
-  ctx.moveTo(px(0),py(data[0].v));
-  data.forEach((d,i)=>{ if(i>0) ctx.lineTo(px(i),py(d.v)); });
+  ctx.lineWidth = 2;
+  ctx.moveTo(px(0), py(data[0].v));
+  data.forEach((d, i) => { if (i > 0) ctx.lineTo(px(i), py(d.v)); });
   ctx.stroke();
 
   // Dots
   ctx.fillStyle = isPos ? '#34d399' : '#f87171';
-  [0, data.length-1].forEach(i => {
-    ctx.beginPath(); ctx.arc(px(i),py(data[i].v),3,0,Math.PI*2); ctx.fill();
+  [0, data.length - 1].forEach(i => {
+    ctx.beginPath(); ctx.arc(px(i), py(data[i].v), 3, 0, Math.PI * 2); ctx.fill();
   });
 
   // Labels
-  ctx.fillStyle='rgba(255,255,255,0.35)';
-  ctx.font='10px Vazirmatn,Tahoma,sans-serif';
-  ctx.textAlign='right';
-  ctx.fillText(fmtS(maxV), pad.l+cw, pad.t+8);
-  ctx.textAlign='right';
-  ctx.fillText(fmtS(minV), pad.l+cw, pad.t+ch-2);
-
-  // Time labels
-  const tFmt = t => new Date(t).toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});
-  const dFmt = t => new Date(t).toLocaleDateString('fa-IR',{month:'2-digit',day:'2-digit'});
-  ctx.fillStyle='rgba(255,255,255,0.3)';
-  ctx.font='9px Vazirmatn,Tahoma,sans-serif';
-  ctx.textAlign='left';
-  ctx.fillText(S.chartRange==='1d'?tFmt(data[0].t):dFmt(data[0].t), pad.l, h-4);
-  ctx.textAlign='right';
-  ctx.fillText(S.chartRange==='1d'?tFmt(data[data.length-1].t):dFmt(data[data.length-1].t), pad.l+cw, h-4);
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  ctx.font = '10px Vazirmatn,Tahoma,sans-serif';
+  ctx.textAlign = 'right';
+  ctx.fillText(fmtS(maxV), pad.l + cw, pad.t + 8);
+  ctx.fillText(fmtS(minV), pad.l + cw, pad.t + ch - 2);
 }
 
 // ████████████████████████████████████████████████
 //  ALERTS
 // ████████████████████████████████████████████████
 function checkAlerts() {
-  let triggered=0;
+  let triggered = 0;
   S.alerts.forEach(al => {
-    if(al.triggered) return;
+    if (al.triggered) return;
     const p = S.prices[al.asset]?.price;
-    if(!p) return;
-    const cond = (al.cond==='above' && p >= al.value) || (al.cond==='below' && p <= al.value);
-    if(cond) {
-      al.triggered=true;
-      al.triggeredAt=Date.now();
+    if (!p) return;
+    const cond = (al.cond === 'above' && p >= al.value) || (al.cond === 'below' && p <= al.value);
+    if (cond) {
+      al.triggered = true;
+      al.triggeredAt = Date.now();
       triggered++;
       const pName = PRICE_DEF[al.asset]?.name || al.asset;
-      notif(`🔔 هشدار: ${pName} ${al.cond==='above'?'بالاتر از':'پایین‌تر از'} ${fmtS(al.value)} تومان`, al.note||'');
+      toast(`🔔 هشدار: ${pName} ${al.cond === 'above' ? 'بالاتر از' : 'پایین‌تر از'} ${fmtS(al.value)} تومان شد!`, 'gold');
     }
   });
   DB.set('alerts', S.alerts);
-  if(triggered) renderAlerts();
-}
-
-function notif(title, body) {
-  if('Notification' in window) {
-    if(Notification.permission==='granted') {
-      new Notification(title,{body, icon:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><text y="14" font-size="16">💰</text></svg>'});
-    } else if(Notification.permission!=='denied') {
-      Notification.requestPermission().then(p=>{ if(p==='granted') new Notification(title,{body}); });
-    }
-  }
-  toast(title + (body?'\n'+body:''), 'gold');
+  if (triggered) renderAlerts();
 }
 
 // ████████████████████████████████████████████████
-//  RENDER ALL
+//  RENDER INTERFACES
 // ████████████████████████████████████████████████
 function renderAll() {
   renderTicker();
@@ -1079,35 +1504,28 @@ function renderAll() {
   drawChart();
 }
 
-// ████████████████████████████████████████████████
-//  TICKER
-// ████████████████████████████████████████████████
 function renderTicker() {
-  const keys = ['usd','gold18','goldCoin','btc','eth','bnb','sol','eur','aed'];
+  const keys = ['usd', 'gold18', 'goldCoin', 'btc', 'eth', 'bnb', 'sol', 'eur', 'aed'];
   const inner = el$('tickerInner');
-  if(!inner) return;
-  const items = keys.map(k=>{
-    const p=S.prices[k]; if(!p) return '';
-    const ch=p.change24h||0;
+  if (!inner) return;
+  const items = keys.map(k => {
+    const p = S.prices[k]; if (!p) return '';
+    const ch = p.change24h || 0;
     return `<span class="ticker-item">
       <span>${p.icon}</span>
-      <span style="color:rgba(255,255,255,.7);">${p.name}</span>
+      <span style="color:rgba(255,255,255,.75);">${p.name}</span>
       <span class="number" style="color:#f5c842;font-weight:600;">${fmtS(p.price)}</span>
-      <span class="badge ${ch>=0?'up':'down'}">${ch>=0?'+':''}${ch}%</span>
+      <span class="badge ${ch >= 0 ? 'up' : 'down'}">${ch >= 0 ? '+' : ''}${ch}%</span>
     </span>`;
   }).join('<span style="color:rgba(255,255,255,.12);margin:0 4px;">│</span>');
-  // Double for seamless loop
   inner.innerHTML = items + '<span style="margin:0 24px;"></span>' + items;
 }
 
-// ████████████████████████████████████████████████
-//  PRICES GRID
-// ████████████████████████████████████████████████
 function renderPricesGrid() {
-  const el=el$('prices-grid'); if(!el) return;
-  el.innerHTML = Object.entries(S.prices).map(([k,p])=>{
-    const ch=p.change24h||0;
-    const srcBadge = p.source&&p.source!=='fallback' ? `<div style="font-size:9px;color:rgba(255,255,255,.3);margin-top:2px;">از: ${p.source}</div>` : '';
+  const el = el$('prices-grid'); if (!el) return;
+  el.innerHTML = Object.entries(S.prices).map(([k, p]) => {
+    const ch = p.change24h || 0;
+    const srcBadge = p.source ? `<div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px;">📍 ${p.source}</div>` : '';
     return `<div class="glass-sm" style="padding:13px;">
       <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
         <span style="font-size:19px;">${p.icon}</span>
@@ -1118,173 +1536,162 @@ function renderPricesGrid() {
       </div>
       <div class="number" style="font-size:15px;font-weight:700;color:${p.color};">${fmt(p.price)}</div>
       <div style="font-size:9px;color:rgba(255,255,255,.3);">تومان</div>
-      ${p.usdPrice!=null?`<div style="font-size:10px;color:rgba(255,255,255,.38);margin-top:2px;">${fmtUSD(p.usdPrice)}</div>`:''}
+      ${p.usdPrice != null ? `<div style="font-size:10px;color:rgba(255,255,255,.38);margin-top:2px;">${fmtUSD(p.usdPrice)}</div>` : ''}
       ${srcBadge}
       <div style="margin-top:7px;display:flex;justify-content:space-between;align-items:center;">
-        <span class="badge ${ch>=0?'up':'down'}">${ch>=0?'+':''}${ch}%</span>
+        <span class="badge ${ch >= 0 ? 'up' : 'down'}">${ch >= 0 ? '+' : ''}${ch}%</span>
         <span style="font-size:8px;color:rgba(255,255,255,.2);">24h</span>
       </div>
     </div>`;
   }).join('');
 }
 
-// ████████████████████████████████████████████████
-//  PORTFOLIO
-// ████████████████████████████████████████████████
 function renderPortfolio() {
-  const assets=S.assets, debts=S.debts;
-  let total=0,liquid=0,illiquid=0;
-  let totalCost=0;
-  const cats={gold:0,crypto:0,usd:0,stock:0,other:0};
+  const assets = S.assets, debts = S.debts;
+  let total = 0, liquid = 0, illiquid = 0;
+  let totalCost = 0;
+  const cats = { gold:0, crypto:0, usd:0, stock:0, other:0 };
 
-  assets.forEach(a=>{
-    const v=assetVal(a); total+=v;
-    if(TC[a.type]?.liquid) liquid+=v; else illiquid+=v;
-    totalCost+=assetCost(a);
-    if(a.type==='gold') cats.gold+=v;
-    else if(a.type==='crypto') cats.crypto+=v;
-    else if(a.type==='usd') cats.usd+=v;
-    else if(a.type==='stock') cats.stock+=v;
-    else cats.other+=v;
+  assets.forEach(a => {
+    const v = assetVal(a); total += v;
+    if (TC[a.type]?.liquid) liquid += v; else illiquid += v;
+    totalCost += assetCost(a);
+    if (a.type === 'gold') cats.gold += v;
+    else if (a.type === 'crypto') cats.crypto += v;
+    else if (a.type === 'usd') cats.usd += v;
+    else if (a.type === 'stock') cats.stock += v;
+    else cats.other += v;
   });
 
-  const totalDebt=debts.reduce((s,d)=>s+(d.remaining||0),0);
-  const netWorth=total-totalDebt;
-  const pnl=total-totalCost;
-  const pnlPct=totalCost>0?((pnl/totalCost)*100):0;
+  const totalDebt = debts.reduce((s, d) => s + (d.remaining || 0), 0);
+  const netWorth = total - totalDebt;
+  const pnl = total - totalCost;
+  const pnlPct = totalCost > 0 ? ((pnl / totalCost) * 100) : 0;
 
-  // KPIs
   set$('kpi-total', fmtS(total));
   set$('kpi-liquid', fmtS(liquid));
   set$('kpi-illiquid', fmtS(illiquid));
   set$('kpi-debt', fmtS(totalDebt));
 
-  const nwEl=el$('kpi-networth');
-  if(nwEl){ nwEl.textContent=fmtS(netWorth); nwEl.className='number '+(netWorth>=0?'net-positive':'net-negative'); }
+  const nwEl = el$('kpi-networth');
+  if (nwEl) { nwEl.textContent = fmtS(netWorth); nwEl.className = 'number ' + (netWorth >= 0 ? 'net-positive' : 'net-negative'); }
 
-  const pnlEl=el$('kpi-pnl');
-  if(pnlEl){ pnlEl.textContent=fmtS(pnl); pnlEl.className='number '+(pnl>=0?'pnl-pos':pnl<0?'pnl-neg':'pnl-zero'); }
+  const pnlEl = el$('kpi-pnl');
+  if (pnlEl) { pnlEl.textContent = fmtS(pnl); pnlEl.className = 'number ' + (pnl >= 0 ? 'pnl-pos' : pnl < 0 ? 'pnl-neg' : 'pnl-zero'); }
 
-  const pnlPctEl=el$('kpi-pnl-pct');
-  if(pnlPctEl){
-    pnlPctEl.textContent=(pnl>=0?'+':'')+pnlPct.toFixed(1)+'%';
-    pnlPctEl.className='badge '+(pnl>=0?'up':'down');
+  const pnlPctEl = el$('kpi-pnl-pct');
+  if (pnlPctEl) {
+    pnlPctEl.textContent = (pnl >= 0 ? '+' : '') + pnlPct.toFixed(1) + '%';
+    pnlPctEl.className = 'badge ' + (pnl >= 0 ? 'up' : 'down');
   }
 
-  const tcEl=el$('kpi-total-change');
-  if(tcEl){
-    // rough daily change
-    const last=S.snapshots.length>1?S.snapshots[S.snapshots.length-2].v:total;
-    const dc=last>0?((total-last)/last*100):0;
-    tcEl.textContent=(dc>=0?'+':'')+dc.toFixed(2)+'%';
-    tcEl.className='badge '+(dc>=0?'up':'down');
+  const tcEl = el$('kpi-total-change');
+  if (tcEl) {
+    const last = S.snapshots.length > 1 ? S.snapshots[S.snapshots.length - 2].v : total;
+    const dc = last > 0 ? ((total - last) / last * 100) : 0;
+    tcEl.textContent = (dc >= 0 ? '+' : '') + dc.toFixed(2) + '%';
+    tcEl.className = 'badge ' + (dc >= 0 ? 'up' : 'down');
   }
 
-  const lp=total?(liquid/total*100):0;
-  const ip=total?(illiquid/total*100):0;
-  const lb=el$('bar-liquid'); if(lb) lb.style.width=lp+'%';
-  const ib=el$('bar-illiquid'); if(ib) ib.style.width=ip+'%';
-  set$('pct-liquid', lp.toFixed(1)+'٪ از کل');
-  set$('pct-illiquid', ip.toFixed(1)+'٪ از کل');
+  const lp = total ? (liquid / total * 100) : 0;
+  const ip = total ? (illiquid / total * 100) : 0;
+  const lb = el$('bar-liquid'); if (lb) lb.style.width = lp + '%';
+  const ib = el$('bar-illiquid'); if (ib) ib.style.width = ip + '%';
+  set$('pct-liquid', lp.toFixed(1) + '٪ از کل');
+  set$('pct-illiquid', ip.toFixed(1) + '٪ از کل');
 
-  // Goals
-  const goalsWithPct=S.alerts.filter(a=>a.goalQty);
-  set$('kpi-goals', goalsWithPct.length);
+  set$('kpi-goals', S.alerts.filter(a => a.goalQty).length);
 
   // Donut
-  const circ=2*Math.PI*37;
-  let off=0;
-  [['gold','#f5c842'],['crypto','#f97316'],['usd','#3b82f6'],['stock','#10b981'],['other','#8b5cf6']].forEach(([k,c])=>{
-    const el=el$('d-'+k); if(!el) return;
-    const pct=total?cats[k]/total:0;
-    const d=pct*circ;
-    el.style.strokeDasharray=`${d} ${circ-d}`;
-    el.style.strokeDashoffset=-(off*circ);
-    off+=pct;
+  const circ = 2 * Math.PI * 37;
+  let off = 0;
+  [['gold','#f5c842'],['crypto','#f97316'],['usd','#3b82f6'],['stock','#10b981'],['other','#8b5cf6']].forEach(([k, c]) => {
+    const el = el$('d-' + k); if (!el) return;
+    const pct = total ? cats[k] / total : 0;
+    const d = pct * circ;
+    el.style.strokeDasharray = `${d} ${circ - d}`;
+    el.style.strokeDashoffset = -(off * circ);
+    off += pct;
   });
   set$('donut-label', fmtS(total));
 
-  const legend=el$('donut-legend');
-  if(legend){
-    const labels={gold:'طلا',crypto:'کریپتو',usd:'ارز',stock:'سهام',other:'سایر'};
-    const colors={gold:'#f5c842',crypto:'#f97316',usd:'#3b82f6',stock:'#10b981',other:'#8b5cf6'};
-    legend.innerHTML=Object.entries(cats).map(([k,v])=>`
+  const legend = el$('donut-legend');
+  if (legend) {
+    const labels = { gold:'طلا', crypto:'کریپتو', usd:'ارز', stock:'سهام', other:'سایر' };
+    const colors = { gold:'#f5c842', crypto:'#f97316', usd:'#3b82f6', stock:'#10b981', other:'#8b5cf6' };
+    legend.innerHTML = Object.entries(cats).map(([k, v]) => `
       <div style="display:flex;align-items:center;gap:5px;">
         <div style="width:7px;height:7px;border-radius:50%;background:${colors[k]};flex-shrink:0;"></div>
         <span style="font-size:10px;color:rgba(255,255,255,.55);flex:1;">${labels[k]}</span>
-        <span class="number" style="font-size:10px;font-weight:600;">${total?(v/total*100).toFixed(1):'0'}٪</span>
+        <span class="number" style="font-size:10px;font-weight:600;">${total ? (v/total*100).toFixed(1) : '0'}٪</span>
       </div>`).join('');
   }
 
-  // Dash asset list
-  const dal=el$('dash-asset-list');
-  if(dal){
-    if(!assets.length){ dal.innerHTML=`<div style="text-align:center;padding:24px;color:rgba(255,255,255,.28);font-size:12px;">هنوز دارایی ثبت نشده</div>`; }
-    else {
-      const sorted=[...assets].map((a,i)=>({a,i,v:assetVal(a)})).sort((x,y)=>y.v-x.v);
-      dal.innerHTML=sorted.map(({a,i,v})=>{
-        const cfg=TC[a.type];
-        const cost=assetCost(a);
-        const pnl=cost>0?v-cost:null;
-        const pnlStr=pnl!=null?`<span class="${pnl>=0?'pnl-pos':'pnl-neg'}" style="font-size:9px;">${pnl>=0?'+':''}${fmtS(pnl)}</span>`:'';
+  // Dashboard Asset List
+  const dal = el$('dash-asset-list');
+  if (dal) {
+    if (!assets.length) {
+      dal.innerHTML = `<div style="text-align:center;padding:24px;color:rgba(255,255,255,.28);font-size:12px;">هنوز دارایی ثبت نشده</div>`;
+    } else {
+      const sorted = [...assets].map((a, i) => ({ a, i, v: assetVal(a) })).sort((x, y) => y.v - x.v);
+      dal.innerHTML = sorted.map(({ a, i, v }) => {
+        const cfg = TC[a.type];
+        const cost = assetCost(a);
+        const pnl = cost > 0 ? v - cost : null;
+        const pnlStr = pnl != null ? `<span class="${pnl >= 0 ? 'pnl-pos' : 'pnl-neg'}" style="font-size:9px;">${pnl >= 0 ? '+' : ''}${fmtS(pnl)}</span>` : '';
         return `<div class="asset-row" onclick="showDetail(${i})" style="padding:10px 13px;">
           <div class="aicon" style="background:${cfg.color}20;width:34px;height:34px;">${cfg.icon}</div>
           <div style="flex:1;min-width:0;">
-            <div style="font-size:11px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${a.label||cfg.label}</div>
-            <div style="font-size:9px;color:rgba(255,255,255,.38);margin-top:1px;">${fmt(a.qty,4)} ${a.unit||''} ${pnlStr}</div>
+            <div style="font-size:11px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${a.label || cfg.label}</div>
+            <div style="font-size:9px;color:rgba(255,255,255,.38);margin-top:1px;">${fmt(a.qty, 4)} ${a.unit || ''} ${pnlStr}</div>
           </div>
           <div style="text-align:left;">
             <div class="number" style="font-size:11px;font-weight:700;color:${cfg.color};">${fmtS(v)}</div>
-            <div style="font-size:9px;color:rgba(255,255,255,.35);">${total?(v/total*100).toFixed(1):'0'}٪</div>
+            <div style="font-size:9px;color:rgba(255,255,255,.35);">${total ? (v/total*100).toFixed(1) : '0'}٪</div>
           </div>
         </div>`;
       }).join('');
     }
   }
 
-  // Asset subtitle
-  set$('asset-subtitle', `${assets.length} دارایی | کل: ${fmtS(total)} تومان | سود/زیان: ${fmtS(pnl)} تومان`);
+  set$('asset-subtitle', `${assets.length} قلم دارایی | کل: ${fmtS(total)} تومان | سود/زیان: ${fmtS(pnl)} تومان`);
 
-  // Debt section KPIs
   set$('debt-total', fmtS(totalDebt));
   set$('debt-assets', fmtS(total));
-  const netEl=el$('debt-net');
-  if(netEl){ netEl.textContent=fmtS(netWorth); netEl.className='number '+(netWorth>=0?'net-positive':'net-negative'); }
-  const ratioEl=el$('debt-ratio');
-  if(ratioEl) ratioEl.textContent=total>0?(totalDebt/total*100).toFixed(1)+'٪':'—';
+  const netEl = el$('debt-net');
+  if (netEl) { netEl.textContent = fmtS(netWorth); netEl.className = 'number ' + (netWorth >= 0 ? 'net-positive' : 'net-negative'); }
+  const ratioEl = el$('debt-ratio');
+  if (ratioEl) ratioEl.textContent = total > 0 ? (totalDebt / total * 100).toFixed(1) + '٪' : '—';
 }
 
-// ████████████████████████████████████████████████
-//  FULL ASSET LIST
-// ████████████████████████████████████████████████
 function renderFullAssetList() {
-  const el=el$('full-asset-list'); if(!el) return;
-  if(!S.assets.length){el.innerHTML=`<div style="text-align:center;padding:40px;color:rgba(255,255,255,.28);font-size:12px;">هنوز دارایی‌ای ثبت نشده</div>`;return;}
-  const total=S.assets.reduce((s,a)=>s+assetVal(a),0);
-  el.innerHTML=S.assets.map((a,i)=>{
-    const v=assetVal(a), cfg=TC[a.type];
-    const cost=assetCost(a); const pnl=cost>0?v-cost:null;
-    const pnlPct=cost>0?((v-cost)/cost*100):null;
-    const goal=S.alerts.find(al=>al.assetIndex===i&&al.goalQty);
-    const pnlHtml=pnl!=null
-      ?`<span class="${pnl>=0?'pnl-pos':'pnl-neg'}" style="font-size:10px;">${pnl>=0?'+':''}${fmtS(pnl)} (${pnlPct>=0?'+':''}${pnlPct.toFixed(1)}%)</span>`:'';
-    const goalHtml=goal?`<div style="margin-top:5px;"><div class="progress-bar"><div class="progress-fill" style="width:${Math.min(100,a.qty/goal.goalQty*100).toFixed(1)}%;background:#3b82f6;"></div></div><div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px;">${fmt(a.qty,4)} / ${fmt(goal.goalQty,4)} ${a.unit||''}</div></div>`:'';
+  const el = el$('full-asset-list'); if (!el) return;
+  if (!S.assets.length) { el.innerHTML = `<div style="text-align:center;padding:40px;color:rgba(255,255,255,.28);font-size:12px;">هنوز دارایی‌ای ثبت نشده</div>`; return; }
+  const total = S.assets.reduce((s, a) => s + assetVal(a), 0);
+  el.innerHTML = S.assets.map((a, i) => {
+    const v = assetVal(a), cfg = TC[a.type];
+    const cost = assetCost(a);
+    const pnl = cost > 0 ? v - cost : null;
+    const pnlPct = cost > 0 ? ((v - cost) / cost * 100) : null;
+    const goal = S.alerts.find(al => al.assetIndex === i && al.goalQty);
+    const pnlHtml = pnl != null ? `<span class="${pnl >= 0 ? 'pnl-pos' : 'pnl-neg'}" style="font-size:10px;">${pnl >= 0 ? '+' : ''}${fmtS(pnl)} (${pnlPct >= 0 ? '+' : ''}${pnlPct.toFixed(1)}%)</span>` : '';
+    const goalHtml = goal ? `<div style="margin-top:5px;"><div class="progress-bar"><div class="progress-fill" style="width:${Math.min(100, a.qty / goal.goalQty * 100).toFixed(1)}%;background:#3b82f6;"></div></div><div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px;">${fmt(a.qty, 4)} / ${fmt(goal.goalQty, 4)} ${a.unit || ''}</div></div>` : '';
     return `<div class="asset-row" onclick="showDetail(${i})">
       <div class="aicon" style="background:${cfg.color}20;">${cfg.icon}</div>
       <div style="flex:1;min-width:0;">
-        <div style="font-size:12px;font-weight:600;">${a.label||cfg.label}</div>
+        <div style="font-size:12px;font-weight:600;">${a.label || cfg.label}</div>
         <div style="font-size:10px;color:rgba(255,255,255,.38);margin-top:2px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
-          <span>${fmt(a.qty,4)} ${a.unit||''}</span>
-          ${cfg.liquid?liqB():illiqB()}
+          <span>${fmt(a.qty, 4)} ${a.unit || ''}</span>
+          ${cfg.liquid ? '<span style="font-size:9px;background:rgba(16,185,129,.15);color:#34d399;padding:1px 5px;border-radius:7px;">💧 نقد</span>' : '<span style="font-size:9px;background:rgba(139,92,246,.15);color:#a78bfa;padding:1px 5px;border-radius:7px;">🔒 غیرنقد</span>'}
           ${pnlHtml}
-          ${a.note?`<span style="color:rgba(255,255,255,.25);">${a.note}</span>`:''}
+          ${a.note ? `<span style="color:rgba(255,255,255,.25);">${a.note}</span>` : ''}
         </div>
         ${goalHtml}
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
         <div class="number" style="font-size:13px;font-weight:700;color:${cfg.color};">${fmtS(v)}</div>
         <div style="display:flex;gap:4px;align-items:center;">
-          <span style="font-size:9px;color:rgba(255,255,255,.3);">${total?(v/total*100).toFixed(1):'0'}٪</span>
+          <span style="font-size:9px;color:rgba(255,255,255,.3);">${total ? (v/total*100).toFixed(1) : '0'}٪</span>
           <button onclick="event.stopPropagation();deleteAsset(${i})" style="background:rgba(239,68,68,.15);color:#f87171;border:none;border-radius:4px;padding:1px 7px;cursor:pointer;font-size:10px;font-family:inherit;">✕</button>
         </div>
       </div>
@@ -1292,90 +1699,78 @@ function renderFullAssetList() {
   }).join('');
 }
 
-const liqB = ()=>'<span style="font-size:9px;background:rgba(16,185,129,.15);color:#34d399;padding:1px 5px;border-radius:7px;">💧</span>';
-const illiqB = ()=>'<span style="font-size:9px;background:rgba(139,92,246,.15);color:#a78bfa;padding:1px 5px;border-radius:7px;">🔒</span>';
-
-// ████████████████████████████████████████████████
-//  DEBT SECTION
-// ████████████████████████████████████████████████
 function renderDebtSection() {
-  const el=el$('debt-list'); if(!el) return;
-  if(!S.debts.length){el.innerHTML=`<div style="text-align:center;padding:32px;color:rgba(255,255,255,.28);font-size:12px;">هیچ بدهی ثبت نشده</div>`;return;}
-  const icons={loan:'🏦',personal:'🤝',credit:'💳',other:'📄'};
-  el.innerHTML=S.debts.map((d,i)=>{
-    const pct=d.total>0?(d.remaining/d.total*100):0;
-    const due=d.due?new Date(d.due).toLocaleDateString('fa-IR'):'—';
+  const el = el$('debt-list'); if (!el) return;
+  if (!S.debts.length) { el.innerHTML = `<div style="text-align:center;padding:32px;color:rgba(255,255,255,.28);font-size:12px;">هیچ بدهی ثبت نشده</div>`; return; }
+  const icons = { loan:'🏦', personal:'🤝', credit:'💳', other:'📄' };
+  el.innerHTML = S.debts.map((d, i) => {
+    const pct = d.total > 0 ? (d.remaining / d.total * 100) : 0;
+    const due = d.due ? new Date(d.due).toLocaleDateString('fa-IR') : '—';
     return `<div class="asset-row">
-      <div class="aicon" style="background:rgba(239,68,68,.2);">${icons[d.type]||'📄'}</div>
+      <div class="aicon" style="background:rgba(239,68,68,.2);">${icons[d.type] || '📄'}</div>
       <div style="flex:1;">
         <div style="font-size:12px;font-weight:600;">${d.label}</div>
-        <div style="font-size:10px;color:rgba(255,255,255,.38);margin-top:2px;">سررسید: ${due} ${d.note?`| ${d.note}`:''}</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.38);margin-top:2px;">سررسید: ${due} ${d.note ? `| ${d.note}` : ''}</div>
         <div style="margin-top:5px;"><div class="progress-bar"><div class="progress-fill" style="width:${pct.toFixed(0)}%;background:#ef4444;"></div></div>
-        <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px;">پرداخت‌نشده: ${fmtS(d.remaining)} از ${fmtS(d.total)} تومان</div></div>
+        <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px;">مانده: ${fmtS(d.remaining)} از ${fmtS(d.total)} تومان</div></div>
       </div>
       <button onclick="deleteDebt(${i})" style="background:rgba(239,68,68,.15);color:#f87171;border:none;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:10px;font-family:inherit;">✕</button>
     </div>`;
   }).join('');
 }
 
-// ████████████████████████████████████████████████
-//  HISTORY
-// ████████████████████████████████████████████████
 function renderHistoryList() {
-  const el=el$('history-list'); if(!el) return;
-  if(!S.history.length){el.innerHTML=`<div style="text-align:center;padding:32px;color:rgba(255,255,255,.28);font-size:12px;">هیچ تراکنشی ثبت نشده</div>`;return;}
-  el.innerHTML=[...S.history].reverse().map(h=>{
-    const cfg=TC[h.type]||TC.other;
-    const dt=new Date(h.ts);
+  const el = el$('history-list'); if (!el) return;
+  if (!S.history.length) { el.innerHTML = `<div style="text-align:center;padding:32px;color:rgba(255,255,255,.28);font-size:12px;">هیچ تراکنشی ثبت نشده</div>`; return; }
+  el.innerHTML = [...S.history].reverse().map(h => {
+    const cfg = TC[h.type] || TC.other;
+    const dt = new Date(h.ts);
     return `<div style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);margin-bottom:5px;">
       <div class="aicon" style="background:${cfg.color}20;width:34px;height:34px;">${cfg.icon}</div>
       <div style="flex:1;">
         <div style="font-size:12px;font-weight:600;">${h.label}</div>
-        <div style="font-size:10px;color:rgba(255,255,255,.35);">${dt.toLocaleDateString('fa-IR')} ${dt.toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'})}</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.35);">${dt.toLocaleDateString('fa-IR')} ${dt.toLocaleTimeString('fa-IR', { hour:'2-digit', minute:'2-digit' })}</div>
       </div>
       <div class="number" style="font-size:12px;font-weight:700;color:${cfg.color};">${fmtS(h.value)} ت</div>
     </div>`;
   }).join('');
 }
 
-// ████████████████████████████████████████████████
-//  ALERTS & GOALS
-// ████████████████████████████████████████████████
 function renderAlerts() {
-  const el=el$('alerts-list'), del=el$('dash-alerts');
-  const badgeEl=el$('alertBadge');
-  const triggered=S.alerts.filter(a=>!a.goalQty&&a.triggered);
-  const active=S.alerts.filter(a=>!a.goalQty&&!a.triggered);
-  if(badgeEl) badgeEl.style.display=triggered.length?'flex':'none';
+  const el = el$('alerts-list'), del = el$('dash-alerts');
+  const badgeEl = el$('alertBadge');
+  const triggered = S.alerts.filter(a => !a.goalQty && a.triggered);
+  if (badgeEl) badgeEl.style.display = triggered.length ? 'flex' : 'none';
 
-  const alertHtml=(a,i)=>{
-    const pName=PRICE_DEF[a.asset]?.name||a.asset;
-    return `<div class="src-card" style="${a.triggered?'opacity:.6':''}">
-      <div style="font-size:14px;">${a.triggered?'✅':'🔔'}</div>
+  const alertHtml = (a, i) => {
+    const pName = PRICE_DEF[a.asset]?.name || a.asset;
+    return `<div class="src-card" style="${a.triggered ? 'opacity:.6' : ''}">
+      <div style="font-size:14px;">${a.triggered ? '✅' : '🔔'}</div>
       <div style="flex:1;font-size:11px;">
-        <div style="font-weight:600;">${pName} ${a.cond==='above'?'▲ بالاتر از':'▼ پایین‌تر از'} ${fmtS(a.value)}</div>
-        ${a.note?`<div style="color:rgba(255,255,255,.35);">${a.note}</div>`:''}
-        ${a.triggered?`<div style="color:#34d399;font-size:9px;">فعال شد ✓</div>`:''}
+        <div style="font-weight:600;">${pName} ${a.cond === 'above' ? '▲ بالاتر از' : '▼ پایین‌تر از'} ${fmtS(a.value)}</div>
+        ${a.note ? `<div style="color:rgba(255,255,255,.35);">${a.note}</div>` : ''}
+        ${a.triggered ? `<div style="color:#34d399;font-size:9px;">فعال شد ✓</div>` : ''}
       </div>
       <button onclick="deleteAlert(${i})" style="background:rgba(239,68,68,.12);color:#f87171;border:none;border-radius:4px;padding:2px 7px;cursor:pointer;font-size:10px;font-family:inherit;">✕</button>
     </div>`;
   };
-  if(el) el.innerHTML=S.alerts.filter(a=>!a.goalQty).map(alertHtml).join('')||`<div style="font-size:11px;color:rgba(255,255,255,.3);padding:8px 0;">هیچ هشداری تعریف نشده</div>`;
-  if(del) del.innerHTML=S.alerts.filter(a=>!a.goalQty).map(alertHtml).join('')||`<div style="font-size:11px;color:rgba(255,255,255,.3);padding:8px 0;">هیچ هشداری تعریف نشده</div>`;
+  const list = S.alerts.filter(a => !a.goalQty);
+  if (el) el.innerHTML = list.map(alertHtml).join('') || `<div style="font-size:11px;color:rgba(255,255,255,.3);padding:8px 0;">هیچ هشداری تعریف نشده</div>`;
+  if (del) del.innerHTML = list.map(alertHtml).join('') || `<div style="font-size:11px;color:rgba(255,255,255,.3);padding:8px 0;">هیچ هشداری تعریف نشده</div>`;
 }
 
 function renderGoals() {
-  const el=el$('dash-goals'); if(!el) return;
-  const goals=S.alerts.filter(a=>a.goalQty);
-  if(!goals.length){el.innerHTML=`<div style="font-size:11px;color:rgba(255,255,255,.3);padding:8px 0;">هیچ هدفی تعریف نشده</div>`;return;}
-  el.innerHTML=goals.map((g,i)=>{
-    const a=S.assets[g.assetIndex];
-    if(!a) return '';
-    const pct=Math.min(100,a.qty/g.goalQty*100);
+  const el = el$('dash-goals'); if (!el) return;
+  const goals = S.alerts.filter(a => a.goalQty);
+  if (!goals.length) { el.innerHTML = `<div style="font-size:11px;color:rgba(255,255,255,.3);padding:8px 0;">هیچ هدفی تعریف نشده</div>`; return; }
+  el.innerHTML = goals.map(g => {
+    const a = S.assets[g.assetIndex];
+    if (!a) return '';
+    const pct = Math.min(100, a.qty / g.goalQty * 100);
     return `<div style="margin-bottom:8px;">
       <div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px;">
-        <span style="font-weight:600;">${a.label||TC[a.type]?.label} 🎯</span>
-        <span class="number" style="color:#3b82f6;">${fmt(a.qty,4)}/${fmt(g.goalQty,4)} ${a.unit}</span>
+        <span style="font-weight:600;">${a.label || TC[a.type]?.label} 🎯</span>
+        <span class="number" style="color:#3b82f6;">${fmt(a.qty, 4)}/${fmt(g.goalQty, 4)} ${a.unit}</span>
       </div>
       <div class="progress-bar"><div class="progress-fill" style="width:${pct.toFixed(1)}%;background:linear-gradient(90deg,#3b82f6,#60a5fa);"></div></div>
       <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px;">${pct.toFixed(1)}٪ تکمیل شده</div>
@@ -1383,228 +1778,137 @@ function renderGoals() {
   }).join('');
 }
 
-// ████████████████████████████████████████████████
-//  SOURCES STATUS
-// ████████████████████████████████████████████████
 function renderSources() {
-  // Custom URLs
-  const curl=el$('custom-urls-list');
-  if(curl) curl.innerHTML=S.customUrls.map((s,i)=>`
+  const curl = el$('custom-urls-list');
+  if (curl) curl.innerHTML = S.customUrls.map((s, i) => `
     <div class="src-card">
-      <div class="api-status" style="background:${s.lastOk?'#10b981':'#ef4444'};"></div>
+      <div class="api-status" style="background:${s.lastOk ? '#10b981' : '#ef4444'};"></div>
       <div style="flex:1;font-size:11px;">
         <div style="font-weight:600;">${s.name}</div>
-        <div style="color:rgba(255,255,255,.35);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px;">${s.url}</div>
-        <div style="color:rgba(255,255,255,.45);">نوع: ${PRICE_DEF[s.priceType]?.name||s.priceType}</div>
+        <div style="color:rgba(255,255,255,.35);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:260px;">${s.url}</div>
+        <div style="color:rgba(255,255,255,.45);">تخصیص به: ${PRICE_DEF[s.priceType]?.name || s.priceType}</div>
       </div>
       <button onclick="deleteCustomUrl(${i})" style="background:rgba(239,68,68,.12);color:#f87171;border:none;border-radius:4px;padding:2px 7px;cursor:pointer;font-size:10px;font-family:inherit;">✕</button>
-    </div>`).join('')||'';
+    </div>`).join('') || '';
 
-  // Telegram
-  const tgl=el$('tg-channels-list');
-  if(tgl) tgl.innerHTML=S.tgChannels.map((c,i)=>`
+  const tgl = el$('tg-channels-list');
+  if (tgl) tgl.innerHTML = S.tgChannels.map((c, i) => `
     <div class="src-card">
       <div style="font-size:16px;">📲</div>
       <div style="flex:1;font-size:11px;">
-        <div style="font-weight:600;">${c.name||('@'+c.username)}</div>
-        <div style="color:rgba(255,255,255,.35);">@${c.username} | نوع: ${PRICE_DEF[c.priceType]?.name||c.priceType}</div>
-        ${c.lastPreview?`<div style="color:rgba(255,255,255,.3);font-size:9px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px;">آخرین: ${c.lastPreview}</div>`:''}
+        <div style="font-weight:600;">${c.name || ('@' + c.username)}</div>
+        <div style="color:rgba(255,255,255,.35);">@${c.username} | نوع: ${PRICE_DEF[c.priceType]?.name || c.priceType}</div>
+        ${c.lastPreview ? `<div style="color:rgba(255,255,255,.3);font-size:9px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:240px;">${c.lastPreview}</div>` : ''}
       </div>
       <button onclick="deleteTgChannel(${i})" style="background:rgba(239,68,68,.12);color:#f87171;border:none;border-radius:4px;padding:2px 7px;cursor:pointer;font-size:10px;font-family:inherit;">✕</button>
-    </div>`).join('')||'';
+    </div>`).join('') || '';
 
-  // Sources status in Prices tab
-  const ss=el$('sources-status');
-  if(ss){
-    const srcs=[
-      {name:'TGJU',desc:'طلا/ارز ایران',status:el$('st-tgju')?.classList.contains('api-ok')},
-      {name:'CoinGecko',desc:'کریپتو USD',status:el$('st-gecko')?.classList.contains('api-ok')},
-      ...S.customUrls.map(u=>({name:u.name,desc:u.url,status:u.lastOk})),
-      ...S.tgChannels.map(c=>({name:'@'+c.username,desc:c.priceType,status:c.lastOk})),
+  const ss = el$('sources-status');
+  if (ss) {
+    const srcs = [
+      { name:'صرافی‌های داخلی (بیت‌پین / نوبیتکس)', desc:'نرخ زنده دلار آزاد، تتر، طلای ۱۸ عیار بدون تحریم و CORS', status:el$('st-bitpin')?.classList.contains('api-ok') },
+      { name:'TGJU (طلا و ارز ایران)', desc:'سکه امامی، بهار، نیم، ربع، یورو و درهم', status:el$('st-tgju')?.classList.contains('api-ok') },
+      { name:'CoinGecko', desc:'ارزهای دیجیتال دلاری', status:el$('st-gecko')?.classList.contains('api-ok') },
+      ...S.customUrls.map(u => ({ name:u.name, desc:u.url, status:u.lastOk })),
+      ...S.tgChannels.map(c => ({ name:'@' + c.username, desc:c.priceType, status:c.lastOk }))
     ];
-    ss.innerHTML=srcs.map(s=>`
+    ss.innerHTML = srcs.map(s => `
       <div class="src-card">
-        <div class="api-status" style="background:${s.status?'#10b981':'#6b7280'};"></div>
+        <div class="api-status" style="background:${s.status ? '#10b981' : '#6b7280'};"></div>
         <div style="flex:1;font-size:11px;">
           <div style="font-weight:600;">${s.name}</div>
           <div style="color:rgba(255,255,255,.35);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${s.desc}</div>
         </div>
-        <span style="font-size:10px;color:${s.status?'#34d399':'rgba(255,255,255,.3)'};">${s.status?'✅ فعال':'⬤ غیرفعال'}</span>
+        <span style="font-size:10px;color:${s.status ? '#34d399' : 'rgba(255,255,255,.3)'};">${s.status ? '✅ فعال و متصل' : '⬤ غیرفعال'}</span>
       </div>`).join('');
   }
 }
 
 // ████████████████████████████████████████████████
-//  MODAL — ADD ASSET
+//  ASSET FORM & CRUD
 // ████████████████████████████████████████████████
 function setType(t) {
-  S.currentType=t;
-  document.querySelectorAll('[id^="tb-"]').forEach(b=>{b.classList.remove('active');b.style.borderColor='';});
-  const btn=el$('tb-'+t);
-  if(btn){btn.classList.add('active');btn.style.borderColor=TC[t]?.color||'';}
+  S.currentType = t;
+  document.querySelectorAll('[id^="tb-"]').forEach(b => { b.classList.remove('active'); b.style.borderColor = ''; });
+  const btn = el$('tb-' + t);
+  if (btn) { btn.classList.add('active'); btn.style.borderColor = TC[t]?.color || ''; }
   renderAssetForm();
 }
 
-function frow(id,lbl,type='text',ph='') {
+function frow(id, lbl, type='text', ph='') {
   return `<div class="frow"><label class="lbl">${lbl}</label><input type="${type}" id="${id}" placeholder="${ph}"></div>`;
 }
-function srow(id,lbl,opts) {
-  return `<div class="frow"><label class="lbl">${lbl}</label><select id="${id}">${opts.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></div>`;
+function srow(id, lbl, opts) {
+  return `<div class="frow"><label class="lbl">${lbl}</label><select id="${id}">${opts.map(([v, l]) => `<option value="${v}">${l}</option>`).join('')}</select></div>`;
 }
 
 function renderAssetForm() {
-  const t=S.currentType, el=el$('modal-asset-fields'); if(!el) return;
-  const lf=frow('f_label','نام / برچسب (اختیاری)','text','مثلاً: سکه‌های صندوق');
-  const nf=frow('f_note','یادداشت (اختیاری)','text','محل نگهداری، کد رهگیری، ...');
-  const bf=frow('f_buyPrice','قیمت خرید (تومان، اختیاری)','number','برای محاسبه سود/زیان');
-  const gf=`<div class="frow"><label class="lbl">🎯 هدف مقدار (اختیاری)</label><input type="number" id="f_goalQty" placeholder="مثلاً: 100 گرم هدف دارم"></div>`;
+  const t = S.currentType, el = el$('modal-asset-fields'); if (!el) return;
+  const lf = frow('f_label', 'نام یا برچسب دلخواه', 'text', 'مثلاً: طلای گاوصندوق');
+  const nf = frow('f_note', 'یادداشت (اختیاری)', 'text', 'کد رهگیری، محل نگهداری و ...');
+  const bf = frow('f_buyPrice', 'قیمت خرید هر واحد (تومان، برای سود/زیان)', 'number', 'قیمتی که خریده‌اید');
+  const gf = `<div class="frow"><label class="lbl">🎯 هدف نگهداری (اختیاری)</label><input type="number" id="f_goalQty" placeholder="مثلاً: ۱۰۰ گرم هدف دارم"></div>`;
 
-  let f=lf;
-  if(t==='gold') f+=srow('f_sub','نوع طلا',[['gold18','طلای ۱۸ عیار (گرم)'],['goldCoin','سکه امامی (عدد)'],['goldHalf','نیم سکه (عدد)'],['goldQ','ربع سکه (عدد)'],['goldCustom','دلخواه (با عیار)']]) + frow('f_qty','مقدار','number','گرم یا عدد') + bf + gf + nf;
-  else if(t==='crypto') f+=srow('f_sub','ارز',[['btc','بیت‌کوین (BTC)'],['eth','اتریوم (ETH)'],['usdt','تتر (USDT)'],['bnb','بایننس کوین (BNB)'],['sol','سولانا (SOL)'],['custom','سایر']]) + frow('f_qty','مقدار','number','مثلاً: 0.5') + frow('f_manualPriceUSD','قیمت USD (برای سایر)','number','دلار') + bf + gf + nf;
-  else if(t==='usd') f+=srow('f_sub','ارز',[['usd','دلار آمریکا (USD)'],['eur','یورو (EUR)'],['aed','درهم امارات (AED)'],['other','سایر']]) + frow('f_qty','مقدار','number','مثلاً: 1000') + frow('f_rateToToman','نرخ تومان (برای سایر)','number','') + bf + nf;
-  else if(t==='stock') f+=frow('f_symbol','نماد','text','مثلاً: فولاد') + frow('f_qty','تعداد سهام','number','') + frow('f_manualPrice','قیمت هر سهم (تومان)','number','') + bf + gf + nf;
-  else if(t==='realty') f+=frow('f_manualValue','ارزش تخمینی (تومان)','number','') + frow('f_area','متراژ','number','m²') + nf;
-  else if(t==='cash') f+=frow('f_qty','مبلغ (تومان)','number','') + srow('f_sub','نوع',[['bank','حساب بانکی'],['savings','صندوق'],['pocket','پول نقد']]) + nf;
-  else f+=frow('f_manualValue','ارزش تخمینی (تومان)','number','') + nf;
+  let f = lf;
+  if (t === 'gold') f += srow('f_sub', 'نوع طلا یا سکه', [['gold18','طلای ۱۸ عیار (گرم)'],['goldCoin','سکه تمام بهار امامی (عدد)'],['goldHalf','نیم سکه (عدد)'],['goldQ','ربع سکه (عدد)'],['goldCustom','طلای دلخواه با عیار مشخص']]) + frow('f_qty','مقدار (گرم یا عدد)','number','مقدار موجودی') + bf + gf + nf;
+  else if (t === 'crypto') f += srow('f_sub', 'نوع رمزارز', [['btc','بیت‌کوین (BTC)'],['eth','اتریوم (ETH)'],['usdt','تتر (USDT)'],['bnb','بایننس کوین (BNB)'],['sol','سولانا (SOL)'],['custom','سایر']]) + frow('f_qty','مقدار موجودی','number','مثلاً: 0.5') + frow('f_manualPriceUSD','قیمت دلاری (فقط برای سایر)','number','دلار') + bf + gf + nf;
+  else if (t === 'usd') f += srow('f_sub', 'نوع اسکناس / ارز', [['usd','دلار آمریکا (USD)'],['eur','یورو (EUR)'],['aed','درهم امارات (AED)'],['other','سایر ارزها']]) + frow('f_qty','مقدار موجودی','number','مثلاً: 1000') + frow('f_rateToToman','نرخ تبدیل به تومان (برای سایر)','number','') + bf + nf;
+  else if (t === 'stock') f += frow('f_symbol','نماد سهام بورس','text','مثلاً: فولاد') + frow('f_qty','تعداد برگه سهم','number','') + frow('f_manualPrice','قیمت روز هر سهم (تومان)','number','') + bf + gf + nf;
+  else if (t === 'realty') f += frow('f_manualValue','ارزش روز تخمینی (تومان)','number','') + frow('f_area','متراژ (متر مربع)','number','') + nf;
+  else if (t === 'cash') f += frow('f_qty','موجودی نقدی (تومان)','number','') + srow('f_sub','نوع حساب',[['bank','حساب بانکی جاری / پس‌انداز'],['savings','صندوق درآمد ثابت'],['pocket','وجه نقد دستی']]) + nf;
+  else f += frow('f_manualValue','ارزش تخمینی (تومان)','number','') + nf;
 
-  el.innerHTML=f;
+  el.innerHTML = f;
 }
 
 function saveAsset() {
-  const t=S.currentType;
-  const g  = id=>{const e=el$(id);return e?e.value:'';}
-  const gn = id=>{const e=el$(id);return e?parseFloat(e.value)||0:0;}
+  const t = S.currentType;
+  const g  = id => { const e = el$(id); return e ? e.value : ''; };
+  const gn = id => { const e = el$(id); return e ? parseFloat(e.value) || 0 : 0; };
 
-  const uMap={gold18:'گرم',goldCoin:'عدد',goldHalf:'عدد',goldQ:'عدد',goldCustom:'گرم',btc:'BTC',eth:'ETH',usdt:'USDT',bnb:'BNB',sol:'SOL',custom:'',usd:'دلار',eur:'یورو',aed:'درهم',bank:'تومان',savings:'تومان',pocket:'تومان'};
-  const sub=g('f_sub')||t;
-  const asset={
-    type:t,label:g('f_label')||TC[t].label,note:g('f_note'),subtype:sub,
-    qty:gn('f_qty'),manualValue:gn('f_manualValue'),manualPrice:gn('f_manualPrice'),
-    manualPriceUSD:gn('f_manualPriceUSD'),rateToToman:gn('f_rateToToman'),
-    buyPrice:gn('f_buyPrice')||null,carat:gn('f_carat')||18,
-    symbol:g('f_symbol'),area:gn('f_area'),unit:uMap[sub]||'',addedAt:Date.now()
+  const uMap = { gold18:'گرم', goldCoin:'عدد', goldHalf:'عدد', goldQ:'عدد', goldCustom:'گرم', btc:'BTC', eth:'ETH', usdt:'USDT', bnb:'BNB', sol:'SOL', custom:'', usd:'دلار', eur:'یورو', aed:'درهم', bank:'تومان', savings:'تومان', pocket:'تومان' };
+  const sub = g('f_sub') || t;
+  const asset = {
+    type: t, label: g('f_label') || TC[t].label, note: g('f_note'), subtype: sub,
+    qty: gn('f_qty'), manualValue: gn('f_manualValue'), manualPrice: gn('f_manualPrice'),
+    manualPriceUSD: gn('f_manualPriceUSD'), rateToToman: gn('f_rateToToman'),
+    buyPrice: gn('f_buyPrice') || null, carat: gn('f_carat') || 18,
+    symbol: g('f_symbol'), area: gn('f_area'), unit: uMap[sub] || '', addedAt: Date.now()
   };
 
-  // Goal
-  const goalQty=gn('f_goalQty');
-  const idx=S.assets.length;
+  const goalQty = gn('f_goalQty');
+  const idx = S.assets.length;
   S.assets.push(asset);
 
-  if(goalQty>0) {
-    S.alerts.push({goalQty,assetIndex:idx,triggered:false});
-    DB.set('alerts',S.alerts);
+  if (goalQty > 0) {
+    S.alerts.push({ goalQty, assetIndex: idx, triggered: false });
+    DB.set('alerts', S.alerts);
   }
 
-  const v=assetVal(asset);
-  S.history.push({ts:Date.now(),type:t,label:asset.label,value:v});
-  DB.set('assets',S.assets);DB.set('history',S.history);
+  const v = assetVal(asset);
+  S.history.push({ ts: Date.now(), type: t, label: asset.label, value: v });
+  DB.set('assets', S.assets); DB.set('history', S.history);
 
   closeModal('addAsset');
   renderAll();
-  toast('✅ دارایی اضافه شد','green');
+  toast('✅ دارایی با موفقیت ثبت شد', 'green');
 }
 
-// ████████████████████████████████████████████████
-//  DEBT CRUD
-// ████████████████████████████████████████████████
-function saveDebt() {
-  const g=id=>{const e=el$(id);return e?e.value:'';};
-  const gn=id=>{const e=el$(id);return e?parseFloat(e.value)||0:0;};
-  S.debts.push({label:g('d-label')||'بدهی',type:g('d-type'),total:gn('d-total'),remaining:gn('d-remaining'),due:g('d-due'),note:g('d-note'),addedAt:Date.now()});
-  DB.set('debts',S.debts);closeModal('addDebt');renderAll();toast('✅ بدهی ثبت شد','red');
-}
-function deleteDebt(i) {if(!confirm('حذف شود؟'))return;S.debts.splice(i,1);DB.set('debts',S.debts);renderAll();}
-
-// ████████████████████████████████████████████████
-//  CUSTOM URL CRUD
-// ████████████████████████████████████████████████
-async function testAndSaveUrl() {
-  const name=el$('url-name')?.value.trim();
-  const url=el$('url-addr')?.value.trim();
-  const regex=el$('url-regex')?.value.trim();
-  const flags=el$('url-flags')?.value.trim()||'gi';
-  const priceType=el$('url-pricetype')?.value;
-  const resEl=el$('url-test-result');
-  if(!url||!regex){toast('آدرس و Regex الزامی است','red');return;}
-  resEl.style.display='block';resEl.style.background='rgba(255,165,0,.1)';resEl.textContent='در حال تست...';
-  const src={name:name||url,url,regex,flags,priceType,lastOk:false};
-  const r=await fetchCustomUrl(src);
-  if(r.ok){
-    src.lastOk=true;
-    resEl.style.background='rgba(16,185,129,.15)';
-    resEl.textContent=`✅ موفق! مقدار استخراج‌شده: ${fmtS(r.val)} تومان`;
-    S.customUrls.push(src);DB.set('customUrls',S.customUrls);
-    setTimeout(()=>{closeModal('addUrl');renderSources();renderAll();},1200);
-  } else {
-    resEl.style.background='rgba(239,68,68,.15)';
-    resEl.textContent=`❌ خطا: ${r.error}`;
-  }
-}
-
-function deleteCustomUrl(i){S.customUrls.splice(i,1);DB.set('customUrls',S.customUrls);renderSources();}
-
-// ████████████████████████████████████████████████
-//  TELEGRAM CRUD
-// ████████████████████████████████████████████████
-async function testAndSaveTelegram() {
-  const username=el$('tg-username')?.value.trim().replace(/^@/,'');
-  const priceType=el$('tg-pricetype')?.value;
-  const regex=el$('tg-regex')?.value.trim();
-  const name=el$('tg-name')?.value.trim();
-  const resEl=el$('tg-test-result');
-  if(!username){toast('یوزرنیم کانال الزامی است','red');return;}
-  resEl.style.display='block';resEl.style.background='rgba(255,165,0,.1)';resEl.textContent='در حال اتصال به کانال...';
-  const ch={username,priceType,regex,name:name||('@'+username),lastOk:false};
-  const r=await fetchTelegram(ch);
-  if(r.ok){
-    ch.lastOk=true;ch.lastPreview=r.preview;
-    resEl.style.background='rgba(16,185,129,.15)';
-    resEl.textContent=`✅ موفق! مقدار: ${fmtS(r.val)}\nپیام: ${r.preview||'—'}`;
-    S.tgChannels.push(ch);DB.set('tgChannels',S.tgChannels);
-    setTimeout(()=>{closeModal('addTelegram');renderSources();renderAll();},1500);
-  } else {
-    resEl.style.background='rgba(239,68,68,.15)';
-    resEl.textContent=`❌ خطا: ${r.error}\n(کانال ممکن است خصوصی باشد یا متن قابل خواندن نباشد)`;
-  }
-}
-
-function deleteTgChannel(i){S.tgChannels.splice(i,1);DB.set('tgChannels',S.tgChannels);renderSources();}
-
-// ████████████████████████████████████████████████
-//  ALERTS CRUD
-// ████████████████████████████████████████████████
-function saveAlert() {
-  const g=id=>el$(id)?.value;
-  const gn=id=>parseFloat(el$(id)?.value)||0;
-  S.alerts.push({asset:g('al-asset'),cond:g('al-cond'),value:gn('al-value'),note:g('al-note'),triggered:false,addedAt:Date.now()});
-  DB.set('alerts',S.alerts);closeModal('addAlert');renderAlerts();
-  if(Notification.permission==='default') Notification.requestPermission();
-  toast('🔔 هشدار ذخیره شد','blue');
-}
-function deleteAlert(i){S.alerts.splice(i,1);DB.set('alerts',S.alerts);renderAlerts();renderGoals();}
-
-// ████████████████████████████████████████████████
-//  DELETE ASSET
-// ████████████████████████████████████████████████
 function deleteAsset(i) {
-  if(!confirm('این دارایی حذف شود؟'))return;
-  S.assets.splice(i,1);
-  S.alerts=S.alerts.filter(a=>a.assetIndex!==i);
-  DB.set('assets',S.assets);DB.set('alerts',S.alerts);
-  renderAll();toast('🗑️ حذف شد','red');
+  if (!confirm('آیا از حذف این دارایی اطمینان دارید؟')) return;
+  S.assets.splice(i, 1);
+  S.alerts = S.alerts.filter(a => a.assetIndex !== i);
+  DB.set('assets', S.assets); DB.set('alerts', S.alerts);
+  renderAll(); toast('🗑️ دارایی حذف شد', 'red');
 }
 
-// ████████████████████████████████████████████████
-//  ASSET DETAIL
-// ████████████████████████████████████████████████
 function showDetail(i) {
-  const a=S.assets[i]; if(!a) return;
-  const v=assetVal(a), cfg=TC[a.type];
-  const cost=assetCost(a);const pnl=cost>0?v-cost:null;
-  const pnlPct=cost>0?((v-cost)/cost*100):null;
-  el$('detail-title').textContent=a.label||cfg.label;
-  el$('detail-body').innerHTML=`
+  const a = S.assets[i]; if (!a) return;
+  const v = assetVal(a), cfg = TC[a.type];
+  const cost = assetCost(a); const pnl = cost > 0 ? v - cost : null;
+  const pnlPct = cost > 0 ? ((v - cost) / cost * 100) : null;
+  el$('detail-title').textContent = a.label || cfg.label;
+  el$('detail-body').innerHTML = `
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:14px;background:rgba(255,255,255,.05);border-radius:11px;">
       <span style="font-size:30px;">${cfg.icon}</span>
       <div>
@@ -1613,145 +1917,132 @@ function showDetail(i) {
       </div>
     </div>
     <table style="width:100%;border-collapse:collapse;font-size:12px;">
-      ${dr('نوع',cfg.label)}${dr('نقدشوندگی',cfg.liquid?'💧 نقدشونده':'🔒 غیرنقدشونده')}
-      ${dr('مقدار',fmt(a.qty,6)+' '+(a.unit||''))}
-      ${a.buyPrice?dr('قیمت خرید',fmtS(a.buyPrice)+' تومان هر واحد'):''} 
-      ${pnl!=null?dr('سود/زیان',`<span class="${pnl>=0?'pnl-pos':'pnl-neg'}">${pnl>=0?'+':''}${fmtS(pnl)} (${pnlPct>=0?'+':''}${pnlPct.toFixed(2)}%)</span>`):''}
-      ${a.symbol?dr('نماد',a.symbol):''}${a.area?dr('متراژ',fmt(a.area)+' m²'):''}
-      ${a.note?dr('یادداشت',a.note):''}${dr('تاریخ ثبت',new Date(a.addedAt).toLocaleDateString('fa-IR'))}
+      ${dr('نوع', cfg.label)}${dr('نقدشوندگی', cfg.liquid ? '💧 نقدشونده' : '🔒 غیرنقدشونده')}
+      ${dr('مقدار', fmt(a.qty, 6) + ' ' + (a.unit || ''))}
+      ${a.buyPrice ? dr('قیمت خرید', fmtS(a.buyPrice) + ' تومان هر واحد') : ''}
+      ${pnl != null ? dr('سود/زیان', `<span class="${pnl >= 0 ? 'pnl-pos' : 'pnl-neg'}">${pnl >= 0 ? '+' : ''}${fmtS(pnl)} (${pnlPct >= 0 ? '+' : ''}${pnlPct.toFixed(2)}%)</span>`) : ''}
+      ${a.symbol ? dr('نماد', a.symbol) : ''}${a.area ? dr('متراژ', fmt(a.area) + ' m²') : ''}
+      ${a.note ? dr('یادداشت', a.note) : ''}${dr('تاریخ ثبت', new Date(a.addedAt).toLocaleDateString('fa-IR'))}
     </table>
     <div style="margin-top:14px;display:flex;gap:8px;">
       <button class="btn-g" onclick="closeModal('detail')" style="flex:1;">بستن</button>
-      <button onclick="closeModal('detail');deleteAsset(${i})" style="background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.2);border-radius:7px;padding:8px 14px;cursor:pointer;font-family:inherit;font-size:12px;">🗑️ حذف</button>
+      <button onclick="closeModal('detail');deleteAsset(${i})" style="background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.2);border-radius:7px;padding:8px 14px;cursor:pointer;font-family:inherit;font-size:12px;">🗑️ حذف دارایی</button>
     </div>`;
   openModal('detail');
 }
 
-const dr=(k,v)=>`<tr><td style="padding:7px 0;color:rgba(255,255,255,.38);border-bottom:1px solid rgba(255,255,255,.05);">${k}</td><td style="padding:7px 0;font-weight:500;text-align:left;border-bottom:1px solid rgba(255,255,255,.05);">${v}</td></tr>`;
+const dr = (k, v) => `<tr><td style="padding:7px 0;color:rgba(255,255,255,.38);border-bottom:1px solid rgba(255,255,255,.05);">${k}</td><td style="padding:7px 0;font-weight:500;text-align:left;border-bottom:1px solid rgba(255,255,255,.05);">${v}</td></tr>`;
 
-// ████████████████████████████████████████████████
-//  EXPORT
-// ████████████████████████████████████████████████
+// Debts
+function saveDebt() {
+  const g = id => el$(id)?.value || '';
+  const gn = id => parseFloat(el$(id)?.value) || 0;
+  S.debts.push({ label: g('d-label') || 'بدهی', type: g('d-type'), total: gn('d-total'), remaining: gn('d-remaining'), due: g('d-due'), note: g('d-note'), addedAt: Date.now() });
+  DB.set('debts', S.debts); closeModal('addDebt'); renderAll(); toast('✅ بدهی ثبت شد', 'red');
+}
+function deleteDebt(i) { if (!confirm('حذف شود؟')) return; S.debts.splice(i, 1); DB.set('debts', S.debts); renderAll(); }
+
+// Alerts
+function saveAlert() {
+  const g = id => el$(id)?.value;
+  const gn = id => parseFloat(el$(id)?.value) || 0;
+  S.alerts.push({ asset: g('al-asset'), cond: g('al-cond'), value: gn('al-value'), note: g('al-note'), triggered: false, addedAt: Date.now() });
+  DB.set('alerts', S.alerts); closeModal('addAlert'); renderAlerts();
+  toast('🔔 هشدار ذخیره شد', 'blue');
+}
+function deleteAlert(i) { S.alerts.splice(i, 1); DB.set('alerts', S.alerts); renderAlerts(); renderGoals(); }
+
+// CSV Export
 function exportCSV() {
-  const rows=[['نام','نوع','مقدار','واحد','ارزش (تومان)','سود/زیان','قیمت خرید','یادداشت','تاریخ']];
-  S.assets.forEach(a=>{
-    const v=assetVal(a);const cost=assetCost(a);const pnl=cost>0?v-cost:'-';
-    rows.push([a.label,TC[a.type]?.label,a.qty,a.unit||'',v,pnl,a.buyPrice||'-',a.note||'',new Date(a.addedAt).toLocaleDateString('fa-IR')]);
+  const rows = [['نام دارایی', 'نوع', 'مقدار', 'واحد', 'ارزش روز (تومان)', 'سود/زیان (تومان)', 'قیمت خرید', 'یادداشت', 'تاریخ ثبت']];
+  S.assets.forEach(a => {
+    const v = assetVal(a); const cost = assetCost(a); const pnl = cost > 0 ? v - cost : '-';
+    rows.push([a.label, TC[a.type]?.label, a.qty, a.unit || '', v, pnl, a.buyPrice || '-', a.note || '', new Date(a.addedAt).toLocaleDateString('fa-IR')]);
   });
-  const csv='\uFEFF'+rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
-  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download='my-wealth-'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+  const csv = '\uFEFF' + rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'my-wealth-' + new Date().toISOString().slice(0, 10) + '.csv'; a.click();
 }
 
-// ████████████████████████████████████████████████
-//  TABS & MODALS
-// ████████████████████████████████████████████████
-function switchTab(name,btn) {
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  const s=el$('sec-'+name);if(s)s.classList.add('active');if(btn)btn.classList.add('active');
+// Navigation & Tabs
+function switchTab(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const s = el$('sec-' + name); if (s) s.classList.add('active'); if (btn) btn.classList.add('active');
 }
-function openModal(id) {const m=el$('modal-'+id);if(m){m.style.display='flex';if(id==='addAsset')renderAssetForm();}}
-function closeModal(id) {const m=el$('modal-'+id);if(m)m.style.display='none';}
+function openModal(id) { const m = el$('modal-' + id); if (m) { m.style.display = 'flex'; if (id === 'addAsset') renderAssetForm(); } }
+function closeModal(id) { const m = el$('modal-' + id); if (m) m.style.display = 'none'; }
 
-// ████████████████████████████████████████████████
-//  MISC
-// ████████████████████████████████████████████████
 function saveSettings() {
-  S.settings.currency=el$('set-currency')?.value||'toman';
-  S.settings.interval=parseInt(el$('set-interval')?.value||'30');
-  DB.set('settings',S.settings);
-  restartTimer();
+  S.settings.currency = el$('set-currency')?.value || 'toman';
+  S.settings.interval = parseInt(el$('set-interval')?.value || '30');
+  S.settings.customProxy = el$('set-custom-proxy')?.value || '';
+  DB.set('settings', S.settings);
+  fetchAllPrices(true);
 }
 
-function restartTimer() {
-  if(S.updateTimer) clearInterval(S.updateTimer);
-  S.updateTimer=setInterval(()=>{applyMicroDrift();renderTicker();renderPricesGrid();updatePortfolioTotals_light();},3000);
-  setInterval(()=>fetchAllPrices(),S.settings.interval*1000);
-}
-
-function updatePortfolioTotals_light() {
-  // Fast update without full DOM rebuild
-  const total=S.assets.reduce((s,a)=>s+assetVal(a),0);
-  set$('kpi-total',fmtS(total));
-}
-
-function clearHistory() {if(!confirm('تاریخچه پاک شود؟'))return;S.history=[];DB.set('history',S.history);renderHistoryList();}
-
+function clearHistory() { if (!confirm('تاریخچه پاک شود؟')) return; S.history = []; DB.set('history', S.history); renderHistoryList(); }
 function clearAllData() {
-  if(!confirm('تمام داده‌ها پاک شوند؟ این عمل برگشت‌پذیر نیست!'))return;
-  ['assets','debts','history','alerts','snapshots','customUrls','tgChannels'].forEach(k=>localStorage.removeItem('myw_'+k));
+  if (!confirm('آیا از پاکسازی تمام اطلاعات اطمینان دارید؟ این عمل غیرقابل بازگشت است!')) return;
+  ['assets', 'debts', 'history', 'alerts', 'snapshots', 'customUrls', 'tgChannels'].forEach(k => localStorage.removeItem('myw_' + k));
   location.reload();
 }
 
-function toast(msg,type='green') {
-  const colors={green:'rgba(16,185,129,.15)',gold:'rgba(245,200,66,.15)',red:'rgba(239,68,68,.15)',blue:'rgba(59,130,246,.15)'};
-  const t=document.createElement('div');
-  t.textContent=msg;
-  Object.assign(t.style,{position:'fixed',bottom:'24px',left:'50%',transform:'translateX(-50%)',
-    background:colors[type]||colors.green,border:`1px solid rgba(255,255,255,.15)`,
-    color:'#fff',padding:'10px 20px',borderRadius:'10px',fontSize:'12px',
-    zIndex:'999',boxShadow:'0 4px 24px rgba(0,0,0,.5)',transition:'opacity .3s',
-    fontFamily:'inherit',backdropFilter:'blur(10px)',whiteSpace:'pre-line'});
+function toast(msg, type='green') {
+  const colors = { green:'rgba(16,185,129,.95)', gold:'rgba(245,200,66,.95)', red:'rgba(239,68,68,.95)', blue:'rgba(59,130,246,.95)' };
+  const textColors = { gold:'#1a1a2e', green:'#fff', red:'#fff', blue:'#fff' };
+  const t = document.createElement('div');
+  t.textContent = msg;
+  Object.assign(t.style, {
+    position:'fixed', bottom:'24px', left:'50%', transform:'translateX(-50%)',
+    background: colors[type] || colors.green, color: textColors[type] || '#fff',
+    border: '1px solid rgba(255,255,255,.2)', padding:'11px 22px', borderRadius:'10px',
+    fontSize:'13px', fontWeight:'600', zIndex:'999', boxShadow:'0 8px 32px rgba(0,0,0,.5)',
+    transition:'opacity .3s', fontFamily:'inherit', whiteSpace:'pre-line'
+  });
   document.body.appendChild(t);
-  setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.remove(),300);},3000);
+  setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 3500);
 }
 
 // ████████████████████████████████████████████████
-//  INIT
+//  BOOTSTRAP
 // ████████████████████████████████████████████████
 function init() {
   initPrices();
 
-  // Restore settings
-  const si=el$('set-interval');if(si) si.value=S.settings.interval||30;
-  const sc=el$('set-currency');if(sc) sc.value=S.settings.currency||'toman';
+  // Restore Settings UI
+  if (el$('set-interval')) el$('set-interval').value = S.settings.interval || 30;
+  if (el$('set-currency')) el$('set-currency').value = S.settings.currency || 'toman';
+  if (el$('set-custom-proxy')) el$('set-custom-proxy').value = S.settings.customProxy || '';
 
-  // Demo assets if empty
-  if(!S.assets.length) {
-    S.assets=[
-      {type:'gold',label:'طلای ۱۸ عیار',subtype:'gold18',qty:50,unit:'گرم',note:'گاوصندوق خانه',buyPrice:6500000,addedAt:Date.now()-864e5*60},
-      {type:'gold',label:'سکه امامی',subtype:'goldCoin',qty:3,unit:'عدد',note:'صندوق امانت',buyPrice:42000000,addedAt:Date.now()-864e5*30},
-      {type:'crypto',label:'بیت‌کوین',subtype:'btc',qty:0.12,unit:'BTC',note:'کیف پول سخت‌افزاری',buyPrice:7800000000,addedAt:Date.now()-864e5*90},
-      {type:'crypto',label:'تتر',subtype:'usdt',qty:5000,unit:'USDT',note:'نوبیتکس',buyPrice:86000,addedAt:Date.now()-864e5*10},
-      {type:'usd',label:'دلار نقدی',subtype:'usd',qty:2000,unit:'دلار',note:'',buyPrice:82000,addedAt:Date.now()-864e5*45},
-      {type:'realty',label:'آپارتمان تهران',subtype:'realty',qty:1,unit:'',manualValue:8500000000,note:'منطقه ۵ — ۸۵ متر',addedAt:Date.now()-864e5*365},
+  // Initial Demo Data
+  if (!S.assets.length) {
+    S.assets = [
+      { type:'gold', label:'طلای ۱۸ عیار', subtype:'gold18', qty:50, unit:'گرم', note:'گاوصندوق خانه', buyPrice:18500000, addedAt:Date.now()-864e5*60 },
+      { type:'gold', label:'سکه امامی', subtype:'goldCoin', qty:3, unit:'عدد', note:'صندوق امانات', buyPrice:195000000, addedAt:Date.now()-864e5*30 },
+      { type:'crypto', label:'بیت‌کوین', subtype:'btc', qty:0.12, unit:'BTC', note:'کیف پول سخت‌افزاری', buyPrice:15000000000, addedAt:Date.now()-864e5*90 },
+      { type:'crypto', label:'تتر', subtype:'usdt', qty:5000, unit:'USDT', note:'کیف پول ترون', buyPrice:225000, addedAt:Date.now()-864e5*10 },
+      { type:'usd', label:'دلار نقدی', subtype:'usd', qty:2000, unit:'دلار', note:'', buyPrice:220000, addedAt:Date.now()-864e5*45 },
+      { type:'realty', label:'آپارتمان تهران', subtype:'realty', qty:1, unit:'', manualValue:9500000000, note:'منطقه ۵ — ۸۵ متر', addedAt:Date.now()-864e5*365 }
     ];
-    S.alerts=[
-      {asset:'usd',cond:'above',value:95000,note:'هشدار دلار ۹۵ هزار',triggered:false,addedAt:Date.now()},
-      {goalQty:5,assetIndex:1,triggered:false},
+    S.alerts = [
+      { asset:'usd', cond:'above', value:250000, note:'هشدار دلار ۲۵۰ هزار تومانی', triggered:false, addedAt:Date.now() },
+      { goalQty:100, assetIndex:0, triggered:false }
     ];
-    DB.set('assets',S.assets);DB.set('alerts',S.alerts);
+    DB.set('assets', S.assets); DB.set('alerts', S.alerts);
   }
 
   renderAll();
 
-  // First fetch
-  fetchAllPrices(true).then(()=>{
+  // Initial Data Fetch
+  fetchAllPrices(true).then(() => {
     saveSnapshot();
-    setMainStatus('ok');
   });
 
-  // Micro-drift animation every 3s
-  S.updateTimer=setInterval(()=>{
-    applyMicroDrift();
-    renderTicker();
-    renderPricesGrid();
-    const total=S.assets.reduce((acc,a)=>acc+assetVal(a),0);
-    set$('kpi-total',fmtS(total));
-  },3000);
-
-  // Full fetch every N seconds
-  setInterval(()=>fetchAllPrices(),(S.settings.interval||30)*1000);
-
-  // Snapshot every 15min
-  setInterval(()=>saveSnapshot(),900000);
-
-  // Request notification permission
-  if('Notification' in window && Notification.permission==='default') {
-    setTimeout(()=>Notification.requestPermission(),5000);
-  }
+  // Background timer
+  setInterval(() => fetchAllPrices(), (S.settings.interval || 30) * 1000);
+  setInterval(() => saveSnapshot(), 900000);
 }
 
 document.addEventListener('DOMContentLoaded', init);
