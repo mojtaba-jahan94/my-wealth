@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" data-theme="midnight" data-density="comfortable">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
@@ -7,7 +7,7 @@
   
   <!-- PWA & Mobile Meta Tags -->
   <link rel="manifest" href="./manifest.json"/>
-  <meta name="theme-color" content="#080711"/>
+  <meta name="theme-color" content="#070611"/>
   <meta name="mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -20,14 +20,115 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
     
-    :root {
-      --bg: #080711;
-      --surface: rgba(255, 255, 255, 0.035);
-      --border: rgba(255, 255, 255, 0.07);
-      --gold: #f5c842;
-      --green: #10b981;
-      --red: #f43f5e;
-      --blue: #38bdf8;
+    /* ==================== THEME VARIABLES ==================== */
+    /* Theme 1: Midnight Obsidian (Default Luxury Dark) */
+    [data-theme="midnight"] {
+      --bg-base: #070611;
+      --bg-gradient: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(245, 200, 66, 0.08) 0px, transparent 50%);
+      --surface-card: rgba(255, 255, 255, 0.035);
+      --surface-hover: rgba(255, 255, 255, 0.06);
+      --surface-elevated: #110d29;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-subtle: rgba(255, 255, 255, 0.04);
+      --text-main: #f8fafc;
+      --text-muted: rgba(255, 255, 255, 0.5);
+      --text-dim: rgba(255, 255, 255, 0.3);
+      --accent-main: #f5c842;
+      --accent-main-hover: #eab308;
+      --accent-green: #10b981;
+      --accent-rose: #f43f5e;
+      --accent-blue: #38bdf8;
+      --nav-bg: rgba(9, 8, 20, 0.88);
+      --modal-bg: #120e29;
+      --chart-color: #f5c842;
+    }
+
+    /* Theme 2: Deep Ocean (Crypto Teal & Blue) */
+    [data-theme="ocean"] {
+      --bg-base: #040d1a;
+      --bg-gradient: radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.16) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
+      --surface-card: rgba(255, 255, 255, 0.04);
+      --surface-hover: rgba(255, 255, 255, 0.07);
+      --surface-elevated: #091a30;
+      --border-color: rgba(56, 189, 248, 0.16);
+      --border-subtle: rgba(255, 255, 255, 0.05);
+      --text-main: #f0f9ff;
+      --text-muted: rgba(240, 249, 255, 0.55);
+      --text-dim: rgba(240, 249, 255, 0.3);
+      --accent-main: #38bdf8;
+      --accent-main-hover: #0284c7;
+      --accent-green: #2dd4bf;
+      --accent-rose: #fb7185;
+      --accent-blue: #38bdf8;
+      --nav-bg: rgba(4, 13, 26, 0.88);
+      --modal-bg: #091a30;
+      --chart-color: #38bdf8;
+    }
+
+    /* Theme 3: Emerald Wealth (Wall Street Forest) */
+    [data-theme="emerald"] {
+      --bg-base: #03120a;
+      --bg-gradient: radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.16) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(245, 200, 66, 0.08) 0px, transparent 50%);
+      --surface-card: rgba(255, 255, 255, 0.04);
+      --surface-hover: rgba(255, 255, 255, 0.07);
+      --surface-elevated: #082114;
+      --border-color: rgba(16, 185, 129, 0.18);
+      --border-subtle: rgba(255, 255, 255, 0.05);
+      --text-main: #ecfdf5;
+      --text-muted: rgba(236, 253, 245, 0.55);
+      --text-dim: rgba(236, 253, 245, 0.3);
+      --accent-main: #10b981;
+      --accent-main-hover: #059669;
+      --accent-green: #34d399;
+      --accent-rose: #f43f5e;
+      --accent-blue: #06b6d4;
+      --nav-bg: rgba(3, 18, 10, 0.88);
+      --modal-bg: #082114;
+      --chart-color: #10b981;
+    }
+
+    /* Theme 4: Cyber Amethyst (Neon Purple) */
+    [data-theme="amethyst"] {
+      --bg-base: #0c051a;
+      --bg-gradient: radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.18) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
+      --surface-card: rgba(255, 255, 255, 0.04);
+      --surface-hover: rgba(255, 255, 255, 0.07);
+      --surface-elevated: #180a33;
+      --border-color: rgba(192, 132, 252, 0.18);
+      --border-subtle: rgba(255, 255, 255, 0.05);
+      --text-main: #faf5ff;
+      --text-muted: rgba(250, 245, 255, 0.55);
+      --text-dim: rgba(250, 245, 255, 0.3);
+      --accent-main: #c084fc;
+      --accent-main-hover: #a855f7;
+      --accent-green: #34d399;
+      --accent-rose: #f43f5e;
+      --accent-blue: #a855f7;
+      --nav-bg: rgba(12, 5, 26, 0.88);
+      --modal-bg: #180a33;
+      --chart-color: #c084fc;
+    }
+
+    /* Theme 5: Clean Minimal Light */
+    [data-theme="light"] {
+      --bg-base: #f8fafc;
+      --bg-gradient: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.06) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(245, 200, 66, 0.05) 0px, transparent 50%);
+      --surface-card: #ffffff;
+      --surface-hover: #f1f5f9;
+      --surface-elevated: #ffffff;
+      --border-color: #e2e8f0;
+      --border-subtle: #f1f5f9;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-dim: #94a3b8;
+      --accent-main: #d97706;
+      --accent-main-hover: #b45309;
+      --accent-green: #059669;
+      --accent-rose: #e11d48;
+      --accent-blue: #0284c7;
+      --nav-bg: rgba(255, 255, 255, 0.92);
+      --modal-bg: #ffffff;
+      --chart-color: #d97706;
     }
 
     * {
@@ -39,38 +140,64 @@
 
     body {
       font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg);
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(245, 200, 66, 0.08) 0px, transparent 50%);
+      background-color: var(--bg-base);
+      background-image: var(--bg-gradient);
       background-attachment: fixed;
       min-height: 100vh;
-      color: #f8fafc;
-      padding-bottom: 80px; /* Space for mobile bottom bar */
+      color: var(--text-main);
+      padding-bottom: 84px; /* Space for mobile bottom bar */
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     @media (min-width: 768px) {
       body {
-        padding-bottom: 30px;
+        padding-bottom: 36px;
       }
     }
 
-    /* Clean Card */
-    .card {
-      background: var(--surface);
+    /* Bento Card */
+    .bento-card {
+      background: var(--surface-card);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
       transition: all 0.2s ease;
+      position: relative;
     }
-    .card-sm {
-      background: rgba(255, 255, 255, 0.025);
-      border: 1px solid rgba(255, 255, 255, 0.055);
-      border-radius: 12px;
+    .bento-card:hover {
+      border-color: rgba(255, 255, 255, 0.16);
     }
-    .card:hover {
-      border-color: rgba(255, 255, 255, 0.12);
+    [data-theme="light"] .bento-card {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 10px 15px -3px rgba(0,0,0,0.02);
+    }
+
+    /* Density Styles */
+    [data-density="compact"] .bento-card {
+      padding: 0.75rem !important;
+      border-radius: 14px !important;
+    }
+    [data-density="compact"] .asset-item {
+      padding: 0.5rem 0.75rem !important;
+      border-radius: 10px !important;
+      margin-bottom: 4px !important;
+    }
+    [data-density="comfortable"] .bento-card {
+      padding: 1.25rem !important;
+      border-radius: 20px !important;
+    }
+    [data-density="comfortable"] .asset-item {
+      padding: 0.75rem 0.95rem !important;
+      border-radius: 14px !important;
+      margin-bottom: 6px !important;
+    }
+
+    /* Privacy / Stealth Mode */
+    .privacy-active .privacy-sensitive {
+      filter: blur(9px) !important;
+      user-select: none !important;
+      transition: filter 0.2s ease;
+      cursor: pointer;
     }
 
     /* Badges */
@@ -83,63 +210,19 @@
       align-items: center;
       gap: 3px;
     }
-    .up { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-    .down { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
-    .neu { background: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.6); }
+    .badge-up { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+    .badge-down { background: rgba(244, 63, 94, 0.15); color: var(--accent-rose); }
+    .badge-neu { background: var(--surface-hover); color: var(--text-muted); }
 
-    /* Asset Row */
-    .asset-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.025);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      margin-bottom: 6px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .asset-row:active {
-      transform: scale(0.99);
-    }
-    .asset-row:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Buttons */
-    .btn-gold {
-      background: linear-gradient(135deg, #f5c842, #ea580c);
-      color: #0f0d1f;
+    /* Action Buttons */
+    .btn-action-primary {
+      background: var(--accent-main);
+      color: #070611;
       border: none;
       border-radius: 12px;
-      padding: 10px 18px;
+      padding: 9px 16px;
       font-family: inherit;
       font-weight: 700;
-      font-size: 13px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s;
-    }
-    .btn-gold:hover {
-      opacity: 0.92;
-      transform: translateY(-1px);
-    }
-    .btn-gold:active {
-      transform: scale(0.98);
-    }
-
-    .btn-outline {
-      background: rgba(255, 255, 255, 0.05);
-      color: rgba(255, 255, 255, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 8px 14px;
-      font-family: inherit;
       font-size: 12px;
       cursor: pointer;
       display: inline-flex;
@@ -148,23 +231,48 @@
       gap: 6px;
       transition: all 0.2s;
     }
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.09);
-      color: #fff;
+    .btn-action-primary:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
     }
-    .btn-outline.active {
-      background: rgba(255, 255, 255, 0.14);
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.2);
+    .btn-action-primary:active {
+      transform: scale(0.98);
     }
 
-    /* Inputs */
+    .btn-action-pill {
+      background: var(--surface-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 8px 13px;
+      font-family: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-action-pill:hover {
+      background: var(--surface-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .btn-action-pill.active {
+      background: var(--accent-main);
+      color: #070611;
+      font-weight: 700;
+      border-color: transparent;
+    }
+
+    /* Forms */
     input, select, textarea {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 11px;
+      background: var(--surface-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
       padding: 10px 12px;
-      color: #fff;
+      color: var(--text-main);
       font-family: inherit;
       font-size: 13px;
       outline: none;
@@ -173,13 +281,29 @@
       transition: border-color 0.2s;
     }
     input:focus, select:focus, textarea:focus {
-      border-color: rgba(245, 200, 66, 0.5);
+      border-color: var(--accent-main);
     }
     input::placeholder, textarea::placeholder {
-      color: rgba(255, 255, 255, 0.3);
+      color: var(--text-dim);
     }
     select option {
-      background: #14112c;
+      background: var(--surface-elevated);
+      color: var(--text-main);
+    }
+
+    /* Asset Item */
+    .asset-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .asset-item:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-color);
     }
 
     /* Numbers */
@@ -199,18 +323,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px;
+      padding: 14px;
     }
     .modal-box {
-      background: #120e29;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 20px;
-      padding: 22px;
+      background: var(--modal-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 24px;
       width: 100%;
-      max-width: 480px;
+      max-width: 500px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      color: var(--text-main);
     }
 
     @media (max-width: 640px) {
@@ -222,16 +347,16 @@
         max-width: 100%;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        border-top-left-radius: 24px;
-        border-top-right-radius: 24px;
+        border-top-left-radius: 28px;
+        border-top-right-radius: 28px;
         max-height: 88vh;
         animation: slideUp 0.25s ease-out;
       }
       .sheet-handle {
-        width: 36px;
+        width: 38px;
         height: 4px;
         border-radius: 2px;
-        background: rgba(255,255,255,0.25);
+        background: var(--border-color);
         margin: 0 auto 16px auto;
       }
     }
@@ -241,17 +366,17 @@
       to { transform: translateY(0); }
     }
 
-    /* Mobile Bottom Navigation Bar */
+    /* Bottom Navigation for Mobile */
     .mobile-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       height: 64px;
-      background: rgba(12, 10, 26, 0.88);
+      background: var(--nav-bg);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       justify-content: space-around;
@@ -263,7 +388,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: rgba(255, 255, 255, 0.45);
+      color: var(--text-muted);
       font-size: 10px;
       font-weight: 500;
       gap: 3px;
@@ -275,7 +400,8 @@
       transition: all 0.15s;
     }
     .nav-item.active {
-      color: #f5c842;
+      color: var(--accent-main);
+      font-weight: 700;
     }
     .nav-item.active .nav-icon {
       transform: translateY(-2px);
@@ -285,26 +411,23 @@
       transition: transform 0.15s;
     }
 
-    .section { display: none; }
-    .section.active { display: block; }
-
-    .live-dot {
+    .live-indicator {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 8px #10b981;
+      background: var(--accent-green);
+      box-shadow: 0 0 8px var(--accent-green);
       animation: pulseDot 2s infinite;
     }
     @keyframes pulseDot {
       0%,100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
+      50% { opacity: 0.4; transform: scale(0.85); }
     }
 
     .progress-bar {
-      height: 5px;
+      height: 6px;
       border-radius: 3px;
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--border-subtle);
       overflow: hidden;
     }
     .progress-fill {
@@ -313,386 +436,434 @@
       transition: width 0.6s ease;
     }
 
-    /* PWA Install Banner */
-    #pwaInstallBanner {
-      display: none;
-      background: linear-gradient(135deg, rgba(245, 200, 66, 0.15), rgba(99, 102, 241, 0.15));
-      border: 1px solid rgba(245, 200, 66, 0.3);
-      border-radius: 14px;
-      padding: 10px 14px;
-      margin-bottom: 14px;
-    }
+    /* Hide scrollbars */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body>
 
-<!-- TOP HEADER -->
-<header class="sticky top-0 z-40 bg-[#080711]/80 backdrop-blur-xl border-b border-white/[0.07]">
-  <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+<!-- TOP APP HEADER -->
+<header class="sticky top-0 z-40 bg-[var(--nav-bg)] backdrop-blur-xl border-b border-[var(--border-color)]">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+    
     <!-- Brand -->
     <div class="flex items-center gap-2.5">
       <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 flex items-center justify-center text-sm shadow-lg shadow-amber-500/20">
         💰
       </div>
       <div>
-        <h1 class="font-bold text-sm tracking-tight">MY Wealth</h1>
-        <div class="flex items-center gap-1.5 text-[9px] text-white/40">
-          <span class="live-dot"></span>
-          <span id="headerLiveStatus">نرخ زنده بازار ایران</span>
+        <div class="flex items-center gap-1.5">
+          <h1 class="font-extrabold text-sm tracking-tight text-[var(--text-main)]">MY Wealth</h1>
+          <span class="text-[9px] px-1.5 py-0.5 rounded-full bg-[var(--surface-hover)] text-[var(--accent-main)] font-mono font-bold">v3</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[9px] text-[var(--text-muted)]">
+          <span class="live-indicator"></span>
+          <span id="headerLiveStatus">نرخ زنده و بدون قطعی بازار</span>
         </div>
       </div>
     </div>
 
-    <!-- Desktop Navigation (Hidden on mobile) -->
-    <div class="hidden md:flex items-center gap-1 bg-white/[0.03] p-1 rounded-xl border border-white/[0.06]" id="desktopNav">
-      <button class="nav-btn active px-3 py-1.5 rounded-lg text-xs font-medium text-white bg-white/10" onclick="switchTab('dashboard', this)">📊 داشبورد</button>
-      <button class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-white/50 hover:text-white" onclick="switchTab('assets', this)">🏦 دارایی‌ها</button>
-      <button class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-white/50 hover:text-white" onclick="switchTab('prices', this)">📈 قیمت‌ها</button>
-      <button class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-white/50 hover:text-white" onclick="switchTab('debts', this)">💸 بدهی‌ها</button>
-      <button class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-white/50 hover:text-white" onclick="switchTab('history', this)">📜 تاریخچه</button>
-      <button class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-white/50 hover:text-white" onclick="switchTab('settings', this)">⚙️ تنظیمات</button>
-    </div>
-
-    <!-- Quick Action Buttons -->
+    <!-- Quick Action Bar -->
     <div class="flex items-center gap-2">
-      <button onclick="openModal('smartPaste')" class="btn-outline text-xs px-2.5 py-1.5 text-sky-400 border-sky-400/20" title="استخراج قیمت از تلگرام">
+      <!-- Privacy Toggle (Eye) -->
+      <button onclick="togglePrivacyMode()" id="btnPrivacyToggle" class="btn-action-pill text-xs px-2.5 py-1.5" title="حالت حریم خصوصی (مخفی کردن مبالغ)">
+        <span id="privacyEyeIcon">👁️</span>
+        <span class="hidden sm:inline" id="privacyTextLabel">مخفی</span>
+      </button>
+
+      <!-- UI Customizer Button -->
+      <button onclick="openModal('uiCustomizer')" class="btn-action-pill text-xs px-2.5 py-1.5 text-[var(--accent-main)]" title="تنظیمات ظاهر و چیدمان">
+        <span>🎨</span>
+        <span class="hidden sm:inline">ظاهر</span>
+      </button>
+
+      <!-- Smart Telegram Paste -->
+      <button onclick="openModal('smartPaste')" class="btn-action-pill text-xs px-2.5 py-1.5 text-sky-400" title="استخراج سریع نرخ از پیام تلگرام">
         <span>📲</span>
         <span class="hidden sm:inline">تلگرام</span>
       </button>
-      <button onclick="openModal('addAsset')" class="btn-gold text-xs px-3 py-1.5">
+
+      <!-- Add Asset Button -->
+      <button onclick="openModal('addAsset')" class="btn-action-primary text-xs px-3 py-1.5">
         <span>+</span>
         <span>دارایی</span>
       </button>
     </div>
   </div>
 
-  <!-- Live Ticker Bar (Slim) -->
-  <div class="bg-black/30 border-t border-white/[0.04] py-1 px-3 overflow-hidden">
-    <div class="flex gap-6 overflow-x-auto whitespace-nowrap no-scrollbar py-0.5" id="tickerItems">
-      <!-- Injected by JS -->
+  <!-- Realtime Market Ticker (Widget 1 - Collapsible) -->
+  <div id="widget-ticker" class="bg-black/20 border-t border-[var(--border-subtle)] py-1.5 px-3 overflow-hidden">
+    <div class="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar items-center" id="tickerItems">
+      <!-- Live ticker items injected by JS -->
     </div>
   </div>
 </header>
 
-<!-- MAIN CONTAINER -->
-<main class="max-w-5xl mx-auto px-4 pt-4">
+<!-- MAIN CONTAINER (BENTO GRID ARCHITECTURE) -->
+<main class="max-w-6xl mx-auto px-4 pt-4 space-y-4">
 
-  <!-- PWA Install Prompt Banner -->
-  <div id="pwaInstallBanner" class="flex items-center justify-between gap-3">
-    <div class="flex items-center gap-2.5">
-      <img src="./icon-192.png" class="w-9 h-9 rounded-xl shadow" alt="MY Wealth"/>
-      <div>
-        <div class="text-xs font-bold text-amber-400">نصب نسخه وب‌اپلیکیشن (PWA)</div>
-        <div class="text-[10px] text-white/60">دسترسی آفلاین و سریع از صفحه اصلی گوشی</div>
-      </div>
-    </div>
-    <div class="flex items-center gap-1.5">
-      <button onclick="installPWA()" class="btn-gold text-xs px-3 py-1.5">نصب مستقیم</button>
-      <button onclick="el$('pwaInstallBanner').style.display='none'" class="text-white/40 text-xs px-2 py-1">✕</button>
-    </div>
-  </div>
-
-  <!-- ==================== TAB 1: DASHBOARD ==================== -->
-  <div id="sec-dashboard" class="section active space-y-4">
+  <!-- ==================== BENTO SECTION 1: HERO & METRICS ==================== -->
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-4" id="bento-hero-section">
     
-    <!-- Hero Net Worth Card -->
-    <div class="card p-5 relative overflow-hidden">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div class="text-xs text-white/40 mb-1">ارزش خالص پورتفولیو (دارایی − بدهی)</div>
-          <div class="flex items-baseline gap-2">
-            <span class="number text-3xl sm:text-4xl font-extrabold text-amber-400" id="heroNetWorth">—</span>
-            <span class="text-xs text-white/40">تومان</span>
+    <!-- Hero Net Worth Hub (2 Cols on Desktop) -->
+    <div class="bento-card lg:col-span-2 flex flex-col justify-between" id="widget-hero">
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <div class="text-xs text-[var(--text-muted)] flex items-center gap-1.5">
+            <span>💼 ارزش خالص دارایی‌ها (دارایی − بدهی)</span>
           </div>
-          <div class="flex items-center gap-2 mt-2">
-            <span class="badge up" id="heroTotalChange">+۰.۰٪</span>
-            <span class="text-[11px] text-white/40" id="heroTotalChangeLabel">نسبت به نقطه قبل</span>
-          </div>
+          <button onclick="togglePrivacyMode()" class="text-xs text-[var(--text-dim)] hover:text-[var(--text-main)]">
+            <span class="privacy-status-label text-[10px]">حریم خصوصی</span>
+          </button>
         </div>
 
-        <!-- Quick Summary Chips -->
-        <div class="grid grid-cols-2 sm:flex gap-2">
-          <div class="card-sm px-3 py-2 text-right">
-            <div class="text-[10px] text-white/40">دارایی نقد 💧</div>
-            <div class="number text-sm font-bold text-emerald-400 mt-0.5" id="quickLiquid">—</div>
-          </div>
-          <div class="card-sm px-3 py-2 text-right">
-            <div class="text-[10px] text-white/40">غیرنقد 🔒</div>
-            <div class="number text-sm font-bold text-violet-400 mt-0.5" id="quickIlliquid">—</div>
-          </div>
-          <div class="card-sm px-3 py-2 text-right">
-            <div class="text-[10px] text-white/40">کل بدهی‌ها 💸</div>
-            <div class="number text-sm font-bold text-rose-400 mt-0.5" id="quickDebt">—</div>
-          </div>
-          <div class="card-sm px-3 py-2 text-right">
-            <div class="text-[10px] text-white/40">سود/زیان کل 💹</div>
-            <div class="number text-sm font-bold mt-0.5" id="quickPnl">—</div>
-          </div>
+        <!-- Big Amount Counter -->
+        <div class="flex items-baseline gap-2 mt-1">
+          <span class="number text-3xl sm:text-5xl font-extrabold text-[var(--accent-main)] privacy-sensitive" id="heroNetWorth">—</span>
+          <span class="text-xs text-[var(--text-muted)]" id="currencyUnitLabel">تومان</span>
+        </div>
+
+        <div class="flex items-center gap-2 mt-3">
+          <span class="badge badge-up" id="heroTotalChange">+۰.۰٪</span>
+          <span class="text-[11px] text-[var(--text-muted)]">نسبت به بازه قبلی پورتفولیو</span>
+        </div>
+      </div>
+
+      <!-- Liquidity & Metrics Sub-Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-4 mt-4 border-t border-[var(--border-subtle)]">
+        <div class="card-sm p-2 text-right">
+          <div class="text-[10px] text-[var(--text-muted)]">دارایی نقد 💧</div>
+          <div class="number text-xs sm:text-sm font-bold text-emerald-400 mt-0.5 privacy-sensitive" id="quickLiquid">—</div>
+        </div>
+        <div class="card-sm p-2 text-right">
+          <div class="text-[10px] text-[var(--text-muted)]">غیرنقد 🔒</div>
+          <div class="number text-xs sm:text-sm font-bold text-violet-400 mt-0.5 privacy-sensitive" id="quickIlliquid">—</div>
+        </div>
+        <div class="card-sm p-2 text-right">
+          <div class="text-[10px] text-[var(--text-muted)]">کل بدهی‌ها 💸</div>
+          <div class="number text-xs sm:text-sm font-bold text-rose-400 mt-0.5 privacy-sensitive" id="quickDebt">—</div>
+        </div>
+        <div class="card-sm p-2 text-right">
+          <div class="text-[10px] text-[var(--text-muted)]">سود/زیان کل 💹</div>
+          <div class="number text-xs sm:text-sm font-bold mt-0.5 privacy-sensitive" id="quickPnl">—</div>
         </div>
       </div>
     </div>
 
-    <!-- Chart & Distribution (2 Columns) -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-      
-      <!-- Portfolio Value Chart -->
-      <div class="card p-4 lg:col-span-2 flex flex-col justify-between">
-        <div class="flex items-center justify-between mb-3">
-          <div class="text-xs font-semibold text-white/80">روند ارزش پورتفولیو</div>
-          <div class="flex gap-1">
-            <button class="chart-tab active text-[10px] px-2.5 py-1 rounded-md text-white bg-white/10" onclick="setChartRange('1d', this)">۱ روز</button>
-            <button class="chart-tab text-[10px] px-2.5 py-1 rounded-md text-white/40 hover:text-white" onclick="setChartRange('7d', this)">۷ روز</button>
-            <button class="chart-tab text-[10px] px-2.5 py-1 rounded-md text-white/40 hover:text-white" onclick="setChartRange('30d', this)">۳۰ روز</button>
-          </div>
-        </div>
-        <canvas id="historyChart" style="width:100%;height:150px;" width="600" height="150"></canvas>
+    <!-- Allocation Donut Hub (1 Col) -->
+    <div class="bento-card flex flex-col items-center justify-between" id="widget-allocation">
+      <div class="flex items-center justify-between w-full mb-2">
+        <div class="text-xs font-bold text-[var(--text-main)]">ترکیب سبد دارایی</div>
+        <span class="text-[10px] text-[var(--text-muted)]" id="totalAssetCountBadge">۰ قلم</span>
       </div>
 
-      <!-- Asset Allocation Donut -->
-      <div class="card p-4 flex flex-col items-center justify-center">
-        <div class="text-xs font-semibold text-white/80 w-full text-right mb-2">ترکیب سبد دارایی</div>
-        <div class="relative w-28 h-28 my-1">
-          <svg viewBox="0 0 100 100" class="w-28 h-28 -rotate-90">
-            <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="14"/>
-            <circle id="d-gold"   cx="50" cy="50" r="38" fill="none" stroke="#f5c842" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
-            <circle id="d-crypto" cx="50" cy="50" r="38" fill="none" stroke="#f97316" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
-            <circle id="d-usd"    cx="50" cy="50" r="38" fill="none" stroke="#38bdf8" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
-            <circle id="d-stock"  cx="50" cy="50" r="38" fill="none" stroke="#10b981" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
-            <circle id="d-other"  cx="50" cy="50" r="38" fill="none" stroke="#818cf8" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
-          </svg>
-          <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
-            <span class="text-[9px] text-white/40">ارزش کل</span>
-            <span class="number text-[11px] font-bold text-white" id="donutTotalText">—</span>
-          </div>
+      <div class="relative w-32 h-32 my-1">
+        <svg viewBox="0 0 100 100" class="w-32 h-32 -rotate-90">
+          <circle cx="50" cy="50" r="38" fill="none" stroke="var(--border-subtle)" stroke-width="13"/>
+          <circle id="d-gold"   cx="50" cy="50" r="38" fill="none" stroke="#f5c842" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
+          <circle id="d-crypto" cx="50" cy="50" r="38" fill="none" stroke="#f97316" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
+          <circle id="d-usd"    cx="50" cy="50" r="38" fill="none" stroke="#38bdf8" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
+          <circle id="d-stock"  cx="50" cy="50" r="38" fill="none" stroke="#10b981" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
+          <circle id="d-other"  cx="50" cy="50" r="38" fill="none" stroke="#818cf8" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
+        </svg>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+          <span class="text-[9px] text-[var(--text-muted)]">کل دارایی</span>
+          <span class="number text-[11px] font-bold text-[var(--text-main)] privacy-sensitive" id="donutTotalText">—</span>
         </div>
-        <div id="donutLegend" class="w-full grid grid-cols-2 gap-x-2 gap-y-1 mt-2 text-[10px]"></div>
       </div>
 
+      <div id="donutLegend" class="w-full grid grid-cols-2 gap-x-2 gap-y-1 mt-2 text-[10px]">
+        <!-- Injected by JS -->
+      </div>
     </div>
 
-    <!-- Asset Breakdown List on Dashboard -->
-    <div class="card p-4">
+  </section>
+
+  <!-- ==================== BENTO SECTION 2: CHARTS & LIVE MARKET ==================== -->
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    
+    <!-- Portfolio History Chart (2 Cols) -->
+    <div class="bento-card lg:col-span-2 flex flex-col justify-between" id="widget-chart">
       <div class="flex items-center justify-between mb-3">
-        <h2 class="text-xs font-semibold text-white/80">دارایی‌ها بر اساس ارزش</h2>
-        <button onclick="switchTab('assets')" class="text-[11px] text-amber-400 hover:underline">مشاهده همه ←</button>
-      </div>
-      <div id="dashAssetList" class="space-y-1"></div>
-    </div>
-
-  </div>
-
-  <!-- ==================== TAB 2: ASSETS ==================== -->
-  <div id="sec-assets" class="section space-y-4">
-    <div class="flex items-center justify-between">
-      <div>
-        <h2 class="text-base font-bold">پورتفولیو دارایی‌ها</h2>
-        <div class="text-xs text-white/40" id="assetsTotalCount">۰ قلم دارایی</div>
-      </div>
-      <div class="flex gap-1.5">
-        <button onclick="exportCSV()" class="btn-outline text-xs px-2.5 py-1.5">📥 اکسل</button>
-        <button onclick="openModal('addAsset')" class="btn-gold text-xs px-3 py-1.5">+ افزودن</button>
-      </div>
-    </div>
-
-    <div class="card p-3 sm:p-4">
-      <div id="fullAssetList" class="space-y-1.5"></div>
-    </div>
-  </div>
-
-  <!-- ==================== TAB 3: PRICES ==================== -->
-  <div id="sec-prices" class="section space-y-4">
-    <div class="flex items-center justify-between flex-wrap gap-2">
-      <div>
-        <h2 class="text-base font-bold">تابلو قیمت لحظه‌ای</h2>
-        <div class="text-[11px] text-white/40" id="pricesStatusSubtitle">در حال اتصال به منابع زنده...</div>
-      </div>
-      <div class="flex gap-1.5">
-        <button onclick="openModal('smartPaste')" class="btn-outline text-xs text-sky-400 border-sky-400/30">
-          📲 استخراج از تلگرام
-        </button>
-        <button onclick="fetchAllPrices(true)" class="btn-outline text-xs">
-          🔄 به‌روزرسانی
-        </button>
-      </div>
-    </div>
-
-    <!-- Prices Grid -->
-    <div id="pricesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5"></div>
-
-    <!-- Active Feed Indicator -->
-    <div class="card-sm p-3 flex items-center justify-between text-xs text-white/50">
-      <span>منبع نرخ جاری: <strong class="text-amber-400" id="priceSourceTag">بازار داخلی / TGJU</strong></span>
-      <button onclick="switchTab('settings')" class="text-sky-400 hover:underline text-[11px]">تنظیم منابع و پروکسی ←</button>
-    </div>
-  </div>
-
-  <!-- ==================== TAB 4: DEBTS ==================== -->
-  <div id="sec-debts" class="section space-y-4">
-    <div class="flex items-center justify-between">
-      <div>
-        <h2 class="text-base font-bold">بدهی‌ها و تعهدات مالی</h2>
-        <div class="text-xs text-white/40">مدیریت وام‌ها، اقساط و طلب‌ها</div>
-      </div>
-      <button onclick="openModal('addDebt')" class="btn-gold text-xs px-3 py-1.5">+ ثبت بدهی</button>
-    </div>
-
-    <!-- Debt KPIs -->
-    <div class="grid grid-cols-3 gap-2">
-      <div class="card p-3 text-center">
-        <div class="text-[10px] text-white/40">کل بدهی‌ها</div>
-        <div class="number text-sm font-bold text-rose-400 mt-1" id="debtTotalVal">—</div>
-      </div>
-      <div class="card p-3 text-center">
-        <div class="text-[10px] text-white/40">دارایی کل</div>
-        <div class="number text-sm font-bold text-amber-400 mt-1" id="debtAssetVal">—</div>
-      </div>
-      <div class="card p-3 text-center">
-        <div class="text-[10px] text-white/40">نسبت بدهی</div>
-        <div class="number text-sm font-bold text-white mt-1" id="debtRatioVal">—</div>
-      </div>
-    </div>
-
-    <div class="card p-4">
-      <div id="debtList" class="space-y-2"></div>
-    </div>
-  </div>
-
-  <!-- ==================== TAB 5: HISTORY ==================== -->
-  <div id="sec-history" class="section space-y-4">
-    <div class="flex items-center justify-between">
-      <h2 class="text-base font-bold">تاریخچه فعالیت‌ها</h2>
-      <button onclick="clearHistory()" class="text-xs text-rose-400/80 hover:text-rose-400">پاکسازی تاریخچه</button>
-    </div>
-    <div class="card p-3 sm:p-4">
-      <div id="historyList" class="space-y-1"></div>
-    </div>
-  </div>
-
-  <!-- ==================== TAB 6: SETTINGS ==================== -->
-  <div id="sec-settings" class="section space-y-4">
-    <h2 class="text-base font-bold">تنظیمات و پیکربندی</h2>
-
-    <!-- PWA Install Card inside Settings -->
-    <div class="card p-4 flex items-center justify-between gap-3">
-      <div class="flex items-center gap-3">
-        <img src="./icon-192.png" class="w-10 h-10 rounded-xl" alt="PWA"/>
-        <div>
-          <div class="text-xs font-bold text-white">وب‌اپلیکیشن اختصاصی (PWA)</div>
-          <div class="text-[10px] text-white/50">قابلیت نصب بر روی آیفون، اندروید و ویندوز</div>
+        <div class="text-xs font-bold text-[var(--text-main)] flex items-center gap-1.5">
+          <span>📈 روند ارزش سرمایه در طول زمان</span>
+        </div>
+        <div class="flex gap-1">
+          <button class="chart-tab active text-[10px] px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--surface-hover)]" onclick="setChartRange('1d', this)">۱ روز</button>
+          <button class="chart-tab text-[10px] px-2.5 py-1 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)]" onclick="setChartRange('7d', this)">۷ روز</button>
+          <button class="chart-tab text-[10px] px-2.5 py-1 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)]" onclick="setChartRange('30d', this)">۳۰ روز</button>
         </div>
       </div>
-      <button onclick="installPWA()" class="btn-gold text-xs px-3 py-1.5">نصب اپ</button>
+      <canvas id="historyChart" style="width:100%;height:150px;" width="650" height="150"></canvas>
     </div>
 
-    <!-- Data Feeds Section -->
-    <div class="card p-4 space-y-3">
-      <div class="text-xs font-bold text-amber-400">🌐 منابع دریافت نرخ زنده</div>
-      
-      <div class="space-y-2 text-xs">
-        <label class="flex items-center justify-between p-2 rounded-xl bg-white/[0.02]">
-          <span>صرافی‌های داخلی (بیت‌پین / تترلند - بدون فیلتر و قطعی)</span>
-          <input type="checkbox" id="chk-bitpin" checked onchange="saveSettings()" class="w-auto accent-amber-400"/>
-        </label>
-        <label class="flex items-center justify-between p-2 rounded-xl bg-white/[0.02]">
-          <span>شبکه اطلاع‌رسانی طلا و ارز (TGJU)</span>
-          <input type="checkbox" id="chk-tgju" checked onchange="saveSettings()" class="w-auto accent-amber-400"/>
-        </label>
-        <label class="flex items-center justify-between p-2 rounded-xl bg-white/[0.02]">
-          <span>CoinGecko (رمزارزهای جهانی)</span>
-          <input type="checkbox" id="chk-gecko" checked onchange="saveSettings()" class="w-auto accent-amber-400"/>
-        </label>
-      </div>
-
-      <div class="pt-2">
-        <label class="block text-[11px] text-white/40 mb-1">آدرس پروکسی CORS دلخواه (اختیاری)</label>
-        <input type="text" id="set-custom-proxy" placeholder="مثلاً: https://corsproxy.org/?" onchange="saveSettings()"/>
-      </div>
-    </div>
-
-    <!-- Telegram & Custom URLs -->
-    <div class="card p-4 space-y-3">
-      <div class="text-xs font-bold text-sky-400">📲 کانال‌های تلگرام و وب‌سایت‌های سفارشی</div>
-      <div id="settingsTgList"></div>
-      <div class="flex gap-2">
-        <button onclick="openModal('addTelegram')" class="btn-outline text-xs flex-1">+ افزودن کانال تلگرام</button>
-        <button onclick="openModal('addUrl')" class="btn-outline text-xs flex-1">+ افزودن وب‌سایت</button>
-      </div>
-    </div>
-
-    <!-- General Settings -->
-    <div class="card p-4 space-y-3">
-      <div class="text-xs font-bold text-white/80">نمایش و پشتیبان‌گیری</div>
-      <div class="grid grid-cols-2 gap-3 text-xs">
-        <div>
-          <label class="block text-[10px] text-white/40 mb-1">واحد پول</label>
-          <select id="set-currency" onchange="saveSettings()">
-            <option value="toman">تومان</option>
-            <option value="rial">ریال</option>
-          </select>
+    <!-- Live Market Snapshot Cards (1 Col) -->
+    <div class="bento-card flex flex-col justify-between" id="widget-market-snap">
+      <div class="flex items-center justify-between mb-2">
+        <div class="text-xs font-bold text-[var(--text-main)] flex items-center gap-1.5">
+          <span>⚡ بازار لحظه‌ای</span>
         </div>
-        <div>
-          <label class="block text-[10px] text-white/40 mb-1">بازه استعلام نرخ</label>
-          <select id="set-interval" onchange="saveSettings()">
-            <option value="15">۱۵ ثانیه</option>
-            <option value="30" selected>۳۰ ثانیه</option>
-            <option value="60">۱ دقیقه</option>
-          </select>
-        </div>
+        <button onclick="fetchAllPrices(true)" class="text-[10px] text-[var(--accent-main)] hover:underline">تازه سازی</button>
       </div>
-      <div class="pt-2 flex gap-2">
-        <button onclick="exportCSV()" class="btn-outline text-xs flex-1">خروجی فایل اکسل</button>
-        <button onclick="clearAllData()" class="btn-outline text-xs text-rose-400 border-rose-400/20">پاک کردن کامل اطلاعات</button>
+
+      <div class="space-y-1.5 flex-1" id="marketSnapItems">
+        <!-- Live Market Snapshot items -->
       </div>
     </div>
 
-  </div>
+  </section>
+
+  <!-- ==================== BENTO SECTION 3: ASSET HUB (CORE) ==================== -->
+  <section class="bento-card" id="widget-assets-hub">
+    <!-- Header with category filter capsules -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+      <div>
+        <h2 class="text-sm font-extrabold text-[var(--text-main)] flex items-center gap-2">
+          <span>🏦</span>
+          <span>پورتفولیو و مدیریت دارایی‌ها</span>
+        </h2>
+        <div class="text-[11px] text-[var(--text-muted)]" id="assetSubtitleDetail">پایش زنده ارزش و سود/زیان هر دارایی</div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex items-center gap-1.5">
+        <button onclick="exportCSV()" class="btn-action-pill text-xs px-2.5 py-1">📥 خروجی CSV</button>
+        <button onclick="window.print()" class="btn-action-pill text-xs px-2.5 py-1 hidden sm:inline-flex">🖨️ چاپ</button>
+        <button onclick="openModal('addAsset')" class="btn-action-primary text-xs px-3 py-1">+ دارایی جدید</button>
+      </div>
+    </div>
+
+    <!-- Category Filter Bar (Pills) -->
+    <div class="flex gap-1.5 overflow-x-auto whitespace-nowrap pb-2 mb-3 no-scrollbar" id="categoryFilterBar">
+      <button class="btn-action-pill active text-xs py-1 px-3" onclick="filterAssetCategory('all', this)">همه دارایی‌ها</button>
+      <button class="btn-action-pill text-xs py-1 px-3" onclick="filterAssetCategory('gold', this)">🥇 طلا و سکه</button>
+      <button class="btn-action-pill text-xs py-1 px-3" onclick="filterAssetCategory('usd', this)">💵 ارز و اسکناس</button>
+      <button class="btn-action-pill text-xs py-1 px-3" onclick="filterAssetCategory('crypto', this)">🪙 رمزارز</button>
+      <button class="btn-action-pill text-xs py-1 px-3" onclick="filterAssetCategory('stock', this)">📈 بورس</button>
+      <button class="btn-action-pill text-xs py-1 px-3" onclick="filterAssetCategory('realty', this)">🏠 املاک</button>
+      <button class="btn-action-pill text-xs py-1 px-3" onclick="filterAssetCategory('cash', this)">💴 نقد و بانک</button>
+    </div>
+
+    <!-- Assets List Container -->
+    <div id="fullAssetList" class="space-y-1.5">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <!-- ==================== BENTO SECTION 4: DEBTS & LIABILITIES ==================== -->
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-4" id="widget-debts">
+    
+    <!-- Debt Summary & Ratio (1 Col) -->
+    <div class="bento-card flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-[var(--text-main)]">💸 وضعیت بدهی‌ها</span>
+          <button onclick="openModal('addDebt')" class="text-[10px] text-rose-400 hover:underline">+ ثبت بدهی</button>
+        </div>
+
+        <div class="text-[10px] text-[var(--text-muted)]">مجموع مانده اقساط و بدهی‌ها:</div>
+        <div class="number text-2xl font-extrabold text-rose-400 mt-1 privacy-sensitive" id="debtTotalVal">—</div>
+        
+        <div class="mt-4 pt-3 border-t border-[var(--border-subtle)] space-y-2 text-xs">
+          <div class="flex justify-between">
+            <span class="text-[var(--text-muted)]">نسبت اهرمی بدهی به دارایی:</span>
+            <span class="number font-bold text-[var(--accent-main)]" id="debtRatioVal">۰٪</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="debtRatioBar" style="width:0%; background:#f43f5e;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-[var(--text-dim)] mt-3">ارزش خالص شما با کسر بدهی‌ها محاسبه می‌شود.</div>
+    </div>
+
+    <!-- Debt Items List (2 Cols) -->
+    <div class="bento-card lg:col-span-2">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-bold text-[var(--text-main)]">لیست تعهدات و اقساط</span>
+      </div>
+      <div id="debtList" class="space-y-1.5">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
+  </section>
 
 </main>
 
-<!-- MOBILE BOTTOM NAVIGATION (Visible only on mobile) -->
+<!-- MOBILE BOTTOM NAVIGATION (Always visible on mobile) -->
 <nav class="mobile-nav md:hidden">
-  <button class="nav-item active" onclick="switchTab('dashboard', this)">
+  <button class="nav-item active" onclick="scrollToWidget('bento-hero-section', this)">
     <span class="nav-icon">📊</span>
     <span>داشبورد</span>
   </button>
-  <button class="nav-item" onclick="switchTab('assets', this)">
+  <button class="nav-item" onclick="scrollToWidget('widget-assets-hub', this)">
     <span class="nav-icon">🏦</span>
     <span>دارایی‌ها</span>
   </button>
-  <button class="nav-item" onclick="switchTab('prices', this)">
-    <span class="nav-icon">📈</span>
-    <span>قیمت‌ها</span>
+  <button class="nav-item" onclick="openModal('smartPaste')">
+    <span class="nav-icon text-sky-400">📲</span>
+    <span>تلگرام</span>
   </button>
-  <button class="nav-item" onclick="switchTab('debts', this)">
+  <button class="nav-item" onclick="scrollToWidget('widget-debts', this)">
     <span class="nav-icon">💸</span>
     <span>بدهی‌ها</span>
   </button>
-  <button class="nav-item" onclick="switchTab('settings', this)">
-    <span class="nav-icon">⚙️</span>
-    <span>تنظیمات</span>
+  <button class="nav-item" onclick="openModal('uiCustomizer')">
+    <span class="nav-icon text-[var(--accent-main)]">🎨</span>
+    <span>ظاهر</span>
   </button>
 </nav>
 
-<!-- ==================== MODALS & BOTTOM SHEETS ==================== -->
+<!-- ==================== MODALS & DRAWERS ==================== -->
 
-<!-- SMART TELEGRAM PASTE MODAL -->
+<!-- 1. UI CUSTOMIZER MODAL (Comprehensive Theme & Layout Controls) -->
+<div id="modal-uiCustomizer" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeModal('uiCustomizer')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="sheet-handle sm:hidden"></div>
+    <div class="flex items-center justify-between mb-4 pb-2 border-b border-[var(--border-color)]">
+      <h3 class="font-bold text-sm text-[var(--accent-main)] flex items-center gap-2">
+        <span>🎨</span> تنظیمات و شخصی‌سازی ظاهر رابط کاربری (UI)
+      </h3>
+      <button onclick="closeModal('uiCustomizer')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
+    </div>
+
+    <div class="space-y-4 text-xs">
+      
+      <!-- 1. Theme Selection -->
+      <div>
+        <label class="block font-bold mb-2 text-[var(--text-main)]">۱. تم و پالت رنگی برنامه:</label>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="themePickerGrid">
+          <button onclick="setTheme('midnight')" class="p-2.5 rounded-xl border border-[var(--border-color)] text-right flex flex-col gap-1.5 bg-[#070611] text-white hover:border-amber-400 transition" id="themeBtn-midnight">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-[11px]">Midnight</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#f5c842]"></span>
+            </div>
+            <span class="text-[9px] text-white/50">مشکی لوکس و گلد</span>
+          </button>
+
+          <button onclick="setTheme('ocean')" class="p-2.5 rounded-xl border border-[var(--border-color)] text-right flex flex-col gap-1.5 bg-[#040d1a] text-sky-100 hover:border-sky-400 transition" id="themeBtn-ocean">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-[11px]">Deep Ocean</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#38bdf8]"></span>
+            </div>
+            <span class="text-[9px] text-sky-200/50">سرمه‌ای کریپتویی</span>
+          </button>
+
+          <button onclick="setTheme('emerald')" class="p-2.5 rounded-xl border border-[var(--border-color)] text-right flex flex-col gap-1.5 bg-[#03120a] text-emerald-100 hover:border-emerald-400 transition" id="themeBtn-emerald">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-[11px]">Emerald</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#10b981]"></span>
+            </div>
+            <span class="text-[9px] text-emerald-200/50">سبز زمردی بازار</span>
+          </button>
+
+          <button onclick="setTheme('amethyst')" class="p-2.5 rounded-xl border border-[var(--border-color)] text-right flex flex-col gap-1.5 bg-[#0c051a] text-purple-100 hover:border-purple-400 transition" id="themeBtn-amethyst">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-[11px]">Amethyst</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#c084fc]"></span>
+            </div>
+            <span class="text-[9px] text-purple-200/50">بنفش سایبرپانک</span>
+          </button>
+
+          <button onclick="setTheme('light')" class="p-2.5 rounded-xl border border-slate-300 text-right flex flex-col gap-1.5 bg-white text-slate-900 hover:border-amber-500 transition col-span-2 sm:col-span-1" id="themeBtn-light">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-[11px]">Minimal Light</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#d97706]"></span>
+            </div>
+            <span class="text-[9px] text-slate-500">تم روشن و مینیمال</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. Layout Density -->
+      <div class="pt-2 border-t border-[var(--border-subtle)]">
+        <label class="block font-bold mb-2 text-[var(--text-main)]">۲. تراکم چیدمان (Layout Density):</label>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="setDensity('compact')" id="densityBtn-compact" class="btn-action-pill text-xs py-2">
+            <span>📱</span> حالت فشرده و تریدری (Compact)
+          </button>
+          <button onclick="setDensity('comfortable')" id="densityBtn-comfortable" class="btn-action-pill text-xs py-2 active">
+            <span>🧘</span> حالت استاندارد و راحت (Comfortable)
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. Widget Visibility Toggles -->
+      <div class="pt-2 border-t border-[var(--border-subtle)]">
+        <label class="block font-bold mb-2 text-[var(--text-main)]">۳. ماژول‌های فعال در داشبورد:</label>
+        <div class="space-y-1.5">
+          <label class="flex items-center justify-between p-2 rounded-xl bg-[var(--surface-card)]">
+            <span>📈 نمودار تحلیل ارزش زمانی پورتفولیو</span>
+            <input type="checkbox" id="toggle-chart" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent-main)]"/>
+          </label>
+          <label class="flex items-center justify-between p-2 rounded-xl bg-[var(--surface-card)]">
+            <span>⚡ نوار تیکر بازار لحظه‌ای</span>
+            <input type="checkbox" id="toggle-ticker" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent-main)]"/>
+          </label>
+          <label class="flex items-center justify-between p-2 rounded-xl bg-[var(--surface-card)]">
+            <span>🍩 حلقه توزیع و سهم سبد دارایی</span>
+            <input type="checkbox" id="toggle-allocation" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent-main)]"/>
+          </label>
+          <label class="flex items-center justify-between p-2 rounded-xl bg-[var(--surface-card)]">
+            <span>💸 بخش مدیریت بدهی‌ها</span>
+            <input type="checkbox" id="toggle-debts" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent-main)]"/>
+          </label>
+        </div>
+      </div>
+
+      <!-- 4. Currency & Number Format -->
+      <div class="pt-2 border-t border-[var(--border-subtle)]">
+        <label class="block font-bold mb-2 text-[var(--text-main)]">۴. فرمت نمایش ارقام و واحد:</label>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-[10px] text-[var(--text-muted)] mb-1">واحد پول اصلی:</label>
+            <select id="ui-currency-select" onchange="changeCurrencyFormat(this.value)">
+              <option value="toman">تومان</option>
+              <option value="million_toman">میلیون تومان (خلاصه)</option>
+              <option value="rial">ریال</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[10px] text-[var(--text-muted)] mb-1">نوع فونت ارقام:</label>
+            <select id="ui-digit-select" onchange="changeDigitFormat(this.value)">
+              <option value="persian">ارقام فارسی (۱۲۳٬۰۰۰)</option>
+              <option value="english">ارقام انگلیسی (123,000)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reset button -->
+      <div class="pt-2 flex justify-between items-center">
+        <button onclick="resetUIDefaults()" class="text-[11px] text-rose-400 hover:underline">بازنشانی به حالت پیش‌فرض کارخانه</button>
+        <button onclick="closeModal('uiCustomizer')" class="btn-action-primary text-xs px-4 py-2">تأیید و بستن</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 2. SMART TELEGRAM PASTE MODAL -->
 <div id="modal-smartPaste" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeModal('smartPaste')">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="sheet-handle sm:hidden"></div>
     <div class="flex items-center justify-between mb-3">
       <h3 class="font-bold text-sm text-sky-400 flex items-center gap-1.5">
-        <span>📲</span> استخراج هوشمند نرخ از متن تلگرام
+        <span>📲</span> استخراج هوشمند نرخ از پیام کانال تلگرام
       </h3>
-      <button onclick="closeModal('smartPaste')" class="text-white/40 text-lg">✕</button>
+      <button onclick="closeModal('smartPaste')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
     </div>
 
-    <p class="text-[11px] text-white/60 leading-relaxed mb-3">
-      پیام روزانه اعلام نرخ را از هر کانال تلگرامی کپی کنید و در اینجا بچسبانید. سیستم به صورت خودکار قیمت‌ها را تشخیص داده و پورتفولیو را به‌روز می‌کند.
+    <p class="text-[11px] text-[var(--text-muted)] leading-relaxed mb-3">
+      پیام روزانه اعلام نرخ را از هر کانال تلگرامی کپی کرده و در کادر زیر قرار دهید. سیستم هوشمند نرخ‌های دلار، طلا، سکه و ارز را بدون فیلترشکن استخراج و اعمال می‌کند.
     </p>
 
     <div class="space-y-2 mb-3">
       <div class="flex justify-between items-center text-xs">
-        <span class="text-[11px] text-white/40">متن پیام:</span>
+        <span class="text-[11px] text-[var(--text-muted)]">متن پیام تلگرام:</span>
         <button onclick="pasteFromClipboard()" class="text-[10px] text-sky-400 hover:underline">📋 خواندن خودکار از کلیپ‌بورد</button>
       </div>
       <textarea id="smartPasteInput" rows="4" placeholder="مثلاً:&#10;دلار نقدی: 231,500&#10;طلای 18 عیار: 23,280,000&#10;سکه امامی: 235,000,000" oninput="previewExtractedPrices()"></textarea>
@@ -700,65 +871,65 @@
 
     <!-- Preview -->
     <div id="smartPasteResults" class="hidden card-sm p-2.5 mb-3">
-      <div class="text-[10px] text-amber-400 mb-1.5 font-bold">🔍 موارد شناسایی‌شده:</div>
+      <div class="text-[10px] text-[var(--accent-main)] mb-1.5 font-bold">🔍 موارد شناسایی‌شده:</div>
       <div id="smartPasteItems" class="grid grid-cols-2 gap-1.5 text-xs"></div>
     </div>
 
     <div class="flex gap-2">
-      <button class="btn-gold flex-1 py-2 text-xs" id="btnApplySmartPaste" onclick="applySmartPaste()" disabled>
-        ✅ اعمال در سیستم
+      <button class="btn-action-primary flex-1 py-2 text-xs" id="btnApplySmartPaste" onclick="applySmartPaste()" disabled>
+        ✅ اعمال در پورتفولیو
       </button>
-      <button class="btn-outline py-2 text-xs" onclick="closeModal('smartPaste')">لغو</button>
+      <button class="btn-action-pill py-2 text-xs" onclick="closeModal('smartPaste')">لغو</button>
     </div>
   </div>
 </div>
 
-<!-- ADD ASSET MODAL -->
+<!-- 3. ADD ASSET MODAL -->
 <div id="modal-addAsset" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeModal('addAsset')">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="sheet-handle sm:hidden"></div>
     <div class="flex items-center justify-between mb-3">
       <h3 class="font-bold text-sm">ثبت دارایی جدید</h3>
-      <button onclick="closeModal('addAsset')" class="text-white/40 text-lg">✕</button>
+      <button onclick="closeModal('addAsset')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
     </div>
 
-    <!-- Category selector (horizontal scrollable) -->
+    <!-- Category selector -->
     <div class="flex gap-1.5 overflow-x-auto whitespace-nowrap pb-2 mb-3 no-scrollbar">
-      <button class="btn-outline active text-xs py-1.5 px-3" id="tb-gold"   onclick="setType('gold')">🥇 طلا و سکه</button>
-      <button class="btn-outline text-xs py-1.5 px-3" id="tb-crypto" onclick="setType('crypto')">🪙 رمزارز</button>
-      <button class="btn-outline text-xs py-1.5 px-3" id="tb-usd"    onclick="setType('usd')">💵 اسکناس و ارز</button>
-      <button class="btn-outline text-xs py-1.5 px-3" id="tb-stock"  onclick="setType('stock')">📈 بورس</button>
-      <button class="btn-outline text-xs py-1.5 px-3" id="tb-realty" onclick="setType('realty')">🏠 ملک</button>
-      <button class="btn-outline text-xs py-1.5 px-3" id="tb-cash"   onclick="setType('cash')">💴 حساب بانکی</button>
-      <button class="btn-outline text-xs py-1.5 px-3" id="tb-other"  onclick="setType('other')">📦 سایر</button>
+      <button class="btn-action-pill active text-xs py-1.5 px-3" id="tb-gold"   onclick="setType('gold')">🥇 طلا و سکه</button>
+      <button class="btn-action-pill text-xs py-1.5 px-3" id="tb-crypto" onclick="setType('crypto')">🪙 رمزارز</button>
+      <button class="btn-action-pill text-xs py-1.5 px-3" id="tb-usd"    onclick="setType('usd')">💵 ارز و اسکناس</button>
+      <button class="btn-action-pill text-xs py-1.5 px-3" id="tb-stock"  onclick="setType('stock')">📈 بورس</button>
+      <button class="btn-action-pill text-xs py-1.5 px-3" id="tb-realty" onclick="setType('realty')">🏠 ملک</button>
+      <button class="btn-action-pill text-xs py-1.5 px-3" id="tb-cash"   onclick="setType('cash')">💴 حساب بانکی</button>
+      <button class="btn-action-pill text-xs py-1.5 px-3" id="tb-other"  onclick="setType('other')">📦 سایر</button>
     </div>
 
     <div id="modal-asset-fields" class="space-y-2.5"></div>
 
     <div class="flex gap-2 mt-4">
-      <button class="btn-gold flex-1 py-2 text-xs" onclick="saveAsset()">💾 ذخیره دارایی</button>
-      <button class="btn-outline py-2 text-xs" onclick="closeModal('addAsset')">لغو</button>
+      <button class="btn-action-primary flex-1 py-2 text-xs" onclick="saveAsset()">💾 ذخیره دارایی</button>
+      <button class="btn-action-pill py-2 text-xs" onclick="closeModal('addAsset')">لغو</button>
     </div>
   </div>
 </div>
 
-<!-- ADD DEBT MODAL -->
+<!-- 4. ADD DEBT MODAL -->
 <div id="modal-addDebt" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeModal('addDebt')">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="sheet-handle sm:hidden"></div>
     <div class="flex items-center justify-between mb-3">
       <h3 class="font-bold text-sm">ثبت بدهی یا تعهد مالی</h3>
-      <button onclick="closeModal('addDebt')" class="text-white/40 text-lg">✕</button>
+      <button onclick="closeModal('addDebt')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
     </div>
 
     <div class="space-y-2.5">
       <div>
-        <label class="block text-[11px] text-white/40 mb-1">عنوان بدهی</label>
+        <label class="block text-[11px] text-[var(--text-muted)] mb-1">عنوان بدهی</label>
         <input type="text" id="d-label" placeholder="مثلاً: وام خرید مسکن"/>
       </div>
       <div class="grid grid-cols-2 gap-2">
         <div>
-          <label class="block text-[11px] text-white/40 mb-1">نوع</label>
+          <label class="block text-[11px] text-[var(--text-muted)] mb-1">نوع</label>
           <select id="d-type">
             <option value="loan">وام بانکی</option>
             <option value="personal">قرض و بدهی شخصی</option>
@@ -766,98 +937,36 @@
           </select>
         </div>
         <div>
-          <label class="block text-[11px] text-white/40 mb-1">مانده پرداخت‌نشده (تومان)</label>
+          <label class="block text-[11px] text-[var(--text-muted)] mb-1">مانده پرداخت‌نشده (تومان)</label>
           <input type="number" id="d-remaining" placeholder="مبلغ باقی‌مانده"/>
         </div>
       </div>
       <div>
-        <label class="block text-[11px] text-white/40 mb-1">مبلغ کل اولیه (تومان)</label>
+        <label class="block text-[11px] text-[var(--text-muted)] mb-1">مبلغ کل اولیه (تومان)</label>
         <input type="number" id="d-total" placeholder="مبلغ اصل بدهی"/>
       </div>
       <div>
-        <label class="block text-[11px] text-white/40 mb-1">تاریخ سررسید یا یادداشت (اختیاری)</label>
-        <input type="text" id="d-note" placeholder="مثلاً: قسط پنجم هر ماه"/>
+        <label class="block text-[11px] text-[var(--text-muted)] mb-1">یادداشت سررسید (اختیاری)</label>
+        <input type="text" id="d-note" placeholder="مثلاً: قسط هر ماه ۲۰ ام"/>
       </div>
     </div>
 
     <div class="flex gap-2 mt-4">
-      <button class="btn-gold flex-1 py-2 text-xs" onclick="saveDebt()">💾 ثبت بدهی</button>
-      <button class="btn-outline py-2 text-xs" onclick="closeModal('addDebt')">لغو</button>
+      <button class="btn-action-primary flex-1 py-2 text-xs" onclick="saveDebt()">💾 ثبت بدهی</button>
+      <button class="btn-action-pill py-2 text-xs" onclick="closeModal('addDebt')">لغو</button>
     </div>
   </div>
 </div>
 
-<!-- ASSET DETAIL MODAL -->
+<!-- 5. ASSET DETAIL MODAL -->
 <div id="modal-detail" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeModal('detail')">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="sheet-handle sm:hidden"></div>
     <div class="flex items-center justify-between mb-3">
       <h3 class="font-bold text-sm" id="detail-title">جزئیات دارایی</h3>
-      <button onclick="closeModal('detail')" class="text-white/40 text-lg">✕</button>
+      <button onclick="closeModal('detail')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
     </div>
     <div id="detail-body"></div>
-  </div>
-</div>
-
-<!-- ADD TELEGRAM MODAL -->
-<div id="modal-addTelegram" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeModal('addTelegram')">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <div class="sheet-handle sm:hidden"></div>
-    <div class="flex items-center justify-between mb-3">
-      <h3 class="font-bold text-sm">افزودن کانال تلگرام</h3>
-      <button onclick="closeModal('addTelegram')" class="text-white/40 text-lg">✕</button>
-    </div>
-    <div class="space-y-2.5">
-      <div>
-        <label class="block text-[11px] text-white/40 mb-1">نام کانال (بدون @)</label>
-        <input type="text" id="tg-username" placeholder="dollar_tehran"/>
-      </div>
-      <div>
-        <label class="block text-[11px] text-white/40 mb-1">نوع نرخ</label>
-        <select id="tg-pricetype">
-          <option value="usd">دلار آمریکا</option>
-          <option value="gold18">طلای ۱۸ عیار</option>
-          <option value="goldCoin">سکه امامی</option>
-        </select>
-      </div>
-    </div>
-    <div class="flex gap-2 mt-4">
-      <button class="btn-gold flex-1 py-2 text-xs" onclick="testAndSaveTelegram()">ذخیره</button>
-      <button class="btn-outline py-2 text-xs" onclick="closeModal('addTelegram')">لغو</button>
-    </div>
-  </div>
-</div>
-
-<!-- ADD URL MODAL -->
-<div id="modal-addUrl" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeModal('addUrl')">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <div class="sheet-handle sm:hidden"></div>
-    <div class="flex items-center justify-between mb-3">
-      <h3 class="font-bold text-sm">افزودن وب‌سایت نرخ</h3>
-      <button onclick="closeModal('addUrl')" class="text-white/40 text-lg">✕</button>
-    </div>
-    <div class="space-y-2.5">
-      <div>
-        <label class="block text-[11px] text-white/40 mb-1">نام منبع</label>
-        <input type="text" id="url-name" placeholder="سایت نرخ"/>
-      </div>
-      <div>
-        <label class="block text-[11px] text-white/40 mb-1">آدرس اینترنتی (URL)</label>
-        <input type="text" id="url-addr" placeholder="https://example.com/prices"/>
-      </div>
-      <div>
-        <label class="block text-[11px] text-white/40 mb-1">نوع دارایی</label>
-        <select id="url-pricetype">
-          <option value="usd">دلار آمریکا</option>
-          <option value="gold18">طلای ۱۸ عیار</option>
-          <option value="goldCoin">سکه امامی</option>
-        </select>
-      </div>
-    </div>
-    <div class="flex gap-2 mt-4">
-      <button class="btn-gold flex-1 py-2 text-xs" onclick="testAndSaveUrl()">ذخیره</button>
-      <button class="btn-outline py-2 text-xs" onclick="closeModal('addUrl')">لغو</button>
-    </div>
   </div>
 </div>
 
@@ -868,21 +977,33 @@ const DB = {
   set: (k, v) => localStorage.setItem('myw_' + k, JSON.stringify(v))
 };
 
+// UI Settings Schema
+const defaultUISettings = {
+  theme: 'midnight',
+  density: 'comfortable',
+  privacy: false,
+  currency: 'toman',
+  digits: 'persian',
+  widgets: {
+    chart: true,
+    ticker: true,
+    allocation: true,
+    debts: true
+  }
+};
+
 const S = {
   assets: DB.get('assets') || [],
   debts: DB.get('debts') || [],
   history: DB.get('history') || [],
-  alerts: DB.get('alerts') || [],
   snapshots: DB.get('snapshots') || [],
-  customUrls: DB.get('customUrls') || [],
-  tgChannels: DB.get('tgChannels') || [],
-  settings: DB.get('settings') || { currency:'toman', interval:30, customProxy:'' },
+  ui: Object.assign({}, defaultUISettings, DB.get('ui_theme') || {}),
   prices: {},
   currentType: 'gold',
+  activeCategoryFilter: 'all',
   lastFetch: 0,
   chartRange: '1d',
-  tempParsedPrices: null,
-  deferredPWAInstall: null
+  tempParsedPrices: null
 };
 
 // ==================== DEFINITIONS ====================
@@ -891,7 +1012,7 @@ const TC = {
   crypto:{ label:'رمزارز',   icon:'🪙', color:'#f97316', liquid:true  },
   usd:   { label:'ارز و اسکناس', icon:'💵', color:'#38bdf8', liquid:true  },
   stock: { label:'سهام بورس', icon:'📈', color:'#10b981', liquid:true  },
-  realty:{ label:'ملک',      icon:'🏠', color:'#f43f5e', liquid:false },
+  realty:{ label:'املاک',    icon:'🏠', color:'#f43f5e', liquid:false },
   cash:  { label:'حساب بانکی', icon:'💴', color:'#22d3ee', liquid:true  },
   other: { label:'سایر',     icon:'📦', color:'#818cf8', liquid:false },
 };
@@ -907,11 +1028,10 @@ const PRICE_DEF = {
   btc:     { name:'بیت‌کوین',    unit:'BTC',  icon:'₿',  color:'#f97316', base:0, usd:79000 },
   eth:     { name:'اتریوم',      unit:'ETH',  icon:'◆',  color:'#818cf8', base:0, usd:2550 },
   usdt:    { name:'تتر',         unit:'USDT', icon:'₮',  color:'#10b981', base:0, usd:1 },
-  bnb:     { name:'بایننس کوین', unit:'BNB',  icon:'🔶', color:'#fbbf24', base:0, usd:725 },
   sol:     { name:'سولانا',      unit:'SOL',  icon:'◎',  color:'#a78bfa', base:0, usd:103 }
 };
 
-// High-precision digit normalizer
+// ==================== NUMBER & CURRENCY FORMATTERS ====================
 function parseIranNum(s) {
   if (!s) return NaN;
   const pMap = {
@@ -922,14 +1042,32 @@ function parseIranNum(s) {
   return parseFloat(clean);
 }
 
-const fmt = (n, d=0) => n == null ? '—' : Number(n).toLocaleString('fa-IR', { maximumFractionDigits: d });
-const fmtS = n => {
+function fmt(n, d=0) {
+  if (n == null || isNaN(n)) return '—';
+  let val = Number(n);
+
+  if (S.ui.currency === 'million_toman') {
+    val = val / 1e6;
+    d = val < 10 ? 2 : 1;
+  } else if (S.ui.currency === 'rial') {
+    val = val * 10;
+  }
+
+  const locale = S.ui.digits === 'english' ? 'en-US' : 'fa-IR';
+  return val.toLocaleString(locale, { maximumFractionDigits: d });
+}
+
+function fmtS(n) {
   if (!n) return '—';
-  if (n >= 1e12) return (n/1e12).toFixed(2) + ' تریلیون';
+  if (S.ui.currency === 'million_toman') {
+    return fmt(n) + ' م.ت';
+  }
+  if (n >= 1e12) return (n/1e12).toFixed(2) + ' همت';
   if (n >= 1e9)  return (n/1e9).toFixed(2) + ' میلیارد';
   if (n >= 1e6)  return (n/1e6).toFixed(1) + ' میلیون';
   return fmt(n);
-};
+}
+
 const fmtUSD = n => '$' + Number(n).toLocaleString('en-US', { maximumFractionDigits: 2 });
 const set$ = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
 const el$ = id => document.getElementById(id);
@@ -944,6 +1082,107 @@ function initPrices() {
       source: 'پایه سیستم'
     };
   });
+}
+
+// ==================== UI CUSTOMIZATION ENGINE ====================
+function applyUISettings() {
+  // 1. Theme
+  document.documentElement.setAttribute('data-theme', S.ui.theme || 'midnight');
+  
+  // Highlight active theme button
+  document.querySelectorAll('[id^="themeBtn-"]').forEach(b => {
+    b.classList.remove('ring-2', 'ring-amber-400');
+  });
+  el$('themeBtn-' + S.ui.theme)?.classList.add('ring-2', 'ring-amber-400');
+
+  // 2. Density
+  document.documentElement.setAttribute('data-density', S.ui.density || 'comfortable');
+  document.querySelectorAll('[id^="densityBtn-"]').forEach(b => b.classList.remove('active'));
+  el$('densityBtn-' + S.ui.density)?.classList.add('active');
+
+  // 3. Privacy Mode
+  if (S.ui.privacy) {
+    document.body.classList.add('privacy-active');
+    el$('privacyEyeIcon').textContent = '🙈';
+    el$('privacyTextLabel').textContent = 'آشکار';
+  } else {
+    document.body.classList.remove('privacy-active');
+    el$('privacyEyeIcon').textContent = '👁️';
+    el$('privacyTextLabel').textContent = 'مخفی';
+  }
+
+  // 4. Widget Visibility
+  const w = S.ui.widgets || defaultUISettings.widgets;
+  if (el$('widget-chart')) el$('widget-chart').style.display = w.chart ? 'flex' : 'none';
+  if (el$('widget-ticker')) el$('widget-ticker').style.display = w.ticker ? 'block' : 'none';
+  if (el$('widget-allocation')) el$('widget-allocation').style.display = w.allocation ? 'flex' : 'none';
+  if (el$('widget-debts')) el$('widget-debts').style.display = w.debts ? 'grid' : 'none';
+
+  // Sync checkboxes
+  if (el$('toggle-chart')) el$('toggle-chart').checked = w.chart !== false;
+  if (el$('toggle-ticker')) el$('toggle-ticker').checked = w.ticker !== false;
+  if (el$('toggle-allocation')) el$('toggle-allocation').checked = w.allocation !== false;
+  if (el$('toggle-debts')) el$('toggle-debts').checked = w.debts !== false;
+
+  // Currency unit label
+  const curLabel = S.ui.currency === 'million_toman' ? 'میلیون تومان' : S.ui.currency === 'rial' ? 'ریال' : 'تومان';
+  set$('currencyUnitLabel', curLabel);
+  if (el$('ui-currency-select')) el$('ui-currency-select').value = S.ui.currency;
+  if (el$('ui-digit-select')) el$('ui-digit-select').value = S.ui.digits;
+}
+
+function setTheme(theme) {
+  S.ui.theme = theme;
+  DB.set('ui_theme', S.ui);
+  applyUISettings();
+  drawChart();
+  toast(`تم ${theme} اعمال شد`, 'gold');
+}
+
+function setDensity(density) {
+  S.ui.density = density;
+  DB.set('ui_theme', S.ui);
+  applyUISettings();
+}
+
+function togglePrivacyMode() {
+  S.ui.privacy = !S.ui.privacy;
+  DB.set('ui_theme', S.ui);
+  applyUISettings();
+  toast(S.ui.privacy ? 'حالت حریم خصوصی فعال شد (مبالغ پنهان شدند)' : 'حالت عادی فعال شد (مبالغ نمایان شدند)', 'gold');
+}
+
+function saveWidgetPreferences() {
+  S.ui.widgets = {
+    chart: el$('toggle-chart')?.checked !== false,
+    ticker: el$('toggle-ticker')?.checked !== false,
+    allocation: el$('toggle-allocation')?.checked !== false,
+    debts: el$('toggle-debts')?.checked !== false
+  };
+  DB.set('ui_theme', S.ui);
+  applyUISettings();
+}
+
+function changeCurrencyFormat(val) {
+  S.ui.currency = val;
+  DB.set('ui_theme', S.ui);
+  applyUISettings();
+  renderAll();
+}
+
+function changeDigitFormat(val) {
+  S.ui.digits = val;
+  DB.set('ui_theme', S.ui);
+  applyUISettings();
+  renderAll();
+}
+
+function resetUIDefaults() {
+  S.ui = Object.assign({}, defaultUISettings);
+  DB.set('ui_theme', S.ui);
+  applyUISettings();
+  renderAll();
+  toast('تنظیمات ظاهر به پیش‌فرض بازگردانده شد', 'gold');
 }
 
 // ==================== REAL DATA FETCHING ====================
@@ -967,11 +1206,10 @@ async function fetchBitpin() {
         S.prices.usd.price = Math.round(p);
         S.prices.usdt.price = Math.round(p);
         S.prices.usd.change24h = +(parseFloat(usdt.price_info?.change || 0).toFixed(2));
-        S.prices.usd.source = 'بیت‌پین';
       }
     }
 
-    // Gold 18k derived from PAXG physical gold
+    // Gold 18k derived from PAXG
     const paxg = find('PAXG_IRT');
     if (paxg && paxg.price) {
       const oz = parseFloat(paxg.price);
@@ -979,9 +1217,8 @@ async function fetchBitpin() {
       if (gram18 > 1000000) {
         S.prices.gold18.price = gram18;
         S.prices.gold18.change24h = +(parseFloat(paxg.price_info?.change || 0).toFixed(2));
-        S.prices.gold18.source = 'بیت‌پین (PAXG)';
         
-        // Coins derived mathematically
+        // Accurate coin derivations
         const rawCoin = (oz / 31.1034768) * 7.3197;
         S.prices.goldCoin.price = Math.round(rawCoin * 1.15);
         S.prices.goldHalf.price = Math.round(S.prices.goldCoin.price / 2 * 1.03);
@@ -1006,8 +1243,7 @@ async function fetchBitpin() {
 
 async function fetchTGJU() {
   try {
-    const proxy = S.settings.customProxy || 'https://api.allorigins.win/raw?url=';
-    const target = proxy + encodeURIComponent('https://call.tgju.org/ajax.json');
+    const target = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://call.tgju.org/ajax.json');
     const ctrl = new AbortController();
     const tid = setTimeout(() => ctrl.abort(), 6000);
     const res = await fetch(target, { signal: ctrl.signal });
@@ -1017,50 +1253,20 @@ async function fetchTGJU() {
     if (!j.current) return false;
 
     const parse = k => j.current[k]?.p ? parseIranNum(j.current[k].p) : null;
-
     const usd = parse('price_dollar_rl');
     if (usd) S.prices.usd.price = Math.round(usd / 10);
-
     const g18 = parse('geram18');
     if (g18) S.prices.gold18.price = Math.round(g18 / 10);
-
     const coin = parse('retail_sekee') || parse('sekee');
     if (coin) S.prices.goldCoin.price = Math.round(coin / 10);
-
     const half = parse('nim');
     if (half) S.prices.goldHalf.price = Math.round(half / 10);
-
     const q = parse('rob');
     if (q) S.prices.goldQ.price = Math.round(q / 10);
-
     const eur = parse('price_eur');
     if (eur) S.prices.eur.price = Math.round(eur / 10);
-
     const aed = parse('price_aed');
     if (aed) S.prices.aed.price = Math.round(aed / 10);
-
-    return true;
-  } catch(e) {
-    return false;
-  }
-}
-
-async function fetchCoinGecko() {
-  try {
-    const ids = 'bitcoin,ethereum,tether,binancecoin,solana';
-    const ctrl = new AbortController();
-    const tid = setTimeout(() => ctrl.abort(), 6000);
-    const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`, { signal: ctrl.signal });
-    clearTimeout(tid);
-    if (!res.ok) return false;
-    const j = await res.json();
-    const map = { bitcoin:'btc', ethereum:'eth', tether:'usdt', binancecoin:'bnb', solana:'sol' };
-    Object.entries(map).forEach(([gid, k]) => {
-      if (j[gid] && S.prices[k]) {
-        S.prices[k].usdPrice = j[gid].usd;
-        S.prices[k].change24h = +(j[gid].usd_24h_change || 0).toFixed(2);
-      }
-    });
     return true;
   } catch(e) {
     return false;
@@ -1069,124 +1275,15 @@ async function fetchCoinGecko() {
 
 async function fetchAllPrices(manual = false) {
   const now = Date.now();
-  if (!manual && now - S.lastFetch < (S.settings.interval || 30) * 1000) return;
+  if (!manual && now - S.lastFetch < 30000) return;
   S.lastFetch = now;
 
-  set$('headerLiveStatus', 'در حال استعلام نرخ...');
-
-  const [bOk, tgOk] = await Promise.all([
-    el$('chk-bitpin')?.checked !== false ? fetchBitpin() : Promise.resolve(false),
-    el$('chk-tgju')?.checked !== false ? fetchTGJU() : Promise.resolve(false),
-    el$('chk-gecko')?.checked !== false ? fetchCoinGecko() : Promise.resolve(false)
-  ]);
-
-  if (tgOk) set$('priceSourceTag', 'شبکه طلا و ارز (TGJU)');
-  else if (bOk) set$('priceSourceTag', 'بازار داخلی (بیت‌پین / تترلند)');
-  else set$('priceSourceTag', 'نرخ‌های مرجع سیستم');
+  set$('headerLiveStatus', 'در حال استعلام نرخ‌ها...');
+  await Promise.all([fetchBitpin(), fetchTGJU()]);
 
   set$('headerLiveStatus', 'نرخ‌های زنده و پایدار');
-  set$('pricesStatusSubtitle', 'آخرین استعلام: ' + new Date().toLocaleTimeString('fa-IR', { hour:'2-digit', minute:'2-digit' }));
-
   renderAll();
   saveSnapshot();
-  checkAlerts();
-}
-
-// ==================== SMART TELEGRAM EXTRACTOR ====================
-function extractPricesFromText(text) {
-  if (!text || typeof text !== 'string') return {};
-  const results = {};
-
-  // Dollar
-  const usdMatch = text.match(/(?:دلار\s*نقدی|دلار\s*آزاد|دلار\s*تهران|دلار|usdt|تتر)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{5,10})/i) ||
-                   text.match(/([۰-۹\d,،]{5,10})[^۰-۹\d\n]{0,15}(?:دلار|تتر)/i);
-  if (usdMatch) {
-    const v = parseIranNum(usdMatch[1]);
-    if (v > 20000) results.usd = v > 1000000 ? Math.round(v / 10) : Math.round(v);
-  }
-
-  // Gold 18k
-  const goldMatch = text.match(/(?:طلای?\s*۱۸|طلا\s*18|گرم\s*۱۸|گرم\s*18|۱۸\s*عیار|18\s*عیار)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{6,12})/i) ||
-                    text.match(/([۰-۹\d,،]{6,12})[^۰-۹\d\n]{0,15}(?:طلای?\s*۱۸|طلا\s*18)/i);
-  if (goldMatch) {
-    const v = parseIranNum(goldMatch[1]);
-    if (v > 100000) results.gold18 = v > 50000000 ? Math.round(v / 10) : Math.round(v);
-  }
-
-  // Sekke Emami
-  const coinMatch = text.match(/(?:سکه\s*امامی|سکه\s*تمام|سکه\s*طرح\s*جدید)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{7,13})/i);
-  if (coinMatch) {
-    const v = parseIranNum(coinMatch[1]);
-    if (v > 5000000) results.goldCoin = v > 500000000 ? Math.round(v / 10) : Math.round(v);
-  }
-
-  // Nim Sekke
-  const halfMatch = text.match(/(?:نیم\s*سکه)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{7,12})/i);
-  if (halfMatch) {
-    const v = parseIranNum(halfMatch[1]);
-    if (v > 2000000) results.goldHalf = v > 200000000 ? Math.round(v / 10) : Math.round(v);
-  }
-
-  // Rob Sekke
-  const qMatch = text.match(/(?:ربع\s*سکه)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{6,12})/i);
-  if (qMatch) {
-    const v = parseIranNum(qMatch[1]);
-    if (v > 1000000) results.goldQ = v > 100000000 ? Math.round(v / 10) : Math.round(v);
-  }
-
-  return results;
-}
-
-async function pasteFromClipboard() {
-  try {
-    const text = await navigator.clipboard.readText();
-    el$('smartPasteInput').value = text;
-    previewExtractedPrices();
-  } catch(e) {
-    toast('لطفاً متن را مستقیماً داخل کادر بچسبانید', 'gold');
-  }
-}
-
-function previewExtractedPrices() {
-  const txt = el$('smartPasteInput')?.value || '';
-  const parsed = extractPricesFromText(txt);
-  S.tempParsedPrices = parsed;
-
-  const resBox = el$('smartPasteResults');
-  const itemsBox = el$('smartPasteItems');
-  const btn = el$('btnApplySmartPaste');
-
-  const keys = Object.keys(parsed);
-  if (!keys.length) {
-    resBox.classList.add('hidden');
-    btn.disabled = true;
-    return;
-  }
-
-  resBox.classList.remove('hidden');
-  btn.disabled = false;
-
-  itemsBox.innerHTML = keys.map(k => {
-    const def = PRICE_DEF[k] || { name: k, icon: '📌' };
-    return `<div class="bg-white/[0.04] p-2 rounded-lg border border-white/[0.06]">
-      <div class="text-[10px] text-white/50">${def.icon} ${def.name}</div>
-      <div class="number text-xs font-bold text-amber-400 mt-0.5">${fmt(parsed[k])} ت</div>
-    </div>`;
-  }).join('');
-}
-
-function applySmartPaste() {
-  if (!S.tempParsedPrices) return;
-  Object.entries(S.tempParsedPrices).forEach(([k, val]) => {
-    if (S.prices[k]) {
-      S.prices[k].price = val;
-      S.prices[k].source = 'پیام تلگرام (دستی)';
-    }
-  });
-  closeModal('smartPaste');
-  renderAll();
-  saveSnapshot();
-  toast('✅ نرخ‌های تلگرام اعمال شدند', 'green');
 }
 
 // ==================== ASSET CALCULATIONS ====================
@@ -1214,49 +1311,47 @@ function assetCost(a) {
   return a.buyPrice ? a.qty * a.buyPrice : 0;
 }
 
-// ==================== RENDERING ====================
+// ==================== RENDERING FUNCTIONS ====================
 function renderAll() {
   renderTicker();
-  renderPricesGrid();
+  renderMarketSnap();
   renderPortfolio();
   renderFullAssetList();
   renderDebtSection();
-  renderHistoryList();
   drawChart();
 }
 
 function renderTicker() {
-  const keys = ['usd', 'gold18', 'goldCoin', 'btc', 'eth', 'usdt'];
+  const keys = ['usd', 'gold18', 'goldCoin', 'btc', 'eth', 'usdt', 'eur', 'aed'];
   const el = el$('tickerItems');
   if (!el) return;
   el.innerHTML = keys.map(k => {
     const p = S.prices[k]; if (!p) return '';
     const ch = p.change24h || 0;
-    return `<div class="inline-flex items-center gap-1.5 text-xs text-white/75 bg-white/[0.02] px-2 py-0.5 rounded-lg border border-white/[0.04]">
+    return `<div class="inline-flex items-center gap-1.5 text-xs text-[var(--text-main)] bg-[var(--surface-card)] px-2.5 py-1 rounded-lg border border-[var(--border-subtle)]">
       <span>${p.icon}</span>
-      <span class="text-[11px] font-medium">${p.name}:</span>
-      <span class="number font-bold text-amber-400 text-[11px]">${fmtS(p.price)}</span>
-      <span class="badge ${ch >= 0 ? 'up' : 'down'} text-[9px] py-0 px-1">${ch >= 0 ? '+' : ''}${ch}%</span>
+      <span class="text-[11px] font-medium opacity-70">${p.name}:</span>
+      <span class="number font-bold text-[var(--accent-main)] text-[11px]">${fmt(p.price)}</span>
+      <span class="badge ${ch >= 0 ? 'badge-up' : 'badge-down'} text-[9px] py-0 px-1">${ch >= 0 ? '+' : ''}${ch}%</span>
     </div>`;
   }).join('');
 }
 
-function renderPricesGrid() {
-  const el = el$('pricesGrid'); if (!el) return;
-  el.innerHTML = Object.entries(S.prices).map(([k, p]) => {
+function renderMarketSnap() {
+  const keys = ['usd', 'gold18', 'goldCoin', 'btc'];
+  const el = el$('marketSnapItems');
+  if (!el) return;
+  el.innerHTML = keys.map(k => {
+    const p = S.prices[k]; if (!p) return '';
     const ch = p.change24h || 0;
-    return `<div class="card p-3 flex flex-col justify-between">
-      <div class="flex items-center justify-between mb-1.5">
-        <div class="flex items-center gap-1.5">
-          <span class="text-base">${p.icon}</span>
-          <span class="text-xs font-semibold text-white/80">${p.name}</span>
-        </div>
-        <span class="badge ${ch >= 0 ? 'up' : 'down'}">${ch >= 0 ? '+' : ''}${ch}%</span>
+    return `<div class="flex items-center justify-between p-2 rounded-xl bg-[var(--surface-card)] border border-[var(--border-subtle)] text-xs">
+      <div class="flex items-center gap-2">
+        <span>${p.icon}</span>
+        <span class="font-medium">${p.name}</span>
       </div>
-      <div>
-        <div class="number text-sm sm:text-base font-bold text-white">${fmt(p.price)}</div>
-        <div class="text-[10px] text-white/40">تومان</div>
-        ${p.usdPrice ? `<div class="text-[10px] text-white/30 number">${fmtUSD(p.usdPrice)}</div>` : ''}
+      <div class="text-left flex items-center gap-2">
+        <span class="number font-bold text-[var(--accent-main)]">${fmt(p.price)}</span>
+        <span class="badge ${ch >= 0 ? 'badge-up' : 'badge-down'} text-[9px]">${ch >= 0 ? '+' : ''}${ch}%</span>
       </div>
     </div>`;
   }).join('');
@@ -1282,16 +1377,16 @@ function renderPortfolio() {
   const netWorth = total - totalDebt;
   const pnl = total - totalCost;
 
-  set$('heroNetWorth', fmtS(netWorth));
+  set$('heroNetWorth', fmt(netWorth));
   set$('quickLiquid', fmtS(liquid));
   set$('quickIlliquid', fmtS(illiquid));
   set$('quickDebt', fmtS(totalDebt));
   set$('quickPnl', fmtS(pnl));
 
-  set$('assetsTotalCount', `${assets.length} قلم دارایی ثبت‌شده`);
+  set$('totalAssetCountBadge', `${assets.length} قلم دارایی`);
   set$('donutTotalText', fmtS(total));
 
-  // Donut slices
+  // Donut rings
   const circ = 2 * Math.PI * 38;
   let off = 0;
   [['gold', '#f5c842'], ['crypto', '#f97316'], ['usd', '#38bdf8'], ['stock', '#10b981'], ['other', '#818cf8']].forEach(([k, c]) => {
@@ -1306,72 +1401,64 @@ function renderPortfolio() {
   // Donut legend
   const leg = el$('donutLegend');
   if (leg) {
-    const labels = { gold:'طلا و سکه', crypto:'رمزارز', usd:'ارز', stock:'بورس', other:'املاک/نقد' };
+    const labels = { gold:'طلا و سکه', crypto:'رمزارز', usd:'ارز و اسکناس', stock:'بورس', other:'املاک/نقد' };
     const colors = { gold:'#f5c842', crypto:'#f97316', usd:'#38bdf8', stock:'#10b981', other:'#818cf8' };
     leg.innerHTML = Object.entries(cats).map(([k, v]) => `
       <div class="flex items-center gap-1.5">
         <span class="w-2 h-2 rounded-full" style="background:${colors[k]}"></span>
-        <span class="text-white/50 text-[10px] truncate">${labels[k]}</span>
+        <span class="text-[var(--text-muted)] text-[10px] truncate">${labels[k]}</span>
         <span class="number font-bold mr-auto text-[10px]">${total ? (v/total*100).toFixed(0) : 0}٪</span>
       </div>`).join('');
   }
 
-  // Dashboard top assets list
-  const dal = el$('dashAssetList');
-  if (dal) {
-    if (!assets.length) {
-      dal.innerHTML = `<div class="text-center py-6 text-xs text-white/30">هنوز دارایی اضافه نکرده‌اید. از دکمه «+ دارایی» شروع کنید.</div>`;
-    } else {
-      const sorted = [...assets].map((a, i) => ({ a, i, v: assetVal(a) })).sort((x, y) => y.v - x.v).slice(0, 4);
-      dal.innerHTML = sorted.map(({ a, i, v }) => {
-        const cfg = TC[a.type];
-        return `<div class="asset-row" onclick="showDetail(${i})">
-          <div class="w-8 h-8 rounded-xl flex items-center justify-center text-sm" style="background:${cfg.color}15;">${cfg.icon}</div>
-          <div class="flex-1 min-w-0">
-            <div class="text-xs font-semibold text-white truncate">${a.label || cfg.label}</div>
-            <div class="text-[10px] text-white/40">${fmt(a.qty, 3)} ${a.unit || ''}</div>
-          </div>
-          <div class="text-left">
-            <div class="number text-xs font-bold" style="color:${cfg.color};">${fmtS(v)} ت</div>
-            <div class="text-[10px] text-white/30">${total ? (v/total*100).toFixed(0) : 0}٪</div>
-          </div>
-        </div>`;
-      }).join('');
-    }
-  }
-
-  // Debt KPIs
+  // Debt section KPIs
   set$('debtTotalVal', fmtS(totalDebt));
-  set$('debtAssetVal', fmtS(total));
-  set$('debtRatioVal', total > 0 ? (totalDebt / total * 100).toFixed(1) + '٪' : '۰٪');
+  const dRatio = total > 0 ? (totalDebt / total * 100).toFixed(1) : '۰';
+  set$('debtRatioVal', dRatio + '٪');
+  if (el$('debtRatioBar')) el$('debtRatioBar').style.width = Math.min(100, parseFloat(dRatio)) + '%';
+}
+
+function filterAssetCategory(cat, btn) {
+  S.activeCategoryFilter = cat;
+  document.querySelectorAll('#categoryFilterBar button').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderFullAssetList();
 }
 
 function renderFullAssetList() {
   const el = el$('fullAssetList'); if (!el) return;
-  if (!S.assets.length) {
-    el.innerHTML = `<div class="text-center py-10 text-xs text-white/30">هنوز هیچ دارایی ثبت نشده است.</div>`;
+  
+  let list = S.assets;
+  if (S.activeCategoryFilter !== 'all') {
+    list = list.filter(a => a.type === S.activeCategoryFilter);
+  }
+
+  if (!list.length) {
+    el.innerHTML = `<div class="text-center py-8 text-xs text-[var(--text-muted)]">هیچ دارایی‌ای در این دسته‌بندی یافت نشد.</div>`;
     return;
   }
+
   const total = S.assets.reduce((s, a) => s + assetVal(a), 0);
-  el.innerHTML = S.assets.map((a, i) => {
-    const v = assetVal(a), cfg = TC[a.type];
+  el.innerHTML = list.map((a, i) => {
+    const realIndex = S.assets.indexOf(a);
+    const v = assetVal(a), cfg = TC[a.type] || TC.other;
     const cost = assetCost(a);
     const pnl = cost > 0 ? v - cost : null;
     const pnlPct = cost > 0 ? ((v - cost) / cost * 100) : null;
-    return `<div class="asset-row" onclick="showDetail(${i})">
-      <div class="w-9 h-9 rounded-xl flex items-center justify-center text-base" style="background:${cfg.color}15;">${cfg.icon}</div>
+    return `<div class="asset-item" onclick="showDetail(${realIndex})">
+      <div class="w-8 h-8 rounded-xl flex items-center justify-center text-sm" style="background:${cfg.color}15;">${cfg.icon}</div>
       <div class="flex-1 min-w-0">
-        <div class="text-xs font-bold text-white truncate">${a.label || cfg.label}</div>
-        <div class="flex items-center gap-2 text-[10px] text-white/40 mt-0.5">
+        <div class="text-xs font-bold text-[var(--text-main)] truncate">${a.label || cfg.label}</div>
+        <div class="flex items-center gap-2 text-[10px] text-[var(--text-muted)] mt-0.5">
           <span>${fmt(a.qty, 4)} ${a.unit || ''}</span>
           ${pnl != null ? `<span class="${pnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}">(${pnl >= 0 ? '+' : ''}${pnlPct.toFixed(1)}%)</span>` : ''}
         </div>
       </div>
       <div class="flex flex-col items-end gap-1">
-        <div class="number text-xs font-bold" style="color:${cfg.color};">${fmtS(v)} ت</div>
+        <div class="number text-xs font-bold privacy-sensitive" style="color:${cfg.color};">${fmtS(v)}</div>
         <div class="flex items-center gap-1.5">
-          <span class="text-[10px] text-white/30">${total ? (v/total*100).toFixed(0) : 0}٪</span>
-          <button onclick="event.stopPropagation();deleteAsset(${i})" class="text-rose-400/60 hover:text-rose-400 text-xs px-1">✕</button>
+          <span class="text-[10px] text-[var(--text-dim)]">${total ? (v/total*100).toFixed(0) : 0}٪</span>
+          <button onclick="event.stopPropagation();deleteAsset(${realIndex})" class="text-rose-400/60 hover:text-rose-400 text-xs px-1">✕</button>
         </div>
       </div>
     </div>`;
@@ -1381,57 +1468,36 @@ function renderFullAssetList() {
 function renderDebtSection() {
   const el = el$('debtList'); if (!el) return;
   if (!S.debts.length) {
-    el.innerHTML = `<div class="text-center py-8 text-xs text-white/30">هیچ بدهی یا تعهدی ثبت نشده است.</div>`;
+    el.innerHTML = `<div class="text-center py-6 text-xs text-[var(--text-muted)]">هیچ بدهی یا تعهدی ثبت نشده است.</div>`;
     return;
   }
   el.innerHTML = S.debts.map((d, i) => `
-    <div class="asset-row">
+    <div class="asset-item">
       <div class="w-8 h-8 rounded-xl bg-rose-500/10 flex items-center justify-center text-sm">💸</div>
       <div class="flex-1 min-w-0">
-        <div class="text-xs font-bold text-white">${d.label}</div>
-        <div class="text-[10px] text-white/40">${d.note || 'بدون یادداشت'}</div>
+        <div class="text-xs font-bold text-[var(--text-main)]">${d.label}</div>
+        <div class="text-[10px] text-[var(--text-muted)]">${d.note || 'بدون یادداشت'}</div>
       </div>
       <div class="text-left flex items-center gap-2">
         <div>
-          <div class="number text-xs font-bold text-rose-400">${fmtS(d.remaining)} ت</div>
-          <div class="text-[9px] text-white/30">از ${fmtS(d.total)} ت</div>
+          <div class="number text-xs font-bold text-rose-400 privacy-sensitive">${fmtS(d.remaining)}</div>
+          <div class="text-[9px] text-[var(--text-dim)]">از ${fmtS(d.total)}</div>
         </div>
         <button onclick="deleteDebt(${i})" class="text-rose-400/60 hover:text-rose-400 text-xs px-1">✕</button>
       </div>
     </div>`).join('');
 }
 
-function renderHistoryList() {
-  const el = el$('historyList'); if (!el) return;
-  if (!S.history.length) {
-    el.innerHTML = `<div class="text-center py-8 text-xs text-white/30">تاریخچه‌ای ثبت نشده است.</div>`;
-    return;
-  }
-  el.innerHTML = [...S.history].reverse().slice(0, 15).map(h => {
-    const cfg = TC[h.type] || TC.other;
-    return `<div class="flex items-center justify-between py-2 border-b border-white/[0.04] text-xs">
-      <div class="flex items-center gap-2">
-        <span>${cfg.icon}</span>
-        <span class="font-medium text-white">${h.label}</span>
-      </div>
-      <div class="text-left">
-        <span class="number font-bold text-amber-400">${fmtS(h.value)} ت</span>
-        <div class="text-[9px] text-white/30">${new Date(h.ts).toLocaleDateString('fa-IR')}</div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// Chart
+// ==================== CHART ====================
 function setChartRange(r, btn) {
   S.chartRange = r;
   document.querySelectorAll('.chart-tab').forEach(b => {
-    b.classList.remove('active', 'text-white', 'bg-white/10');
-    b.classList.add('text-white/40');
+    b.classList.remove('active', 'text-[var(--text-main)]', 'bg-[var(--surface-hover)]');
+    b.classList.add('text-[var(--text-muted)]');
   });
   if (btn) {
-    btn.classList.add('active', 'text-white', 'bg-white/10');
-    btn.classList.remove('text-white/40');
+    btn.classList.add('active', 'text-[var(--text-main)]', 'bg-[var(--surface-hover)]');
+    btn.classList.remove('text-[var(--text-muted)]');
   }
   drawChart();
 }
@@ -1483,10 +1549,12 @@ function drawChart() {
   const px = i => pad.l + (i / (data.length - 1)) * cw;
   const py = v => pad.t + ch - ((v - minV) / range) * ch;
 
-  // Gradient
+  const chartThemeColor = getComputedStyle(document.documentElement).getPropertyValue('--chart-color').trim() || '#f5c842';
+
+  // Gradient fill
   const grad = ctx.createLinearGradient(0, pad.t, 0, pad.t + ch);
-  grad.addColorStop(0, 'rgba(245, 200, 66, 0.25)');
-  grad.addColorStop(1, 'rgba(245, 200, 66, 0.0)');
+  grad.addColorStop(0, chartThemeColor + '40');
+  grad.addColorStop(1, chartThemeColor + '00');
   ctx.beginPath();
   ctx.moveTo(px(0), py(data[0].v));
   data.forEach((d, i) => { if (i > 0) ctx.lineTo(px(i), py(d.v)); });
@@ -1498,27 +1566,35 @@ function drawChart() {
 
   // Line
   ctx.beginPath();
-  ctx.strokeStyle = '#f5c842';
+  ctx.strokeStyle = chartThemeColor;
   ctx.lineWidth = 2;
   ctx.moveTo(px(0), py(data[0].v));
   data.forEach((d, i) => { if (i > 0) ctx.lineTo(px(i), py(d.v)); });
   ctx.stroke();
 }
 
-function checkAlerts() {
-  S.alerts.forEach(al => {
-    if (al.triggered) return;
-    const p = S.prices[al.asset]?.price;
-    if (!p) return;
-    if ((al.cond === 'above' && p >= al.value) || (al.cond === 'below' && p <= al.value)) {
-      al.triggered = true;
-      toast(`🔔 هشدار نرخ: ${PRICE_DEF[al.asset]?.name} ${al.cond==='above'?'بالاتر':'پایین‌تر'} از ${fmtS(al.value)} شد!`, 'gold');
-    }
-  });
-  DB.set('alerts', S.alerts);
+// ==================== MODALS & ACTIONS ====================
+function scrollToWidget(id, btn) {
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const target = el$(id);
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
-// ==================== ASSET CRUD ====================
+function openModal(id) {
+  const m = el$('modal-' + id);
+  if (m) {
+    m.style.display = 'flex';
+    if (id === 'addAsset') renderAssetForm();
+  }
+}
+function closeModal(id) {
+  const m = el$('modal-' + id);
+  if (m) m.style.display = 'none';
+}
+
 function setType(t) {
   S.currentType = t;
   document.querySelectorAll('[id^="tb-"]').forEach(b => b.classList.remove('active'));
@@ -1528,14 +1604,14 @@ function setType(t) {
 
 function renderAssetForm() {
   const t = S.currentType, el = el$('modal-asset-fields'); if (!el) return;
-  const frow = (id, lbl, type='text', ph='') => `<div><label class="block text-[11px] text-white/40 mb-1">${lbl}</label><input type="${type}" id="${id}" placeholder="${ph}"/></div>`;
-  const srow = (id, lbl, opts) => `<div><label class="block text-[11px] text-white/40 mb-1">${lbl}</label><select id="${id}">${opts.map(([v, l]) => `<option value="${v}">${l}</option>`).join('')}</select></div>`;
+  const frow = (id, lbl, type='text', ph='') => `<div><label class="block text-[11px] text-[var(--text-muted)] mb-1">${lbl}</label><input type="${type}" id="${id}" placeholder="${ph}"/></div>`;
+  const srow = (id, lbl, opts) => `<div><label class="block text-[11px] text-[var(--text-muted)] mb-1">${lbl}</label><select id="${id}">${opts.map(([v, l]) => `<option value="${v}">${l}</option>`).join('')}</select></div>`;
 
-  let f = frow('f_label', 'نام / برچسب دارایی', 'text', 'مثلاً: طلای آبشده');
+  let f = frow('f_label', 'عنوان / برچسب دارایی', 'text', 'مثلاً: طلای گاوصندوق');
   if (t === 'gold') {
-    f += srow('f_sub', 'نوع طلا یا سکه', [['gold18','طلای ۱۸ عیار (گرم)'],['goldCoin','سکه امامی (عدد)'],['goldHalf','نیم سکه (عدد)'],['goldQ','ربع سکه (عدد)'],['goldCustom','طلای متفرقه با عیار']])
+    f += srow('f_sub', 'نوع طلا یا سکه', [['gold18','طلای ۱۸ عیار (گرم)'],['goldCoin','سکه تمام امامی (عدد)'],['goldHalf','نیم سکه (عدد)'],['goldQ','ربع سکه (عدد)'],['goldCustom','طلای دلخواه با عیار مشخص']])
        + frow('f_qty', 'مقدار موجودی (گرم یا عدد)', 'number', 'مثلاً: 25.5')
-       + frow('f_buyPrice', 'قیمت خرید هر واحد (تومان، اختیاری)', 'number', 'برای محاسبه سود و زیان');
+       + frow('f_buyPrice', 'قیمت خرید هر واحد (تومان، اختیاری)', 'number', 'قیمتی که خریداری کرده‌اید');
   } else if (t === 'crypto') {
     f += srow('f_sub', 'نوع رمزارز', [['btc','بیت‌کوین (BTC)'],['eth','اتریوم (ETH)'],['usdt','تتر (USDT)'],['sol','سولانا (SOL)'],['custom','سایر رمزارزها']])
        + frow('f_qty', 'مقدار موجودی', 'number', 'مثلاً: 0.15')
@@ -1543,19 +1619,19 @@ function renderAssetForm() {
   } else if (t === 'usd') {
     f += srow('f_sub', 'نوع ارز', [['usd','دلار آمریکا (USD)'],['eur','یورو (EUR)'],['aed','درهم امارات (AED)'],['other','سایر']])
        + frow('f_qty', 'تعداد اسکناس', 'number', 'مثلاً: 1000')
-       + frow('f_buyPrice', 'قیمت خرید به تومان', 'number', '');
+       + frow('f_buyPrice', 'قیمت خرید هر واحد به تومان', 'number', '');
   } else if (t === 'stock') {
-    f += frow('f_symbol', 'نماد بورسی', 'text', 'مثلاً: فملی')
+    f += frow('f_symbol', 'نماد بورسی', 'text', 'مثلاً: فولاد')
        + frow('f_qty', 'تعداد برگه سهم', 'number', 'مثلاً: 5000')
        + frow('f_manualPrice', 'قیمت روز هر سهم (تومان)', 'number', '');
   } else if (t === 'realty') {
-    f += frow('f_manualValue', 'ارزش تخمینی روز (تومان)', 'number', 'مثلاً: 8500000000')
-       + frow('f_note', 'آدرس یا توضیحات', 'text', 'مثلاً: آپارتمان منطقه ۲');
+    f += frow('f_manualValue', 'ارزش تخمینی روز ملک (تومان)', 'number', 'مثلاً: 8500000000')
+       + frow('f_note', 'آدرس یا مشخصات', 'text', 'مثلاً: آپارتمان منطقه ۲');
   } else if (t === 'cash') {
     f += frow('f_qty', 'مبلغ موجودی نقدی (تومان)', 'number', 'مثلاً: 50000000')
-       + srow('f_sub', 'نوع حساب', [['bank','حساب جاری / پس‌انداز بانکی'],['savings','صندوق درآمد ثابت'],['pocket','وجه نقد دستی']]);
+       + srow('f_sub', 'نوع حساب', [['bank','حساب بانکی جاری / پس‌انداز'],['savings','صندوق درآمد ثابت'],['pocket','وجه نقد دستی']]);
   } else {
-    f += frow('f_manualValue', 'ارزش تخمینی دارایی (تومان)', 'number', '')
+    f += frow('f_manualValue', 'ارزش تخمینی (تومان)', 'number', '')
        + frow('f_note', 'یادداشت', 'text', '');
   }
   el.innerHTML = f;
@@ -1579,38 +1655,39 @@ function saveAsset() {
   DB.set('assets', S.assets); DB.set('history', S.history);
   closeModal('addAsset');
   renderAll();
-  toast('✅ دارایی با موفقیت افزوده شد', 'green');
+  toast('✅ دارایی با موفقیت افزوده شد', 'gold');
 }
 
 function deleteAsset(i) {
-  if (!confirm('آیا این دارایی حذف شود؟')) return;
+  if (!confirm('آیا از حذف این دارایی مطمئنید؟')) return;
   S.assets.splice(i, 1);
   DB.set('assets', S.assets);
   renderAll();
-  toast('🗑️ دارایی حذف شد', 'red');
+  toast('🗑️ دارایی حذف شد', 'rose');
 }
 
 function showDetail(i) {
   const a = S.assets[i]; if (!a) return;
-  const v = assetVal(a), cfg = TC[a.type];
+  const v = assetVal(a), cfg = TC[a.type] || TC.other;
   const cost = assetCost(a);
   const pnl = cost > 0 ? v - cost : null;
+  const pnlPct = cost > 0 ? ((v - cost) / cost * 100) : null;
   el$('detail-title').textContent = a.label || cfg.label;
   el$('detail-body').innerHTML = `
-    <div class="card p-3 mb-3 text-center">
-      <div class="text-xs text-white/50">${cfg.label}</div>
-      <div class="number text-xl font-extrabold mt-1" style="color:${cfg.color};">${fmt(v)} تومان</div>
+    <div class="card-sm p-3 mb-3 text-center">
+      <div class="text-xs text-[var(--text-muted)]">${cfg.label}</div>
+      <div class="number text-xl font-extrabold mt-1 privacy-sensitive" style="color:${cfg.color};">${fmt(v)} تومان</div>
     </div>
     <div class="space-y-2 text-xs">
-      <div class="flex justify-between py-1 border-b border-white/[0.05]"><span class="text-white/40">مقدار:</span><span class="number font-semibold">${fmt(a.qty, 4)} ${a.unit || ''}</span></div>
-      ${a.buyPrice ? `<div class="flex justify-between py-1 border-b border-white/[0.05]"><span class="text-white/40">قیمت خرید:</span><span class="number">${fmt(a.buyPrice)} تومان</span></div>` : ''}
-      ${pnl != null ? `<div class="flex justify-between py-1 border-b border-white/[0.05]"><span class="text-white/40">سود / زیان:</span><span class="number font-bold ${pnl>=0?'text-emerald-400':'text-rose-400'}">${pnl>=0?'+':''}${fmt(pnl)} تومان</span></div>` : ''}
-      ${a.note ? `<div class="flex justify-between py-1 border-b border-white/[0.05]"><span class="text-white/40">یادداشت:</span><span>${a.note}</span></div>` : ''}
-      <div class="flex justify-between py-1"><span class="text-white/40">تاریخ ثبت:</span><span>${new Date(a.addedAt).toLocaleDateString('fa-IR')}</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border-subtle)]"><span class="text-[var(--text-muted)]">مقدار موجودی:</span><span class="number font-semibold">${fmt(a.qty, 4)} ${a.unit || ''}</span></div>
+      ${a.buyPrice ? `<div class="flex justify-between py-1 border-b border-[var(--border-subtle)]"><span class="text-[var(--text-muted)]">قیمت خرید هر واحد:</span><span class="number">${fmt(a.buyPrice)} تومان</span></div>` : ''}
+      ${pnl != null ? `<div class="flex justify-between py-1 border-b border-[var(--border-subtle)]"><span class="text-[var(--text-muted)]">سود / زیان کل:</span><span class="number font-bold ${pnl>=0?'text-emerald-400':'text-rose-400'}">${pnl>=0?'+':''}${fmt(pnl)} (${pnlPct>=0?'+':''}${pnlPct.toFixed(1)}%)</span></div>` : ''}
+      ${a.note ? `<div class="flex justify-between py-1 border-b border-[var(--border-subtle)]"><span class="text-[var(--text-muted)]">یادداشت:</span><span>${a.note}</span></div>` : ''}
+      <div class="flex justify-between py-1"><span class="text-[var(--text-muted)]">تاریخ ثبت:</span><span>${new Date(a.addedAt).toLocaleDateString('fa-IR')}</span></div>
     </div>
     <div class="flex gap-2 mt-4">
-      <button class="btn-outline flex-1 py-2 text-xs" onclick="closeModal('detail')">بستن</button>
-      <button class="btn-outline text-rose-400 border-rose-400/30 text-xs py-2 px-3" onclick="closeModal('detail');deleteAsset(${i})">حذف دارایی</button>
+      <button class="btn-action-pill flex-1 py-2 text-xs" onclick="closeModal('detail')">بستن</button>
+      <button class="btn-action-pill text-rose-400 border-rose-400/30 text-xs py-2 px-3" onclick="closeModal('detail');deleteAsset(${i})">حذف دارایی</button>
     </div>`;
   openModal('detail');
 }
@@ -1619,108 +1696,138 @@ function saveDebt() {
   const g = id => el$(id)?.value || '';
   const gn = id => parseFloat(el$(id)?.value) || 0;
   S.debts.push({ label: g('d-label') || 'بدهی', type: g('d-type'), total: gn('d-total'), remaining: gn('d-remaining'), note: g('d-note'), addedAt: Date.now() });
-  DB.set('debts', S.debts); closeModal('addDebt'); renderAll(); toast('✅ بدهی ثبت شد', 'red');
+  DB.set('debts', S.debts); closeModal('addDebt'); renderAll(); toast('✅ بدهی ثبت شد', 'gold');
 }
 function deleteDebt(i) {
   if (!confirm('حذف شود؟')) return;
   S.debts.splice(i, 1); DB.set('debts', S.debts); renderAll();
 }
 
-// Navigation & Modals
-function switchTab(name, btn) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-btn, .nav-item').forEach(b => b.classList.remove('active'));
-  el$('sec-' + name)?.classList.add('active');
-  if (btn) btn.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+// ==================== SMART TELEGRAM EXTRACTOR ====================
+function extractPricesFromText(text) {
+  if (!text || typeof text !== 'string') return {};
+  const results = {};
+
+  const usdMatch = text.match(/(?:دلار\s*نقدی|دلار\s*آزاد|دلار\s*تهران|دلار|usdt|تتر)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{5,10})/i) ||
+                   text.match(/([۰-۹\d,،]{5,10})[^۰-۹\d\n]{0,15}(?:دلار|تتر)/i);
+  if (usdMatch) {
+    const v = parseIranNum(usdMatch[1]);
+    if (v > 20000) results.usd = v > 1000000 ? Math.round(v / 10) : Math.round(v);
+  }
+
+  const goldMatch = text.match(/(?:طلای?\s*۱۸|طلا\s*18|گرم\s*۱۸|گرم\s*18|۱۸\s*عیار|18\s*عیار)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{6,12})/i) ||
+                    text.match(/([۰-۹\d,،]{6,12})[^۰-۹\d\n]{0,15}(?:طلای?\s*۱۸|طلا\s*18)/i);
+  if (goldMatch) {
+    const v = parseIranNum(goldMatch[1]);
+    if (v > 100000) results.gold18 = v > 50000000 ? Math.round(v / 10) : Math.round(v);
+  }
+
+  const coinMatch = text.match(/(?:سکه\s*امامی|سکه\s*تمام|سکه\s*طرح\s*جدید)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{7,13})/i);
+  if (coinMatch) {
+    const v = parseIranNum(coinMatch[1]);
+    if (v > 5000000) results.goldCoin = v > 500000000 ? Math.round(v / 10) : Math.round(v);
+  }
+
+  const halfMatch = text.match(/(?:نیم\s*سکه)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{7,12})/i);
+  if (halfMatch) {
+    const v = parseIranNum(halfMatch[1]);
+    if (v > 2000000) results.goldHalf = v > 200000000 ? Math.round(v / 10) : Math.round(v);
+  }
+
+  const qMatch = text.match(/(?:ربع\s*سکه)[^۰-۹\d\n]{0,25}([۰-۹\d,،]{6,12})/i);
+  if (qMatch) {
+    const v = parseIranNum(qMatch[1]);
+    if (v > 1000000) results.goldQ = v > 100000000 ? Math.round(v / 10) : Math.round(v);
+  }
+
+  return results;
 }
 
-function openModal(id) {
-  const m = el$('modal-' + id);
-  if (m) {
-    m.style.display = 'flex';
-    if (id === 'addAsset') renderAssetForm();
+async function pasteFromClipboard() {
+  try {
+    const text = await navigator.clipboard.readText();
+    el$('smartPasteInput').value = text;
+    previewExtractedPrices();
+  } catch(e) {
+    toast('لطفاً متن را مستقیماً در کادر بچسبانید', 'gold');
   }
 }
-function closeModal(id) {
-  const m = el$('modal-' + id);
-  if (m) m.style.display = 'none';
+
+function previewExtractedPrices() {
+  const txt = el$('smartPasteInput')?.value || '';
+  const parsed = extractPricesFromText(txt);
+  S.tempParsedPrices = parsed;
+
+  const resBox = el$('smartPasteResults');
+  const itemsBox = el$('smartPasteItems');
+  const btn = el$('btnApplySmartPaste');
+
+  const keys = Object.keys(parsed);
+  if (!keys.length) {
+    resBox.classList.add('hidden');
+    btn.disabled = true;
+    return;
+  }
+
+  resBox.classList.remove('hidden');
+  btn.disabled = false;
+
+  itemsBox.innerHTML = keys.map(k => {
+    const def = PRICE_DEF[k] || { name: k, icon: '📌' };
+    return `<div class="bg-white/[0.04] p-2 rounded-lg border border-[var(--border-subtle)]">
+      <div class="text-[10px] text-[var(--text-muted)]">${def.icon} ${def.name}</div>
+      <div class="number text-xs font-bold text-[var(--accent-main)] mt-0.5">${fmt(parsed[k])}</div>
+    </div>`;
+  }).join('');
 }
 
-function saveSettings() {
-  S.settings.currency = el$('set-currency')?.value || 'toman';
-  S.settings.interval = parseInt(el$('set-interval')?.value || '30');
-  S.settings.customProxy = el$('set-custom-proxy')?.value || '';
-  DB.set('settings', S.settings);
-  fetchAllPrices(true);
+function applySmartPaste() {
+  if (!S.tempParsedPrices) return;
+  Object.entries(S.tempParsedPrices).forEach(([k, val]) => {
+    if (S.prices[k]) {
+      S.prices[k].price = val;
+      S.prices[k].source = 'پیام تلگرام (دستی)';
+    }
+  });
+  closeModal('smartPaste');
+  renderAll();
+  saveSnapshot();
+  toast('✅ نرخ‌های استخراج‌شده از تلگرام با موفقیت اعمال شدند', 'gold');
 }
 
 function exportCSV() {
-  const rows = [['نام', 'نوع', 'مقدار', 'واحد', 'ارزش (تومان)', 'قیمت خرید', 'تاریخ']];
+  const rows = [['نام', 'نوع', 'مقدار', 'واحد', 'ارزش روز', 'قیمت خرید', 'تاریخ']];
   S.assets.forEach(a => rows.push([a.label, TC[a.type]?.label, a.qty, a.unit||'', assetVal(a), a.buyPrice||'-', new Date(a.addedAt).toLocaleDateString('fa-IR')]));
   const csv = '\uFEFF' + rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
   a.download = 'my-wealth.csv'; a.click();
 }
 
-function clearHistory() {
-  if (!confirm('تاریخچه پاک شود؟')) return;
-  S.history = []; DB.set('history', S.history); renderHistoryList();
-}
-function clearAllData() {
-  if (!confirm('تمام اطلاعات به صورت کامل پاک شوند؟')) return;
-  ['assets','debts','history','alerts','snapshots','settings'].forEach(k => localStorage.removeItem('myw_' + k));
-  location.reload();
-}
-
-function toast(msg, type='green') {
-  const colors = { green:'#10b981', gold:'#f5c842', red:'#f43f5e', blue:'#38bdf8' };
+function toast(msg, type='gold') {
   const t = document.createElement('div');
   t.textContent = msg;
   Object.assign(t.style, {
-    position:'fixed', top:'16px', left:'50%', transform:'translateX(-50%)',
-    background: colors[type] || colors.green, color: type==='gold'?'#0f0d1f':'#fff',
-    padding:'8px 18px', borderRadius:'10px', fontSize:'12px', fontWeight:'700',
-    zIndex:'999', boxShadow:'0 10px 30px rgba(0,0,0,0.5)', transition:'opacity 0.3s'
+    position:'fixed', top:'18px', left:'50%', transform:'translateX(-50%)',
+    background: 'var(--surface-elevated)', color: 'var(--text-main)',
+    border: '1px solid var(--accent-main)', padding:'9px 20px', borderRadius:'14px',
+    fontSize:'12px', fontWeight:'700', zIndex:'999', boxShadow:'0 12px 35px rgba(0,0,0,0.6)',
+    transition:'opacity 0.3s', fontFamily:'inherit', backdropFilter:'blur(16px)'
   });
   document.body.appendChild(t);
   setTimeout(() => { t.style.opacity='0'; setTimeout(()=>t.remove(), 300); }, 3000);
 }
 
-// ==================== PWA INSTALL LOGIC ====================
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  S.deferredPWAInstall = e;
-  const banner = el$('pwaInstallBanner');
-  if (banner) banner.style.display = 'flex';
-});
-
-function installPWA() {
-  if (S.deferredPWAInstall) {
-    S.deferredPWAInstall.prompt();
-    S.deferredPWAInstall.userChoice.then(() => {
-      S.deferredPWAInstall = null;
-      el$('pwaInstallBanner').style.display = 'none';
-    });
-  } else {
-    toast('برای نصب در آیفون: دکمه Share مرورگر و سپس Add to Home Screen را بزنید', 'gold');
-  }
-}
-
-// Service Worker Registration
+// Service Worker for PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').catch(() => {});
   });
 }
 
-// ==================== INIT ====================
+// ==================== BOOTSTRAP ====================
 function init() {
   initPrices();
-
-  if (el$('set-interval')) el$('set-interval').value = S.settings.interval || 30;
-  if (el$('set-currency')) el$('set-currency').value = S.settings.currency || 'toman';
-  if (el$('set-custom-proxy')) el$('set-custom-proxy').value = S.settings.customProxy || '';
+  applyUISettings();
 
   if (!S.assets.length) {
     S.assets = [
@@ -1734,7 +1841,7 @@ function init() {
 
   renderAll();
   fetchAllPrices(true).then(() => saveSnapshot());
-  setInterval(() => fetchAllPrices(), (S.settings.interval || 30) * 1000);
+  setInterval(() => fetchAllPrices(), 30000);
 }
 
 document.addEventListener('DOMContentLoaded', init);
