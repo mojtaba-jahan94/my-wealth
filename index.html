@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
-  <title>MY Wealth | مدیریت هوشمند دارایی</title>
+  <title>MY Wealth | Liquid Glass Edition</title>
   
   <!-- PWA & Mobile Meta Tags -->
   <link rel="manifest" href="./manifest.json"/>
-  <meta name="theme-color" content="#070611"/>
+  <meta name="theme-color" content="#060512"/>
   <meta name="mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -18,116 +18,96 @@
   <!-- Tailwind CSS -->
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
     
-    /* ==================== THEME VARIABLES ==================== */
-    /* Theme 1: Midnight Obsidian (Default Luxury Dark) */
+    /* ==================== LIQUID GLASS THEMES ==================== */
     [data-theme="midnight"] {
-      --bg-base: #070611;
-      --bg-gradient: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(245, 200, 66, 0.08) 0px, transparent 50%);
-      --surface-card: rgba(255, 255, 255, 0.035);
-      --surface-hover: rgba(255, 255, 255, 0.06);
-      --surface-elevated: #110d29;
-      --border-color: rgba(255, 255, 255, 0.08);
-      --border-subtle: rgba(255, 255, 255, 0.04);
+      --bg-canvas: #060512;
+      --orb-1: #6366f1;
+      --orb-2: #ec4899;
+      --orb-3: #f59e0b;
+      --glass-base: rgba(255, 255, 255, 0.04);
+      --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(255, 255, 255, 0.01) 60%, rgba(255, 255, 255, 0.07) 100%);
+      --glass-border: rgba(255, 255, 255, 0.16);
+      --bevel-top: rgba(255, 255, 255, 0.65);
       --text-main: #f8fafc;
-      --text-muted: rgba(255, 255, 255, 0.5);
-      --text-dim: rgba(255, 255, 255, 0.3);
-      --accent-main: #f5c842;
-      --accent-main-hover: #eab308;
-      --accent-green: #10b981;
-      --accent-rose: #f43f5e;
-      --accent-blue: #38bdf8;
-      --nav-bg: rgba(9, 8, 20, 0.88);
-      --modal-bg: #120e29;
+      --text-muted: rgba(255, 255, 255, 0.55);
+      --text-dim: rgba(255, 255, 255, 0.32);
+      --accent: #f5c842;
+      --accent-glow: rgba(245, 200, 66, 0.35);
+      --modal-bg: rgba(14, 11, 31, 0.88);
       --chart-color: #f5c842;
     }
 
-    /* Theme 2: Deep Ocean (Crypto Teal & Blue) */
     [data-theme="ocean"] {
-      --bg-base: #040d1a;
-      --bg-gradient: radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.16) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
-      --surface-card: rgba(255, 255, 255, 0.04);
-      --surface-hover: rgba(255, 255, 255, 0.07);
-      --surface-elevated: #091a30;
-      --border-color: rgba(56, 189, 248, 0.16);
-      --border-subtle: rgba(255, 255, 255, 0.05);
+      --bg-canvas: #030b17;
+      --orb-1: #0284c7;
+      --orb-2: #06b6d4;
+      --orb-3: #10b981;
+      --glass-base: rgba(255, 255, 255, 0.05);
+      --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.04) 40%, rgba(255, 255, 255, 0.01) 60%, rgba(255, 255, 255, 0.08) 100%);
+      --glass-border: rgba(56, 189, 248, 0.22);
+      --bevel-top: rgba(255, 255, 255, 0.75);
       --text-main: #f0f9ff;
-      --text-muted: rgba(240, 249, 255, 0.55);
-      --text-dim: rgba(240, 249, 255, 0.3);
-      --accent-main: #38bdf8;
-      --accent-main-hover: #0284c7;
-      --accent-green: #2dd4bf;
-      --accent-rose: #fb7185;
-      --accent-blue: #38bdf8;
-      --nav-bg: rgba(4, 13, 26, 0.88);
-      --modal-bg: #091a30;
+      --text-muted: rgba(240, 249, 255, 0.6);
+      --text-dim: rgba(240, 249, 255, 0.35);
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.4);
+      --modal-bg: rgba(5, 17, 34, 0.88);
       --chart-color: #38bdf8;
     }
 
-    /* Theme 3: Emerald Wealth (Wall Street Forest) */
     [data-theme="emerald"] {
-      --bg-base: #03120a;
-      --bg-gradient: radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.16) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(245, 200, 66, 0.08) 0px, transparent 50%);
-      --surface-card: rgba(255, 255, 255, 0.04);
-      --surface-hover: rgba(255, 255, 255, 0.07);
-      --surface-elevated: #082114;
-      --border-color: rgba(16, 185, 129, 0.18);
-      --border-subtle: rgba(255, 255, 255, 0.05);
+      --bg-canvas: #020f08;
+      --orb-1: #059669;
+      --orb-2: #10b981;
+      --orb-3: #eab308;
+      --glass-base: rgba(255, 255, 255, 0.045);
+      --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(255, 255, 255, 0.01) 60%, rgba(255, 255, 255, 0.07) 100%);
+      --glass-border: rgba(16, 185, 129, 0.22);
+      --bevel-top: rgba(255, 255, 255, 0.7);
       --text-main: #ecfdf5;
-      --text-muted: rgba(236, 253, 245, 0.55);
-      --text-dim: rgba(236, 253, 245, 0.3);
-      --accent-main: #10b981;
-      --accent-main-hover: #059669;
-      --accent-green: #34d399;
-      --accent-rose: #f43f5e;
-      --accent-blue: #06b6d4;
-      --nav-bg: rgba(3, 18, 10, 0.88);
-      --modal-bg: #082114;
+      --text-muted: rgba(236, 253, 245, 0.6);
+      --text-dim: rgba(236, 253, 245, 0.32);
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.4);
+      --modal-bg: rgba(4, 21, 13, 0.88);
       --chart-color: #10b981;
     }
 
-    /* Theme 4: Cyber Amethyst (Neon Purple) */
     [data-theme="amethyst"] {
-      --bg-base: #0c051a;
-      --bg-gradient: radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.18) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
-      --surface-card: rgba(255, 255, 255, 0.04);
-      --surface-hover: rgba(255, 255, 255, 0.07);
-      --surface-elevated: #180a33;
-      --border-color: rgba(192, 132, 252, 0.18);
-      --border-subtle: rgba(255, 255, 255, 0.05);
+      --bg-canvas: #0b0416;
+      --orb-1: #9333ea;
+      --orb-2: #ec4899;
+      --orb-3: #6366f1;
+      --glass-base: rgba(255, 255, 255, 0.05);
+      --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.04) 40%, rgba(255, 255, 255, 0.01) 60%, rgba(255, 255, 255, 0.08) 100%);
+      --glass-border: rgba(192, 132, 252, 0.24);
+      --bevel-top: rgba(255, 255, 255, 0.75);
       --text-main: #faf5ff;
-      --text-muted: rgba(250, 245, 255, 0.55);
-      --text-dim: rgba(250, 245, 255, 0.3);
-      --accent-main: #c084fc;
-      --accent-main-hover: #a855f7;
-      --accent-green: #34d399;
-      --accent-rose: #f43f5e;
-      --accent-blue: #a855f7;
-      --nav-bg: rgba(12, 5, 26, 0.88);
-      --modal-bg: #180a33;
+      --text-muted: rgba(250, 245, 255, 0.6);
+      --text-dim: rgba(250, 245, 255, 0.35);
+      --accent: #c084fc;
+      --accent-glow: rgba(192, 132, 252, 0.4);
+      --modal-bg: rgba(18, 8, 36, 0.88);
       --chart-color: #c084fc;
     }
 
-    /* Theme 5: Clean Minimal Light */
     [data-theme="light"] {
-      --bg-base: #f8fafc;
-      --bg-gradient: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.06) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(245, 200, 66, 0.05) 0px, transparent 50%);
-      --surface-card: #ffffff;
-      --surface-hover: #f1f5f9;
-      --surface-elevated: #ffffff;
-      --border-color: #e2e8f0;
-      --border-subtle: #f1f5f9;
+      --bg-canvas: #f1f5f9;
+      --orb-1: #c7d2fe;
+      --orb-2: #fbcfe8;
+      --orb-3: #fed7aa;
+      --glass-base: rgba(255, 255, 255, 0.72);
+      --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 40%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.8) 100%);
+      --glass-border: rgba(255, 255, 255, 0.85);
+      --bevel-top: rgba(255, 255, 255, 0.95);
       --text-main: #0f172a;
       --text-muted: #64748b;
       --text-dim: #94a3b8;
-      --accent-main: #d97706;
-      --accent-main-hover: #b45309;
-      --accent-green: #059669;
-      --accent-rose: #e11d48;
-      --accent-blue: #0284c7;
-      --nav-bg: rgba(255, 255, 255, 0.92);
-      --modal-bg: #ffffff;
+      --accent: #d97706;
+      --accent-glow: rgba(217, 119, 6, 0.25);
+      --modal-bg: rgba(255, 255, 255, 0.92);
       --chart-color: #d97706;
     }
 
@@ -140,201 +120,338 @@
 
     body {
       font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg-base);
-      background-image: var(--bg-gradient);
-      background-attachment: fixed;
+      background-color: var(--bg-canvas);
       min-height: 100vh;
       color: var(--text-main);
-      padding-bottom: 84px; /* Space for mobile bottom bar */
-      transition: background-color 0.3s ease, color 0.3s ease;
+      padding-bottom: 96px;
+      overflow-x: hidden;
+      position: relative;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
     @media (min-width: 768px) {
-      body {
-        padding-bottom: 36px;
-      }
+      body { padding-bottom: 40px; }
     }
 
-    /* Bento Card */
-    .bento-card {
-      background: var(--surface-card);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      transition: all 0.2s ease;
+    /* ==================== FLUID AMBIENT AURORA MESH ==================== */
+    .ambient-aurora-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .aurora-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.35;
+      animation: floatMotion 18s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+    .aurora-orb-1 {
+      width: 480px;
+      height: 480px;
+      background: var(--orb-1);
+      top: -120px;
+      left: -80px;
+      animation-duration: 22s;
+    }
+    .aurora-orb-2 {
+      width: 420px;
+      height: 420px;
+      background: var(--orb-2);
+      top: 35%;
+      right: -100px;
+      animation-duration: 26s;
+      animation-delay: -5s;
+    }
+    .aurora-orb-3 {
+      width: 520px;
+      height: 520px;
+      background: var(--orb-3);
+      bottom: -150px;
+      left: 15%;
+      animation-duration: 20s;
+      animation-delay: -10s;
+      opacity: 0.28;
+    }
+
+    @keyframes floatMotion {
+      0%   { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(45px, 65px) scale(1.1); }
+      100% { transform: translate(-35px, -45px) scale(0.95); }
+    }
+
+    /* ==================== LIQUID GLASS CORE CLASSES ==================== */
+    .liquid-glass {
+      background: var(--glass-sheen), var(--glass-base);
+      backdrop-filter: blur(36px) saturate(210%);
+      -webkit-backdrop-filter: blur(36px) saturate(210%);
+      border: 1px solid var(--glass-border);
+      box-shadow: 
+        inset 0 1px 1px 0 var(--bevel-top),
+        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25),
+        0 16px 40px -10px rgba(0, 0, 0, 0.45);
+      border-radius: 24px;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
       position: relative;
-    }
-    .bento-card:hover {
-      border-color: rgba(255, 255, 255, 0.16);
-    }
-    [data-theme="light"] .bento-card {
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 10px 15px -3px rgba(0,0,0,0.02);
+      z-index: 1;
     }
 
-    /* Density Styles */
-    [data-density="compact"] .bento-card {
-      padding: 0.75rem !important;
-      border-radius: 14px !important;
-    }
-    [data-density="compact"] .asset-item {
-      padding: 0.5rem 0.75rem !important;
-      border-radius: 10px !important;
-      margin-bottom: 4px !important;
-    }
-    [data-density="comfortable"] .bento-card {
-      padding: 1.25rem !important;
-      border-radius: 20px !important;
-    }
-    [data-density="comfortable"] .asset-item {
-      padding: 0.75rem 0.95rem !important;
-      border-radius: 14px !important;
-      margin-bottom: 6px !important;
+    .liquid-glass:hover {
+      border-color: rgba(255, 255, 255, 0.32);
+      box-shadow: 
+        inset 0 1.5px 2px 0 var(--bevel-top),
+        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25),
+        0 22px 50px -12px rgba(0, 0, 0, 0.55);
     }
 
-    /* Privacy / Stealth Mode */
-    .privacy-active .privacy-sensitive {
-      filter: blur(9px) !important;
-      user-select: none !important;
-      transition: filter 0.2s ease;
+    /* Density Settings */
+    [data-density="compact"] .liquid-card-pad {
+      padding: 0.85rem !important;
+      border-radius: 18px !important;
+    }
+    [data-density="compact"] .liquid-asset-pad {
+      padding: 0.55rem 0.85rem !important;
+      border-radius: 14px !important;
+      margin-bottom: 5px !important;
+    }
+    [data-density="comfortable"] .liquid-card-pad {
+      padding: 1.35rem !important;
+      border-radius: 26px !important;
+    }
+    [data-density="comfortable"] .liquid-asset-pad {
+      padding: 0.85rem 1.05rem !important;
+      border-radius: 18px !important;
+      margin-bottom: 7px !important;
+    }
+
+    /* Liquid Glass Capsule Pill */
+    .liquid-pill {
+      background: var(--glass-sheen), var(--glass-base);
+      backdrop-filter: blur(28px) saturate(200%);
+      -webkit-backdrop-filter: blur(28px) saturate(200%);
+      border: 1px solid var(--glass-border);
+      box-shadow: 
+        inset 0 1px 1px 0 var(--bevel-top),
+        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.2),
+        0 6px 18px -4px rgba(0, 0, 0, 0.35);
+      border-radius: 9999px;
+      color: var(--text-main);
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .liquid-pill:hover {
+      transform: translateY(-1.5px);
+      box-shadow: 
+        inset 0 1.5px 1.5px 0 var(--bevel-top),
+        0 10px 24px -5px rgba(0, 0, 0, 0.45);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .liquid-pill:active {
+      transform: scale(0.97);
+    }
+
+    .liquid-pill.active {
+      background: var(--accent);
+      color: #060512;
+      border-color: transparent;
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+
+    /* Primary Gold Accent Action Button */
+    .btn-liquid-primary {
+      background: linear-gradient(135deg, #f5c842 0%, #ea580c 100%);
+      color: #060512;
+      border: none;
+      border-radius: 9999px;
+      padding: 9px 18px;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 
+        inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.7),
+        0 8px 24px -4px var(--accent-glow);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-liquid-primary:hover {
+      transform: translateY(-1.5px);
+      box-shadow: 0 12px 28px -4px var(--accent-glow);
+      filter: brightness(1.05);
+    }
+
+    .btn-liquid-primary:active {
+      transform: scale(0.97);
+    }
+
+    /* Liquid Island Header */
+    .liquid-island-header {
+      background: var(--glass-sheen), var(--glass-base);
+      backdrop-filter: blur(40px) saturate(220%);
+      -webkit-backdrop-filter: blur(40px) saturate(220%);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 
+        inset 0 1px 1px 0 var(--bevel-top),
+        0 8px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Floating Island Mobile Nav */
+    .liquid-island-nav {
+      position: fixed;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      margin: 0 auto;
+      max-width: 440px;
+      height: 62px;
+      background: var(--glass-sheen), var(--glass-base);
+      backdrop-filter: blur(40px) saturate(230%);
+      -webkit-backdrop-filter: blur(40px) saturate(230%);
+      border: 1px solid var(--glass-border);
+      border-radius: 9999px;
+      box-shadow: 
+        inset 0 1.5px 2px 0 var(--bevel-top),
+        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25),
+        0 20px 50px -10px rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      z-index: 90;
+      padding: 0 8px;
+    }
+
+    .nav-pill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 600;
+      gap: 2px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex: 1;
+      padding: 6px 0;
+      border-radius: 9999px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-pill-item.active {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .nav-pill-item.active .nav-icon {
+      filter: drop-shadow(0 2px 8px var(--accent-glow));
+    }
+
+    .nav-icon {
+      font-size: 17px;
+      transition: transform 0.2s ease;
     }
 
     /* Badges */
-    .badge {
+    .liquid-badge {
       font-size: 10px;
-      padding: 2px 7px;
-      border-radius: 20px;
-      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-weight: 700;
       display: inline-flex;
       align-items: center;
       gap: 3px;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
     }
-    .badge-up { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
-    .badge-down { background: rgba(244, 63, 94, 0.15); color: var(--accent-rose); }
-    .badge-neu { background: var(--surface-hover); color: var(--text-muted); }
+    .badge-up { background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-down { background: rgba(244, 63, 94, 0.18); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
 
-    /* Action Buttons */
-    .btn-action-primary {
-      background: var(--accent-main);
-      color: #070611;
-      border: none;
-      border-radius: 12px;
-      padding: 9px 16px;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 12px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s;
-    }
-    .btn-action-primary:hover {
-      opacity: 0.92;
-      transform: translateY(-1px);
-    }
-    .btn-action-primary:active {
-      transform: scale(0.98);
-    }
-
-    .btn-action-pill {
-      background: var(--surface-card);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 8px 13px;
-      font-family: inherit;
-      font-size: 12px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .btn-action-pill:hover {
-      background: var(--surface-hover);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-    .btn-action-pill.active {
-      background: var(--accent-main);
-      color: #070611;
-      font-weight: 700;
-      border-color: transparent;
-    }
-
-    /* Forms */
+    /* Inputs */
     input, select, textarea {
-      background: var(--surface-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 10px 12px;
+      background: var(--glass-base);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+      border-radius: 14px;
+      padding: 10px 14px;
       color: var(--text-main);
       font-family: inherit;
       font-size: 13px;
       outline: none;
       width: 100%;
       direction: rtl;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
+
     input:focus, select:focus, textarea:focus {
-      border-color: var(--accent-main);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
     }
-    input::placeholder, textarea::placeholder {
-      color: var(--text-dim);
-    }
+
     select option {
-      background: var(--surface-elevated);
+      background: var(--bg-canvas);
       color: var(--text-main);
     }
 
-    /* Asset Item */
-    .asset-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--surface-card);
-      border: 1px solid var(--border-subtle);
+    /* Privacy Mode Blur */
+    .privacy-active .privacy-sensitive {
+      filter: blur(10px) !important;
+      user-select: none !important;
+      transition: filter 0.2s ease;
       cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .asset-item:hover {
-      background: var(--surface-hover);
-      border-color: var(--border-color);
     }
 
-    /* Numbers */
     .number {
       font-variant-numeric: tabular-nums;
-      letter-spacing: -0.2px;
+      letter-spacing: -0.3px;
     }
 
     /* Modals & Bottom Sheets */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 14px;
     }
+
     .modal-box {
       background: var(--modal-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 24px;
+      backdrop-filter: blur(40px) saturate(220%);
+      -webkit-backdrop-filter: blur(40px) saturate(220%);
+      border: 1px solid var(--glass-border);
+      box-shadow: 
+        inset 0 1.5px 1.5px 0 var(--bevel-top),
+        0 30px 70px rgba(0, 0, 0, 0.7);
+      border-radius: 28px;
       padding: 24px;
       width: 100%;
       max-width: 500px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
       color: var(--text-main);
     }
 
@@ -347,16 +464,17 @@
         max-width: 100%;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        border-top-left-radius: 28px;
-        border-top-right-radius: 28px;
+        border-top-left-radius: 32px;
+        border-top-right-radius: 32px;
         max-height: 88vh;
-        animation: slideUp 0.25s ease-out;
+        animation: slideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       }
       .sheet-handle {
-        width: 38px;
-        height: 4px;
-        border-radius: 2px;
-        background: var(--border-color);
+        width: 42px;
+        height: 5px;
+        border-radius: 3px;
+        background: var(--glass-border);
+        box-shadow: inset 0 1px 1px var(--bevel-top);
         margin: 0 auto 16px auto;
       }
     }
@@ -366,185 +484,135 @@
       to { transform: translateY(0); }
     }
 
-    /* Bottom Navigation for Mobile */
-    .mobile-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      background: var(--nav-bg);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-top: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      z-index: 90;
-      padding-bottom: env(safe-area-inset-bottom, 0px);
-    }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      font-size: 10px;
-      font-weight: 500;
-      gap: 3px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      flex: 1;
-      padding: 6px 0;
-      transition: all 0.15s;
-    }
-    .nav-item.active {
-      color: var(--accent-main);
-      font-weight: 700;
-    }
-    .nav-item.active .nav-icon {
-      transform: translateY(-2px);
-    }
-    .nav-icon {
-      font-size: 18px;
-      transition: transform 0.15s;
-    }
-
-    .live-indicator {
-      width: 7px;
-      height: 7px;
+    /* Live Dot */
+    .live-dot-glow {
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: var(--accent-green);
-      box-shadow: 0 0 8px var(--accent-green);
-      animation: pulseDot 2s infinite;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulseGlow 2s infinite;
     }
-    @keyframes pulseDot {
-      0%,100% { opacity: 1; transform: scale(1); }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.85); }
     }
 
-    .progress-bar {
-      height: 6px;
-      border-radius: 3px;
-      background: var(--border-subtle);
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      border-radius: 3px;
-      transition: width 0.6s ease;
-    }
-
-    /* Hide scrollbars */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body>
 
-<!-- TOP APP HEADER -->
-<header class="sticky top-0 z-40 bg-[var(--nav-bg)] backdrop-blur-xl border-b border-[var(--border-color)]">
+<!-- FLUID AMBIENT AURORA MESH LAYER (Moving background lights) -->
+<div class="ambient-aurora-container" aria-hidden="true">
+  <div class="aurora-orb aurora-orb-1"></div>
+  <div class="aurora-orb aurora-orb-2"></div>
+  <div class="aurora-orb aurora-orb-3"></div>
+</div>
+
+<!-- TOP LIQUID ISLAND HEADER -->
+<header class="sticky top-0 z-40 liquid-island-header">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
     
     <!-- Brand -->
     <div class="flex items-center gap-2.5">
-      <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 flex items-center justify-center text-sm shadow-lg shadow-amber-500/20">
-        💰
+      <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-amber-400 via-orange-500 to-rose-500 flex items-center justify-center text-base shadow-lg shadow-amber-500/25 border border-white/40">
+        💎
       </div>
       <div>
         <div class="flex items-center gap-1.5">
           <h1 class="font-extrabold text-sm tracking-tight text-[var(--text-main)]">MY Wealth</h1>
-          <span class="text-[9px] px-1.5 py-0.5 rounded-full bg-[var(--surface-hover)] text-[var(--accent-main)] font-mono font-bold">v3</span>
+          <span class="text-[9px] px-2 py-0.5 rounded-full liquid-pill text-[var(--accent)] font-mono font-bold">Liquid Glass</span>
         </div>
         <div class="flex items-center gap-1.5 text-[9px] text-[var(--text-muted)]">
-          <span class="live-indicator"></span>
-          <span id="headerLiveStatus">نرخ زنده و بدون قطعی بازار</span>
+          <span class="live-dot-glow"></span>
+          <span id="headerLiveStatus">نرخ زنده و بدون قطعی</span>
         </div>
       </div>
     </div>
 
-    <!-- Quick Action Bar -->
+    <!-- Quick Action Pills -->
     <div class="flex items-center gap-2">
       <!-- Privacy Toggle (Eye) -->
-      <button onclick="togglePrivacyMode()" id="btnPrivacyToggle" class="btn-action-pill text-xs px-2.5 py-1.5" title="حالت حریم خصوصی (مخفی کردن مبالغ)">
+      <button onclick="togglePrivacyMode()" id="btnPrivacyToggle" class="liquid-pill text-xs px-3 py-1.5" title="حالت حریم خصوصی (پوشاندن مبالغ)">
         <span id="privacyEyeIcon">👁️</span>
         <span class="hidden sm:inline" id="privacyTextLabel">مخفی</span>
       </button>
 
-      <!-- UI Customizer Button -->
-      <button onclick="openModal('uiCustomizer')" class="btn-action-pill text-xs px-2.5 py-1.5 text-[var(--accent-main)]" title="تنظیمات ظاهر و چیدمان">
+      <!-- UI Customizer -->
+      <button onclick="openModal('uiCustomizer')" class="liquid-pill text-xs px-3 py-1.5 text-[var(--accent)]" title="تنظیمات ظاهر و تم">
         <span>🎨</span>
         <span class="hidden sm:inline">ظاهر</span>
       </button>
 
       <!-- Smart Telegram Paste -->
-      <button onclick="openModal('smartPaste')" class="btn-action-pill text-xs px-2.5 py-1.5 text-sky-400" title="استخراج سریع نرخ از پیام تلگرام">
+      <button onclick="openModal('smartPaste')" class="liquid-pill text-xs px-3 py-1.5 text-sky-400" title="استخراج سریع از تلگرام">
         <span>📲</span>
         <span class="hidden sm:inline">تلگرام</span>
       </button>
 
       <!-- Add Asset Button -->
-      <button onclick="openModal('addAsset')" class="btn-action-primary text-xs px-3 py-1.5">
+      <button onclick="openModal('addAsset')" class="btn-liquid-primary text-xs px-3.5 py-1.5">
         <span>+</span>
         <span>دارایی</span>
       </button>
     </div>
   </div>
 
-  <!-- Realtime Market Ticker (Widget 1 - Collapsible) -->
-  <div id="widget-ticker" class="bg-black/20 border-t border-[var(--border-subtle)] py-1.5 px-3 overflow-hidden">
+  <!-- Realtime Market Ticker (Collapsible Liquid Strip) -->
+  <div id="widget-ticker" class="bg-black/15 border-t border-white/[0.06] py-1 px-3 overflow-hidden">
     <div class="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar items-center" id="tickerItems">
       <!-- Live ticker items injected by JS -->
     </div>
   </div>
 </header>
 
-<!-- MAIN CONTAINER (BENTO GRID ARCHITECTURE) -->
-<main class="max-w-6xl mx-auto px-4 pt-4 space-y-4">
+<!-- MAIN CONTAINER (BENTO GRID WITH LIQUID GLASS MATERIAL) -->
+<main class="max-w-6xl mx-auto px-4 pt-4 space-y-4 relative z-10">
 
-  <!-- ==================== BENTO SECTION 1: HERO & METRICS ==================== -->
+  <!-- ==================== BENTO SECTION 1: HERO & ALLOCATION ==================== -->
   <section class="grid grid-cols-1 lg:grid-cols-3 gap-4" id="bento-hero-section">
     
-    <!-- Hero Net Worth Hub (2 Cols on Desktop) -->
-    <div class="bento-card lg:col-span-2 flex flex-col justify-between" id="widget-hero">
+    <!-- Hero Net Worth Card (2 Cols on Desktop) -->
+    <div class="liquid-glass liquid-card-pad lg:col-span-2 flex flex-col justify-between" id="widget-hero">
       <div>
         <div class="flex items-center justify-between mb-1">
-          <div class="text-xs text-[var(--text-muted)] flex items-center gap-1.5">
-            <span>💼 ارزش خالص دارایی‌ها (دارایی − بدهی)</span>
+          <div class="text-xs text-[var(--text-muted)] flex items-center gap-1.5 font-medium">
+            <span>💼 ارزش خالص کل دارایی‌ها (دارایی − بدهی)</span>
           </div>
-          <button onclick="togglePrivacyMode()" class="text-xs text-[var(--text-dim)] hover:text-[var(--text-main)]">
-            <span class="privacy-status-label text-[10px]">حریم خصوصی</span>
+          <button onclick="togglePrivacyMode()" class="liquid-pill text-[10px] py-1 px-2.5">
+            <span>حالت حریم خصوصی</span>
           </button>
         </div>
 
-        <!-- Big Amount Counter -->
-        <div class="flex items-baseline gap-2 mt-1">
-          <span class="number text-3xl sm:text-5xl font-extrabold text-[var(--accent-main)] privacy-sensitive" id="heroNetWorth">—</span>
-          <span class="text-xs text-[var(--text-muted)]" id="currencyUnitLabel">تومان</span>
+        <!-- Big Liquid Net Worth Counter -->
+        <div class="flex items-baseline gap-2.5 mt-1.5">
+          <span class="number text-3xl sm:text-5xl font-black text-[var(--accent)] privacy-sensitive drop-shadow-sm" id="heroNetWorth">—</span>
+          <span class="text-xs text-[var(--text-muted)] font-semibold" id="currencyUnitLabel">تومان</span>
         </div>
 
         <div class="flex items-center gap-2 mt-3">
-          <span class="badge badge-up" id="heroTotalChange">+۰.۰٪</span>
-          <span class="text-[11px] text-[var(--text-muted)]">نسبت به بازه قبلی پورتفولیو</span>
+          <span class="liquid-badge badge-up" id="heroTotalChange">+۰.۰٪</span>
+          <span class="text-[11px] text-[var(--text-muted)]">نسبت به بازه زمانی قبلی</span>
         </div>
       </div>
 
-      <!-- Liquidity & Metrics Sub-Bar -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-4 mt-4 border-t border-[var(--border-subtle)]">
-        <div class="card-sm p-2 text-right">
+      <!-- Quick Metrics Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-4 mt-4 border-t border-white/[0.08]">
+        <div class="liquid-glass p-2.5 text-right rounded-xl">
           <div class="text-[10px] text-[var(--text-muted)]">دارایی نقد 💧</div>
           <div class="number text-xs sm:text-sm font-bold text-emerald-400 mt-0.5 privacy-sensitive" id="quickLiquid">—</div>
         </div>
-        <div class="card-sm p-2 text-right">
+        <div class="liquid-glass p-2.5 text-right rounded-xl">
           <div class="text-[10px] text-[var(--text-muted)]">غیرنقد 🔒</div>
           <div class="number text-xs sm:text-sm font-bold text-violet-400 mt-0.5 privacy-sensitive" id="quickIlliquid">—</div>
         </div>
-        <div class="card-sm p-2 text-right">
+        <div class="liquid-glass p-2.5 text-right rounded-xl">
           <div class="text-[10px] text-[var(--text-muted)]">کل بدهی‌ها 💸</div>
           <div class="number text-xs sm:text-sm font-bold text-rose-400 mt-0.5 privacy-sensitive" id="quickDebt">—</div>
         </div>
-        <div class="card-sm p-2 text-right">
+        <div class="liquid-glass p-2.5 text-right rounded-xl">
           <div class="text-[10px] text-[var(--text-muted)]">سود/زیان کل 💹</div>
           <div class="number text-xs sm:text-sm font-bold mt-0.5 privacy-sensitive" id="quickPnl">—</div>
         </div>
@@ -552,15 +620,15 @@
     </div>
 
     <!-- Allocation Donut Hub (1 Col) -->
-    <div class="bento-card flex flex-col items-center justify-between" id="widget-allocation">
-      <div class="flex items-center justify-between w-full mb-2">
+    <div class="liquid-glass liquid-card-pad flex flex-col items-center justify-between" id="widget-allocation">
+      <div class="flex items-center justify-between w-full mb-1">
         <div class="text-xs font-bold text-[var(--text-main)]">ترکیب سبد دارایی</div>
-        <span class="text-[10px] text-[var(--text-muted)]" id="totalAssetCountBadge">۰ قلم</span>
+        <span class="liquid-pill text-[10px] py-0.5 px-2" id="totalAssetCountBadge">۰ قلم</span>
       </div>
 
-      <div class="relative w-32 h-32 my-1">
+      <div class="relative w-32 h-32 my-1.5">
         <svg viewBox="0 0 100 100" class="w-32 h-32 -rotate-90">
-          <circle cx="50" cy="50" r="38" fill="none" stroke="var(--border-subtle)" stroke-width="13"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="13"/>
           <circle id="d-gold"   cx="50" cy="50" r="38" fill="none" stroke="#f5c842" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
           <circle id="d-crypto" cx="50" cy="50" r="38" fill="none" stroke="#f97316" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
           <circle id="d-usd"    cx="50" cy="50" r="38" fill="none" stroke="#38bdf8" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
@@ -580,73 +648,73 @@
 
   </section>
 
-  <!-- ==================== BENTO SECTION 2: CHARTS & LIVE MARKET ==================== -->
+  <!-- ==================== BENTO SECTION 2: CHARTS & MARKET ==================== -->
   <section class="grid grid-cols-1 lg:grid-cols-3 gap-4">
     
     <!-- Portfolio History Chart (2 Cols) -->
-    <div class="bento-card lg:col-span-2 flex flex-col justify-between" id="widget-chart">
+    <div class="liquid-glass liquid-card-pad lg:col-span-2 flex flex-col justify-between" id="widget-chart">
       <div class="flex items-center justify-between mb-3">
         <div class="text-xs font-bold text-[var(--text-main)] flex items-center gap-1.5">
-          <span>📈 روند ارزش سرمایه در طول زمان</span>
+          <span>📈 نمودار تغییرات ارزش زمانی</span>
         </div>
-        <div class="flex gap-1">
-          <button class="chart-tab active text-[10px] px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--surface-hover)]" onclick="setChartRange('1d', this)">۱ روز</button>
-          <button class="chart-tab text-[10px] px-2.5 py-1 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)]" onclick="setChartRange('7d', this)">۷ روز</button>
-          <button class="chart-tab text-[10px] px-2.5 py-1 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)]" onclick="setChartRange('30d', this)">۳۰ روز</button>
+        <div class="flex gap-1.5">
+          <button class="liquid-pill active text-[10px] px-2.5 py-1" onclick="setChartRange('1d', this)">۱ روز</button>
+          <button class="liquid-pill text-[10px] px-2.5 py-1" onclick="setChartRange('7d', this)">۷ روز</button>
+          <button class="liquid-pill text-[10px] px-2.5 py-1" onclick="setChartRange('30d', this)">۳۰ روز</button>
         </div>
       </div>
       <canvas id="historyChart" style="width:100%;height:150px;" width="650" height="150"></canvas>
     </div>
 
     <!-- Live Market Snapshot Cards (1 Col) -->
-    <div class="bento-card flex flex-col justify-between" id="widget-market-snap">
+    <div class="liquid-glass liquid-card-pad flex flex-col justify-between" id="widget-market-snap">
       <div class="flex items-center justify-between mb-2">
         <div class="text-xs font-bold text-[var(--text-main)] flex items-center gap-1.5">
-          <span>⚡ بازار لحظه‌ای</span>
+          <span>⚡ تابلو لحظه‌ای بازار</span>
         </div>
-        <button onclick="fetchAllPrices(true)" class="text-[10px] text-[var(--accent-main)] hover:underline">تازه سازی</button>
+        <button onclick="fetchAllPrices(true)" class="liquid-pill text-[10px] py-0.5 px-2 text-[var(--accent)]">تازه سازی 🔄</button>
       </div>
 
-      <div class="space-y-1.5 flex-1" id="marketSnapItems">
+      <div class="space-y-2 flex-1 mt-1" id="marketSnapItems">
         <!-- Live Market Snapshot items -->
       </div>
     </div>
 
   </section>
 
-  <!-- ==================== BENTO SECTION 3: ASSET HUB (CORE) ==================== -->
-  <section class="bento-card" id="widget-assets-hub">
+  <!-- ==================== BENTO SECTION 3: ASSET HUB ==================== -->
+  <section class="liquid-glass liquid-card-pad" id="widget-assets-hub">
     <!-- Header with category filter capsules -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <div>
         <h2 class="text-sm font-extrabold text-[var(--text-main)] flex items-center gap-2">
           <span>🏦</span>
-          <span>پورتفولیو و مدیریت دارایی‌ها</span>
+          <span>مدیریت دارایی‌ها (پورتفولیو)</span>
         </h2>
-        <div class="text-[11px] text-[var(--text-muted)]" id="assetSubtitleDetail">پایش زنده ارزش و سود/زیان هر دارایی</div>
+        <div class="text-[11px] text-[var(--text-muted)]" id="assetSubtitleDetail">پایش زنده ارزش و سود/زیان هر قلم دارایی</div>
       </div>
 
       <!-- Action buttons -->
-      <div class="flex items-center gap-1.5">
-        <button onclick="exportCSV()" class="btn-action-pill text-xs px-2.5 py-1">📥 خروجی CSV</button>
-        <button onclick="window.print()" class="btn-action-pill text-xs px-2.5 py-1 hidden sm:inline-flex">🖨️ چاپ</button>
-        <button onclick="openModal('addAsset')" class="btn-action-primary text-xs px-3 py-1">+ دارایی جدید</button>
+      <div class="flex items-center gap-2">
+        <button onclick="exportCSV()" class="liquid-pill text-xs px-3 py-1.5">📥 خروجی CSV</button>
+        <button onclick="window.print()" class="liquid-pill text-xs px-3 py-1.5 hidden sm:inline-flex">🖨️ چاپ</button>
+        <button onclick="openModal('addAsset')" class="btn-liquid-primary text-xs px-3.5 py-1.5">+ دارایی جدید</button>
       </div>
     </div>
 
-    <!-- Category Filter Bar (Pills) -->
-    <div class="flex gap-1.5 overflow-x-auto whitespace-nowrap pb-2 mb-3 no-scrollbar" id="categoryFilterBar">
-      <button class="btn-action-pill active text-xs py-1 px-3" onclick="filterAssetCategory('all', this)">همه دارایی‌ها</button>
-      <button class="btn-action-pill text-xs py-1 px-3" onclick="filterAssetCategory('gold', this)">🥇 طلا و سکه</button>
-      <button class="btn-action-pill text-xs py-1 px-3" onclick="filterAssetCategory('usd', this)">💵 ارز و اسکناس</button>
-      <button class="btn-action-pill text-xs py-1 px-3" onclick="filterAssetCategory('crypto', this)">🪙 رمزارز</button>
-      <button class="btn-action-pill text-xs py-1 px-3" onclick="filterAssetCategory('stock', this)">📈 بورس</button>
-      <button class="btn-action-pill text-xs py-1 px-3" onclick="filterAssetCategory('realty', this)">🏠 املاک</button>
-      <button class="btn-action-pill text-xs py-1 px-3" onclick="filterAssetCategory('cash', this)">💴 نقد و بانک</button>
+    <!-- Category Filter Bar (Liquid Capsule Pills) -->
+    <div class="flex gap-2 overflow-x-auto whitespace-nowrap pb-2 mb-3.5 no-scrollbar" id="categoryFilterBar">
+      <button class="liquid-pill active text-xs py-1.5 px-3.5" onclick="filterAssetCategory('all', this)">همه دارایی‌ها</button>
+      <button class="liquid-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('gold', this)">🥇 طلا و سکه</button>
+      <button class="liquid-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('usd', this)">💵 ارز و اسکناس</button>
+      <button class="liquid-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('crypto', this)">🪙 رمزارز</button>
+      <button class="liquid-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('stock', this)">📈 سهام بورس</button>
+      <button class="liquid-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('realty', this)">🏠 املاک</button>
+      <button class="liquid-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('cash', this)">💴 حساب بانکی</button>
     </div>
 
     <!-- Assets List Container -->
-    <div id="fullAssetList" class="space-y-1.5">
+    <div id="fullAssetList" class="space-y-2">
       <!-- Injected by JS -->
     </div>
   </section>
@@ -655,36 +723,36 @@
   <section class="grid grid-cols-1 lg:grid-cols-3 gap-4" id="widget-debts">
     
     <!-- Debt Summary & Ratio (1 Col) -->
-    <div class="bento-card flex flex-col justify-between">
+    <div class="liquid-glass liquid-card-pad flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-2">
           <span class="text-xs font-bold text-[var(--text-main)]">💸 وضعیت بدهی‌ها</span>
-          <button onclick="openModal('addDebt')" class="text-[10px] text-rose-400 hover:underline">+ ثبت بدهی</button>
+          <button onclick="openModal('addDebt')" class="liquid-pill text-[10px] py-0.5 px-2 text-rose-400">+ ثبت بدهی</button>
         </div>
 
-        <div class="text-[10px] text-[var(--text-muted)]">مجموع مانده اقساط و بدهی‌ها:</div>
-        <div class="number text-2xl font-extrabold text-rose-400 mt-1 privacy-sensitive" id="debtTotalVal">—</div>
+        <div class="text-[10px] text-[var(--text-muted)]">مجموع مانده اقساط و تعهدات:</div>
+        <div class="number text-2xl font-black text-rose-400 mt-1 privacy-sensitive" id="debtTotalVal">—</div>
         
-        <div class="mt-4 pt-3 border-t border-[var(--border-subtle)] space-y-2 text-xs">
+        <div class="mt-4 pt-3 border-t border-white/[0.08] space-y-2 text-xs">
           <div class="flex justify-between">
             <span class="text-[var(--text-muted)]">نسبت اهرمی بدهی به دارایی:</span>
-            <span class="number font-bold text-[var(--accent-main)]" id="debtRatioVal">۰٪</span>
+            <span class="number font-bold text-[var(--accent)]" id="debtRatioVal">۰٪</span>
           </div>
-          <div class="progress-bar">
-            <div class="progress-fill" id="debtRatioBar" style="width:0%; background:#f43f5e;"></div>
+          <div class="w-full h-2 bg-black/20 rounded-full overflow-hidden border border-white/10">
+            <div class="h-full bg-gradient-to-r from-rose-500 to-amber-500 rounded-full transition-all duration-500" id="debtRatioBar" style="width:0%;"></div>
           </div>
         </div>
       </div>
 
-      <div class="text-[10px] text-[var(--text-dim)] mt-3">ارزش خالص شما با کسر بدهی‌ها محاسبه می‌شود.</div>
+      <div class="text-[10px] text-[var(--text-dim)] mt-3">ارزش خالص دارایی‌های شما با کسر بدهی‌ها محاسبه می‌شود.</div>
     </div>
 
     <!-- Debt Items List (2 Cols) -->
-    <div class="bento-card lg:col-span-2">
+    <div class="liquid-glass liquid-card-pad lg:col-span-2">
       <div class="flex items-center justify-between mb-2">
-        <span class="text-xs font-bold text-[var(--text-main)]">لیست تعهدات و اقساط</span>
+        <span class="text-xs font-bold text-[var(--text-main)]">لیست وام‌ها و اقساط ثبت‌شده</span>
       </div>
-      <div id="debtList" class="space-y-1.5">
+      <div id="debtList" class="space-y-2">
         <!-- Injected by JS -->
       </div>
     </div>
@@ -693,39 +761,39 @@
 
 </main>
 
-<!-- MOBILE BOTTOM NAVIGATION (Always visible on mobile) -->
-<nav class="mobile-nav md:hidden">
-  <button class="nav-item active" onclick="scrollToWidget('bento-hero-section', this)">
+<!-- FLOATING LIQUID ISLAND BOTTOM NAV (Visible on mobile) -->
+<nav class="liquid-island-nav md:hidden">
+  <button class="nav-pill-item active" onclick="scrollToWidget('bento-hero-section', this)">
     <span class="nav-icon">📊</span>
     <span>داشبورد</span>
   </button>
-  <button class="nav-item" onclick="scrollToWidget('widget-assets-hub', this)">
+  <button class="nav-pill-item" onclick="scrollToWidget('widget-assets-hub', this)">
     <span class="nav-icon">🏦</span>
     <span>دارایی‌ها</span>
   </button>
-  <button class="nav-item" onclick="openModal('smartPaste')">
+  <button class="nav-pill-item" onclick="openModal('smartPaste')">
     <span class="nav-icon text-sky-400">📲</span>
     <span>تلگرام</span>
   </button>
-  <button class="nav-item" onclick="scrollToWidget('widget-debts', this)">
+  <button class="nav-pill-item" onclick="scrollToWidget('widget-debts', this)">
     <span class="nav-icon">💸</span>
     <span>بدهی‌ها</span>
   </button>
-  <button class="nav-item" onclick="openModal('uiCustomizer')">
-    <span class="nav-icon text-[var(--accent-main)]">🎨</span>
+  <button class="nav-pill-item" onclick="openModal('uiCustomizer')">
+    <span class="nav-icon text-[var(--accent)]">🎨</span>
     <span>ظاهر</span>
   </button>
 </nav>
 
 <!-- ==================== MODALS & DRAWERS ==================== -->
 
-<!-- 1. UI CUSTOMIZER MODAL (Comprehensive Theme & Layout Controls) -->
+<!-- 1. UI CUSTOMIZER MODAL (Liquid Glass Edition) -->
 <div id="modal-uiCustomizer" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeModal('uiCustomizer')">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="sheet-handle sm:hidden"></div>
-    <div class="flex items-center justify-between mb-4 pb-2 border-b border-[var(--border-color)]">
-      <h3 class="font-bold text-sm text-[var(--accent-main)] flex items-center gap-2">
-        <span>🎨</span> تنظیمات و شخصی‌سازی ظاهر رابط کاربری (UI)
+    <div class="flex items-center justify-between mb-4 pb-2 border-b border-white/10">
+      <h3 class="font-bold text-sm text-[var(--accent)] flex items-center gap-2">
+        <span>🎨</span> تنظیمات و شخصی‌سازی ظاهر Liquid Glass
       </h3>
       <button onclick="closeModal('uiCustomizer')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
     </div>
@@ -734,89 +802,89 @@
       
       <!-- 1. Theme Selection -->
       <div>
-        <label class="block font-bold mb-2 text-[var(--text-main)]">۱. تم و پالت رنگی برنامه:</label>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="themePickerGrid">
-          <button onclick="setTheme('midnight')" class="p-2.5 rounded-xl border border-[var(--border-color)] text-right flex flex-col gap-1.5 bg-[#070611] text-white hover:border-amber-400 transition" id="themeBtn-midnight">
+        <label class="block font-bold mb-2 text-[var(--text-main)]">۱. تم و پالت رنگی Liquid Glass:</label>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="themePickerGrid">
+          <button onclick="setTheme('midnight')" class="p-3 rounded-2xl liquid-glass text-right flex flex-col gap-1.5 hover:scale-102 transition" id="themeBtn-midnight">
             <div class="flex items-center justify-between">
               <span class="font-bold text-[11px]">Midnight</span>
-              <span class="w-2.5 h-2.5 rounded-full bg-[#f5c842]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#f5c842] shadow-sm"></span>
             </div>
-            <span class="text-[9px] text-white/50">مشکی لوکس و گلد</span>
+            <span class="text-[9px] text-white/50">مشکی پیور و گلد لوکس</span>
           </button>
 
-          <button onclick="setTheme('ocean')" class="p-2.5 rounded-xl border border-[var(--border-color)] text-right flex flex-col gap-1.5 bg-[#040d1a] text-sky-100 hover:border-sky-400 transition" id="themeBtn-ocean">
+          <button onclick="setTheme('ocean')" class="p-3 rounded-2xl liquid-glass text-right flex flex-col gap-1.5 hover:scale-102 transition" id="themeBtn-ocean">
             <div class="flex items-center justify-between">
               <span class="font-bold text-[11px]">Deep Ocean</span>
-              <span class="w-2.5 h-2.5 rounded-full bg-[#38bdf8]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#38bdf8] shadow-sm"></span>
             </div>
-            <span class="text-[9px] text-sky-200/50">سرمه‌ای کریپتویی</span>
+            <span class="text-[9px] text-sky-200/50">سرمه‌ای و فیروزه‌ای</span>
           </button>
 
-          <button onclick="setTheme('emerald')" class="p-2.5 rounded-xl border border-[var(--border-color)] text-right flex flex-col gap-1.5 bg-[#03120a] text-emerald-100 hover:border-emerald-400 transition" id="themeBtn-emerald">
+          <button onclick="setTheme('emerald')" class="p-3 rounded-2xl liquid-glass text-right flex flex-col gap-1.5 hover:scale-102 transition" id="themeBtn-emerald">
             <div class="flex items-center justify-between">
               <span class="font-bold text-[11px]">Emerald</span>
-              <span class="w-2.5 h-2.5 rounded-full bg-[#10b981]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#10b981] shadow-sm"></span>
             </div>
             <span class="text-[9px] text-emerald-200/50">سبز زمردی بازار</span>
           </button>
 
-          <button onclick="setTheme('amethyst')" class="p-2.5 rounded-xl border border-[var(--border-color)] text-right flex flex-col gap-1.5 bg-[#0c051a] text-purple-100 hover:border-purple-400 transition" id="themeBtn-amethyst">
+          <button onclick="setTheme('amethyst')" class="p-3 rounded-2xl liquid-glass text-right flex flex-col gap-1.5 hover:scale-102 transition" id="themeBtn-amethyst">
             <div class="flex items-center justify-between">
               <span class="font-bold text-[11px]">Amethyst</span>
-              <span class="w-2.5 h-2.5 rounded-full bg-[#c084fc]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#c084fc] shadow-sm"></span>
             </div>
-            <span class="text-[9px] text-purple-200/50">بنفش سایبرپانک</span>
+            <span class="text-[9px] text-purple-200/50">بنفش نئونی مدرن</span>
           </button>
 
-          <button onclick="setTheme('light')" class="p-2.5 rounded-xl border border-slate-300 text-right flex flex-col gap-1.5 bg-white text-slate-900 hover:border-amber-500 transition col-span-2 sm:col-span-1" id="themeBtn-light">
+          <button onclick="setTheme('light')" class="p-3 rounded-2xl liquid-glass text-right flex flex-col gap-1.5 hover:scale-102 transition col-span-2 sm:col-span-1" id="themeBtn-light">
             <div class="flex items-center justify-between">
               <span class="font-bold text-[11px]">Minimal Light</span>
-              <span class="w-2.5 h-2.5 rounded-full bg-[#d97706]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#d97706] shadow-sm"></span>
             </div>
-            <span class="text-[9px] text-slate-500">تم روشن و مینیمال</span>
+            <span class="text-[9px] text-slate-500">تم سفید کریستالی</span>
           </button>
         </div>
       </div>
 
-      <!-- 2. Layout Density -->
-      <div class="pt-2 border-t border-[var(--border-subtle)]">
+      <!-- 2. Density -->
+      <div class="pt-2 border-t border-white/10">
         <label class="block font-bold mb-2 text-[var(--text-main)]">۲. تراکم چیدمان (Layout Density):</label>
         <div class="grid grid-cols-2 gap-2">
-          <button onclick="setDensity('compact')" id="densityBtn-compact" class="btn-action-pill text-xs py-2">
-            <span>📱</span> حالت فشرده و تریدری (Compact)
+          <button onclick="setDensity('compact')" id="densityBtn-compact" class="liquid-pill text-xs py-2">
+            <span>📱</span> حالت فشرده (Compact)
           </button>
-          <button onclick="setDensity('comfortable')" id="densityBtn-comfortable" class="btn-action-pill text-xs py-2 active">
-            <span>🧘</span> حالت استاندارد و راحت (Comfortable)
+          <button onclick="setDensity('comfortable')" id="densityBtn-comfortable" class="liquid-pill text-xs py-2 active">
+            <span>🧘</span> حالت استاندارد (Comfortable)
           </button>
         </div>
       </div>
 
       <!-- 3. Widget Visibility Toggles -->
-      <div class="pt-2 border-t border-[var(--border-subtle)]">
-        <label class="block font-bold mb-2 text-[var(--text-main)]">۳. ماژول‌های فعال در داشبورد:</label>
-        <div class="space-y-1.5">
-          <label class="flex items-center justify-between p-2 rounded-xl bg-[var(--surface-card)]">
-            <span>📈 نمودار تحلیل ارزش زمانی پورتفولیو</span>
-            <input type="checkbox" id="toggle-chart" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent-main)]"/>
+      <div class="pt-2 border-t border-white/10">
+        <label class="block font-bold mb-2 text-[var(--text-main)]">۳. ماژول‌های فعال در صفحه:</label>
+        <div class="space-y-2">
+          <label class="flex items-center justify-between p-2.5 rounded-2xl liquid-glass">
+            <span>📈 نمودار تغییرات ارزش پورتفولیو</span>
+            <input type="checkbox" id="toggle-chart" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent)]"/>
           </label>
-          <label class="flex items-center justify-between p-2 rounded-xl bg-[var(--surface-card)]">
+          <label class="flex items-center justify-between p-2.5 rounded-2xl liquid-glass">
             <span>⚡ نوار تیکر بازار لحظه‌ای</span>
-            <input type="checkbox" id="toggle-ticker" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent-main)]"/>
+            <input type="checkbox" id="toggle-ticker" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent)]"/>
           </label>
-          <label class="flex items-center justify-between p-2 rounded-xl bg-[var(--surface-card)]">
-            <span>🍩 حلقه توزیع و سهم سبد دارایی</span>
-            <input type="checkbox" id="toggle-allocation" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent-main)]"/>
+          <label class="flex items-center justify-between p-2.5 rounded-2xl liquid-glass">
+            <span>🍩 حلقه توزیع سبد دارایی</span>
+            <input type="checkbox" id="toggle-allocation" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent)]"/>
           </label>
-          <label class="flex items-center justify-between p-2 rounded-xl bg-[var(--surface-card)]">
+          <label class="flex items-center justify-between p-2.5 rounded-2xl liquid-glass">
             <span>💸 بخش مدیریت بدهی‌ها</span>
-            <input type="checkbox" id="toggle-debts" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent-main)]"/>
+            <input type="checkbox" id="toggle-debts" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent)]"/>
           </label>
         </div>
       </div>
 
       <!-- 4. Currency & Number Format -->
-      <div class="pt-2 border-t border-[var(--border-subtle)]">
-        <label class="block font-bold mb-2 text-[var(--text-main)]">۴. فرمت نمایش ارقام و واحد:</label>
+      <div class="pt-2 border-t border-white/10">
+        <label class="block font-bold mb-2 text-[var(--text-main)]">۴. فرمت نمایش ارقام و واحد پول:</label>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-[10px] text-[var(--text-muted)] mb-1">واحد پول اصلی:</label>
@@ -827,7 +895,7 @@
             </select>
           </div>
           <div>
-            <label class="block text-[10px] text-[var(--text-muted)] mb-1">نوع فونت ارقام:</label>
+            <label class="block text-[10px] text-[var(--text-muted)] mb-1">نوع ارقام:</label>
             <select id="ui-digit-select" onchange="changeDigitFormat(this.value)">
               <option value="persian">ارقام فارسی (۱۲۳٬۰۰۰)</option>
               <option value="english">ارقام انگلیسی (123,000)</option>
@@ -836,10 +904,10 @@
         </div>
       </div>
 
-      <!-- Reset button -->
+      <!-- Buttons -->
       <div class="pt-2 flex justify-between items-center">
-        <button onclick="resetUIDefaults()" class="text-[11px] text-rose-400 hover:underline">بازنشانی به حالت پیش‌فرض کارخانه</button>
-        <button onclick="closeModal('uiCustomizer')" class="btn-action-primary text-xs px-4 py-2">تأیید و بستن</button>
+        <button onclick="resetUIDefaults()" class="text-[11px] text-rose-400 hover:underline">بازنشانی پیش‌فرض</button>
+        <button onclick="closeModal('uiCustomizer')" class="btn-liquid-primary text-xs px-5 py-2">تأیید و بستن</button>
       </div>
 
     </div>
@@ -852,13 +920,13 @@
     <div class="sheet-handle sm:hidden"></div>
     <div class="flex items-center justify-between mb-3">
       <h3 class="font-bold text-sm text-sky-400 flex items-center gap-1.5">
-        <span>📲</span> استخراج هوشمند نرخ از پیام کانال تلگرام
+        <span>📲</span> استخراج هوشمند قیمت از متن پیام تلگرام
       </h3>
       <button onclick="closeModal('smartPaste')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
     </div>
 
     <p class="text-[11px] text-[var(--text-muted)] leading-relaxed mb-3">
-      پیام روزانه اعلام نرخ را از هر کانال تلگرامی کپی کرده و در کادر زیر قرار دهید. سیستم هوشمند نرخ‌های دلار، طلا، سکه و ارز را بدون فیلترشکن استخراج و اعمال می‌کند.
+      پیام اعلام نرخ روزانه را از هر کانال تلگرامی کپی کرده و در کادر زیر قرار دهید. سیستم تمام نرخ‌های دلار، طلا، سکه و ارز را بدون نیاز به فیلترشکن استخراج و در پورتفولیو اعمال می‌کند.
     </p>
 
     <div class="space-y-2 mb-3">
@@ -870,16 +938,16 @@
     </div>
 
     <!-- Preview -->
-    <div id="smartPasteResults" class="hidden card-sm p-2.5 mb-3">
-      <div class="text-[10px] text-[var(--accent-main)] mb-1.5 font-bold">🔍 موارد شناسایی‌شده:</div>
-      <div id="smartPasteItems" class="grid grid-cols-2 gap-1.5 text-xs"></div>
+    <div id="smartPasteResults" class="hidden liquid-glass p-3 mb-3 rounded-2xl">
+      <div class="text-[10px] text-[var(--accent)] mb-1.5 font-bold">🔍 موارد شناسایی‌شده:</div>
+      <div id="smartPasteItems" class="grid grid-cols-2 gap-2 text-xs"></div>
     </div>
 
     <div class="flex gap-2">
-      <button class="btn-action-primary flex-1 py-2 text-xs" id="btnApplySmartPaste" onclick="applySmartPaste()" disabled>
+      <button class="btn-liquid-primary flex-1 py-2.5 text-xs" id="btnApplySmartPaste" onclick="applySmartPaste()" disabled>
         ✅ اعمال در پورتفولیو
       </button>
-      <button class="btn-action-pill py-2 text-xs" onclick="closeModal('smartPaste')">لغو</button>
+      <button class="liquid-pill py-2 text-xs px-4" onclick="closeModal('smartPaste')">لغو</button>
     </div>
   </div>
 </div>
@@ -894,21 +962,21 @@
     </div>
 
     <!-- Category selector -->
-    <div class="flex gap-1.5 overflow-x-auto whitespace-nowrap pb-2 mb-3 no-scrollbar">
-      <button class="btn-action-pill active text-xs py-1.5 px-3" id="tb-gold"   onclick="setType('gold')">🥇 طلا و سکه</button>
-      <button class="btn-action-pill text-xs py-1.5 px-3" id="tb-crypto" onclick="setType('crypto')">🪙 رمزارز</button>
-      <button class="btn-action-pill text-xs py-1.5 px-3" id="tb-usd"    onclick="setType('usd')">💵 ارز و اسکناس</button>
-      <button class="btn-action-pill text-xs py-1.5 px-3" id="tb-stock"  onclick="setType('stock')">📈 بورس</button>
-      <button class="btn-action-pill text-xs py-1.5 px-3" id="tb-realty" onclick="setType('realty')">🏠 ملک</button>
-      <button class="btn-action-pill text-xs py-1.5 px-3" id="tb-cash"   onclick="setType('cash')">💴 حساب بانکی</button>
-      <button class="btn-action-pill text-xs py-1.5 px-3" id="tb-other"  onclick="setType('other')">📦 سایر</button>
+    <div class="flex gap-1.5 overflow-x-auto whitespace-nowrap pb-2 mb-3.5 no-scrollbar">
+      <button class="liquid-pill active text-xs py-1.5 px-3.5" id="tb-gold"   onclick="setType('gold')">🥇 طلا و سکه</button>
+      <button class="liquid-pill text-xs py-1.5 px-3.5" id="tb-crypto" onclick="setType('crypto')">🪙 رمزارز</button>
+      <button class="liquid-pill text-xs py-1.5 px-3.5" id="tb-usd"    onclick="setType('usd')">💵 ارز و اسکناس</button>
+      <button class="liquid-pill text-xs py-1.5 px-3.5" id="tb-stock"  onclick="setType('stock')">📈 بورس</button>
+      <button class="liquid-pill text-xs py-1.5 px-3.5" id="tb-realty" onclick="setType('realty')">🏠 املاک</button>
+      <button class="liquid-pill text-xs py-1.5 px-3.5" id="tb-cash"   onclick="setType('cash')">💴 حساب بانکی</button>
+      <button class="liquid-pill text-xs py-1.5 px-3.5" id="tb-other"  onclick="setType('other')">📦 سایر</button>
     </div>
 
-    <div id="modal-asset-fields" class="space-y-2.5"></div>
+    <div id="modal-asset-fields" class="space-y-3"></div>
 
     <div class="flex gap-2 mt-4">
-      <button class="btn-action-primary flex-1 py-2 text-xs" onclick="saveAsset()">💾 ذخیره دارایی</button>
-      <button class="btn-action-pill py-2 text-xs" onclick="closeModal('addAsset')">لغو</button>
+      <button class="btn-liquid-primary flex-1 py-2.5 text-xs" onclick="saveAsset()">💾 ذخیره دارایی</button>
+      <button class="liquid-pill py-2 text-xs px-4" onclick="closeModal('addAsset')">لغو</button>
     </div>
   </div>
 </div>
@@ -922,7 +990,7 @@
       <button onclick="closeModal('addDebt')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
     </div>
 
-    <div class="space-y-2.5">
+    <div class="space-y-3">
       <div>
         <label class="block text-[11px] text-[var(--text-muted)] mb-1">عنوان بدهی</label>
         <input type="text" id="d-label" placeholder="مثلاً: وام خرید مسکن"/>
@@ -952,8 +1020,8 @@
     </div>
 
     <div class="flex gap-2 mt-4">
-      <button class="btn-action-primary flex-1 py-2 text-xs" onclick="saveDebt()">💾 ثبت بدهی</button>
-      <button class="btn-action-pill py-2 text-xs" onclick="closeModal('addDebt')">لغو</button>
+      <button class="btn-liquid-primary flex-1 py-2.5 text-xs" onclick="saveDebt()">💾 ثبت بدهی</button>
+      <button class="liquid-pill py-2 text-xs px-4" onclick="closeModal('addDebt')">لغو</button>
     </div>
   </div>
 </div>
@@ -977,7 +1045,6 @@ const DB = {
   set: (k, v) => localStorage.setItem('myw_' + k, JSON.stringify(v))
 };
 
-// UI Settings Schema
 const defaultUISettings = {
   theme: 'midnight',
   density: 'comfortable',
@@ -1086,21 +1153,19 @@ function initPrices() {
 
 // ==================== UI CUSTOMIZATION ENGINE ====================
 function applyUISettings() {
-  // 1. Theme
+  // Theme
   document.documentElement.setAttribute('data-theme', S.ui.theme || 'midnight');
-  
-  // Highlight active theme button
   document.querySelectorAll('[id^="themeBtn-"]').forEach(b => {
     b.classList.remove('ring-2', 'ring-amber-400');
   });
   el$('themeBtn-' + S.ui.theme)?.classList.add('ring-2', 'ring-amber-400');
 
-  // 2. Density
+  // Density
   document.documentElement.setAttribute('data-density', S.ui.density || 'comfortable');
   document.querySelectorAll('[id^="densityBtn-"]').forEach(b => b.classList.remove('active'));
   el$('densityBtn-' + S.ui.density)?.classList.add('active');
 
-  // 3. Privacy Mode
+  // Privacy Mode
   if (S.ui.privacy) {
     document.body.classList.add('privacy-active');
     el$('privacyEyeIcon').textContent = '🙈';
@@ -1111,20 +1176,18 @@ function applyUISettings() {
     el$('privacyTextLabel').textContent = 'مخفی';
   }
 
-  // 4. Widget Visibility
+  // Widget Visibility
   const w = S.ui.widgets || defaultUISettings.widgets;
   if (el$('widget-chart')) el$('widget-chart').style.display = w.chart ? 'flex' : 'none';
   if (el$('widget-ticker')) el$('widget-ticker').style.display = w.ticker ? 'block' : 'none';
   if (el$('widget-allocation')) el$('widget-allocation').style.display = w.allocation ? 'flex' : 'none';
   if (el$('widget-debts')) el$('widget-debts').style.display = w.debts ? 'grid' : 'none';
 
-  // Sync checkboxes
   if (el$('toggle-chart')) el$('toggle-chart').checked = w.chart !== false;
   if (el$('toggle-ticker')) el$('toggle-ticker').checked = w.ticker !== false;
   if (el$('toggle-allocation')) el$('toggle-allocation').checked = w.allocation !== false;
   if (el$('toggle-debts')) el$('toggle-debts').checked = w.debts !== false;
 
-  // Currency unit label
   const curLabel = S.ui.currency === 'million_toman' ? 'میلیون تومان' : S.ui.currency === 'rial' ? 'ریال' : 'تومان';
   set$('currencyUnitLabel', curLabel);
   if (el$('ui-currency-select')) el$('ui-currency-select').value = S.ui.currency;
@@ -1136,7 +1199,7 @@ function setTheme(theme) {
   DB.set('ui_theme', S.ui);
   applyUISettings();
   drawChart();
-  toast(`تم ${theme} اعمال شد`, 'gold');
+  toast(`تم ${theme} با موفقیت فعال شد`, 'gold');
 }
 
 function setDensity(density) {
@@ -1149,7 +1212,7 @@ function togglePrivacyMode() {
   S.ui.privacy = !S.ui.privacy;
   DB.set('ui_theme', S.ui);
   applyUISettings();
-  toast(S.ui.privacy ? 'حالت حریم خصوصی فعال شد (مبالغ پنهان شدند)' : 'حالت عادی فعال شد (مبالغ نمایان شدند)', 'gold');
+  toast(S.ui.privacy ? 'حالت حریم خصوصی فعال شد' : 'حالت عادی فعال شد', 'gold');
 }
 
 function saveWidgetPreferences() {
@@ -1182,7 +1245,7 @@ function resetUIDefaults() {
   DB.set('ui_theme', S.ui);
   applyUISettings();
   renderAll();
-  toast('تنظیمات ظاهر به پیش‌فرض بازگردانده شد', 'gold');
+  toast('تنظیمات به حالت پیش‌فرض بازگشت', 'gold');
 }
 
 // ==================== REAL DATA FETCHING ====================
@@ -1218,7 +1281,7 @@ async function fetchBitpin() {
         S.prices.gold18.price = gram18;
         S.prices.gold18.change24h = +(parseFloat(paxg.price_info?.change || 0).toFixed(2));
         
-        // Accurate coin derivations
+        // Coins
         const rawCoin = (oz / 31.1034768) * 7.3197;
         S.prices.goldCoin.price = Math.round(rawCoin * 1.15);
         S.prices.goldHalf.price = Math.round(S.prices.goldCoin.price / 2 * 1.03);
@@ -1328,11 +1391,11 @@ function renderTicker() {
   el.innerHTML = keys.map(k => {
     const p = S.prices[k]; if (!p) return '';
     const ch = p.change24h || 0;
-    return `<div class="inline-flex items-center gap-1.5 text-xs text-[var(--text-main)] bg-[var(--surface-card)] px-2.5 py-1 rounded-lg border border-[var(--border-subtle)]">
+    return `<div class="inline-flex items-center gap-1.5 text-xs text-[var(--text-main)] liquid-glass px-3 py-1 rounded-full border border-white/10">
       <span>${p.icon}</span>
       <span class="text-[11px] font-medium opacity-70">${p.name}:</span>
-      <span class="number font-bold text-[var(--accent-main)] text-[11px]">${fmt(p.price)}</span>
-      <span class="badge ${ch >= 0 ? 'badge-up' : 'badge-down'} text-[9px] py-0 px-1">${ch >= 0 ? '+' : ''}${ch}%</span>
+      <span class="number font-bold text-[var(--accent)] text-[11px]">${fmt(p.price)}</span>
+      <span class="liquid-badge ${ch >= 0 ? 'badge-up' : 'badge-down'} text-[9px] py-0 px-1.5">${ch >= 0 ? '+' : ''}${ch}%</span>
     </div>`;
   }).join('');
 }
@@ -1344,14 +1407,14 @@ function renderMarketSnap() {
   el.innerHTML = keys.map(k => {
     const p = S.prices[k]; if (!p) return '';
     const ch = p.change24h || 0;
-    return `<div class="flex items-center justify-between p-2 rounded-xl bg-[var(--surface-card)] border border-[var(--border-subtle)] text-xs">
+    return `<div class="flex items-center justify-between p-2.5 rounded-2xl liquid-glass border border-white/10 text-xs">
       <div class="flex items-center gap-2">
-        <span>${p.icon}</span>
-        <span class="font-medium">${p.name}</span>
+        <span class="text-base">${p.icon}</span>
+        <span class="font-bold">${p.name}</span>
       </div>
       <div class="text-left flex items-center gap-2">
-        <span class="number font-bold text-[var(--accent-main)]">${fmt(p.price)}</span>
-        <span class="badge ${ch >= 0 ? 'badge-up' : 'badge-down'} text-[9px]">${ch >= 0 ? '+' : ''}${ch}%</span>
+        <span class="number font-black text-[var(--accent)]">${fmt(p.price)}</span>
+        <span class="liquid-badge ${ch >= 0 ? 'badge-up' : 'badge-down'} text-[9px]">${ch >= 0 ? '+' : ''}${ch}%</span>
       </div>
     </div>`;
   }).join('');
@@ -1405,7 +1468,7 @@ function renderPortfolio() {
     const colors = { gold:'#f5c842', crypto:'#f97316', usd:'#38bdf8', stock:'#10b981', other:'#818cf8' };
     leg.innerHTML = Object.entries(cats).map(([k, v]) => `
       <div class="flex items-center gap-1.5">
-        <span class="w-2 h-2 rounded-full" style="background:${colors[k]}"></span>
+        <span class="w-2 h-2 rounded-full shadow-sm" style="background:${colors[k]}"></span>
         <span class="text-[var(--text-muted)] text-[10px] truncate">${labels[k]}</span>
         <span class="number font-bold mr-auto text-[10px]">${total ? (v/total*100).toFixed(0) : 0}٪</span>
       </div>`).join('');
@@ -1445,20 +1508,20 @@ function renderFullAssetList() {
     const cost = assetCost(a);
     const pnl = cost > 0 ? v - cost : null;
     const pnlPct = cost > 0 ? ((v - cost) / cost * 100) : null;
-    return `<div class="asset-item" onclick="showDetail(${realIndex})">
-      <div class="w-8 h-8 rounded-xl flex items-center justify-center text-sm" style="background:${cfg.color}15;">${cfg.icon}</div>
+    return `<div class="liquid-glass liquid-asset-pad flex items-center gap-3 cursor-pointer" onclick="showDetail(${realIndex})">
+      <div class="w-9 h-9 rounded-2xl flex items-center justify-center text-base shadow-sm border border-white/20" style="background:${cfg.color}25;">${cfg.icon}</div>
       <div class="flex-1 min-w-0">
         <div class="text-xs font-bold text-[var(--text-main)] truncate">${a.label || cfg.label}</div>
         <div class="flex items-center gap-2 text-[10px] text-[var(--text-muted)] mt-0.5">
           <span>${fmt(a.qty, 4)} ${a.unit || ''}</span>
-          ${pnl != null ? `<span class="${pnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}">(${pnl >= 0 ? '+' : ''}${pnlPct.toFixed(1)}%)</span>` : ''}
+          ${pnl != null ? `<span class="${pnl >= 0 ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold'}">(${pnl >= 0 ? '+' : ''}${pnlPct.toFixed(1)}%)</span>` : ''}
         </div>
       </div>
       <div class="flex flex-col items-end gap-1">
-        <div class="number text-xs font-bold privacy-sensitive" style="color:${cfg.color};">${fmtS(v)}</div>
+        <div class="number text-xs font-black privacy-sensitive" style="color:${cfg.color};">${fmtS(v)}</div>
         <div class="flex items-center gap-1.5">
           <span class="text-[10px] text-[var(--text-dim)]">${total ? (v/total*100).toFixed(0) : 0}٪</span>
-          <button onclick="event.stopPropagation();deleteAsset(${realIndex})" class="text-rose-400/60 hover:text-rose-400 text-xs px-1">✕</button>
+          <button onclick="event.stopPropagation();deleteAsset(${realIndex})" class="text-rose-400/70 hover:text-rose-400 text-xs px-1.5 py-0.5 rounded-full hover:bg-rose-500/15">✕</button>
         </div>
       </div>
     </div>`;
@@ -1472,18 +1535,18 @@ function renderDebtSection() {
     return;
   }
   el.innerHTML = S.debts.map((d, i) => `
-    <div class="asset-item">
-      <div class="w-8 h-8 rounded-xl bg-rose-500/10 flex items-center justify-center text-sm">💸</div>
+    <div class="liquid-glass liquid-asset-pad flex items-center gap-3">
+      <div class="w-9 h-9 rounded-2xl bg-rose-500/15 flex items-center justify-center text-base border border-rose-500/30">💸</div>
       <div class="flex-1 min-w-0">
         <div class="text-xs font-bold text-[var(--text-main)]">${d.label}</div>
         <div class="text-[10px] text-[var(--text-muted)]">${d.note || 'بدون یادداشت'}</div>
       </div>
       <div class="text-left flex items-center gap-2">
         <div>
-          <div class="number text-xs font-bold text-rose-400 privacy-sensitive">${fmtS(d.remaining)}</div>
+          <div class="number text-xs font-black text-rose-400 privacy-sensitive">${fmtS(d.remaining)}</div>
           <div class="text-[9px] text-[var(--text-dim)]">از ${fmtS(d.total)}</div>
         </div>
-        <button onclick="deleteDebt(${i})" class="text-rose-400/60 hover:text-rose-400 text-xs px-1">✕</button>
+        <button onclick="deleteDebt(${i})" class="text-rose-400/70 hover:text-rose-400 text-xs px-1.5 py-0.5 rounded-full hover:bg-rose-500/15">✕</button>
       </div>
     </div>`).join('');
 }
@@ -1491,14 +1554,8 @@ function renderDebtSection() {
 // ==================== CHART ====================
 function setChartRange(r, btn) {
   S.chartRange = r;
-  document.querySelectorAll('.chart-tab').forEach(b => {
-    b.classList.remove('active', 'text-[var(--text-main)]', 'bg-[var(--surface-hover)]');
-    b.classList.add('text-[var(--text-muted)]');
-  });
-  if (btn) {
-    btn.classList.add('active', 'text-[var(--text-main)]', 'bg-[var(--surface-hover)]');
-    btn.classList.remove('text-[var(--text-muted)]');
-  }
+  document.querySelectorAll('#widget-chart button').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
   drawChart();
 }
 
@@ -1533,7 +1590,7 @@ function drawChart() {
 
   ctx.clearRect(0, 0, w, h);
   if (data.length < 2) {
-    ctx.fillStyle = 'rgba(255,255,255,0.2)';
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
     ctx.font = '11px Vazirmatn, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText('نمودار با ثبت تغییرات پورتفولیو ترسیم می‌شود', w/2, h/2);
@@ -1551,9 +1608,10 @@ function drawChart() {
 
   const chartThemeColor = getComputedStyle(document.documentElement).getPropertyValue('--chart-color').trim() || '#f5c842';
 
-  // Gradient fill
+  // Liquid glass gradient fill
   const grad = ctx.createLinearGradient(0, pad.t, 0, pad.t + ch);
-  grad.addColorStop(0, chartThemeColor + '40');
+  grad.addColorStop(0, chartThemeColor + '50');
+  grad.addColorStop(0.5, chartThemeColor + '15');
   grad.addColorStop(1, chartThemeColor + '00');
   ctx.beginPath();
   ctx.moveTo(px(0), py(data[0].v));
@@ -1564,18 +1622,21 @@ function drawChart() {
   ctx.fillStyle = grad;
   ctx.fill();
 
-  // Line
+  // Glass Specular Line
   ctx.beginPath();
   ctx.strokeStyle = chartThemeColor;
-  ctx.lineWidth = 2;
+  ctx.lineWidth = 2.5;
+  ctx.shadowColor = chartThemeColor;
+  ctx.shadowBlur = 10;
   ctx.moveTo(px(0), py(data[0].v));
   data.forEach((d, i) => { if (i > 0) ctx.lineTo(px(i), py(d.v)); });
   ctx.stroke();
+  ctx.shadowBlur = 0;
 }
 
 // ==================== MODALS & ACTIONS ====================
 function scrollToWidget(id, btn) {
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-pill-item').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   const target = el$(id);
   if (target) {
@@ -1604,8 +1665,8 @@ function setType(t) {
 
 function renderAssetForm() {
   const t = S.currentType, el = el$('modal-asset-fields'); if (!el) return;
-  const frow = (id, lbl, type='text', ph='') => `<div><label class="block text-[11px] text-[var(--text-muted)] mb-1">${lbl}</label><input type="${type}" id="${id}" placeholder="${ph}"/></div>`;
-  const srow = (id, lbl, opts) => `<div><label class="block text-[11px] text-[var(--text-muted)] mb-1">${lbl}</label><select id="${id}">${opts.map(([v, l]) => `<option value="${v}">${l}</option>`).join('')}</select></div>`;
+  const frow = (id, lbl, type='text', ph='') => `<div><label class="block text-[11px] text-[var(--text-muted)] mb-1 font-medium">${lbl}</label><input type="${type}" id="${id}" placeholder="${ph}"/></div>`;
+  const srow = (id, lbl, opts) => `<div><label class="block text-[11px] text-[var(--text-muted)] mb-1 font-medium">${lbl}</label><select id="${id}">${opts.map(([v, l]) => `<option value="${v}">${l}</option>`).join('')}</select></div>`;
 
   let f = frow('f_label', 'عنوان / برچسب دارایی', 'text', 'مثلاً: طلای گاوصندوق');
   if (t === 'gold') {
@@ -1674,20 +1735,20 @@ function showDetail(i) {
   const pnlPct = cost > 0 ? ((v - cost) / cost * 100) : null;
   el$('detail-title').textContent = a.label || cfg.label;
   el$('detail-body').innerHTML = `
-    <div class="card-sm p-3 mb-3 text-center">
+    <div class="liquid-glass p-3.5 mb-3 text-center rounded-2xl">
       <div class="text-xs text-[var(--text-muted)]">${cfg.label}</div>
-      <div class="number text-xl font-extrabold mt-1 privacy-sensitive" style="color:${cfg.color};">${fmt(v)} تومان</div>
+      <div class="number text-xl font-black mt-1 privacy-sensitive" style="color:${cfg.color};">${fmt(v)} تومان</div>
     </div>
     <div class="space-y-2 text-xs">
-      <div class="flex justify-between py-1 border-b border-[var(--border-subtle)]"><span class="text-[var(--text-muted)]">مقدار موجودی:</span><span class="number font-semibold">${fmt(a.qty, 4)} ${a.unit || ''}</span></div>
-      ${a.buyPrice ? `<div class="flex justify-between py-1 border-b border-[var(--border-subtle)]"><span class="text-[var(--text-muted)]">قیمت خرید هر واحد:</span><span class="number">${fmt(a.buyPrice)} تومان</span></div>` : ''}
-      ${pnl != null ? `<div class="flex justify-between py-1 border-b border-[var(--border-subtle)]"><span class="text-[var(--text-muted)]">سود / زیان کل:</span><span class="number font-bold ${pnl>=0?'text-emerald-400':'text-rose-400'}">${pnl>=0?'+':''}${fmt(pnl)} (${pnlPct>=0?'+':''}${pnlPct.toFixed(1)}%)</span></div>` : ''}
-      ${a.note ? `<div class="flex justify-between py-1 border-b border-[var(--border-subtle)]"><span class="text-[var(--text-muted)]">یادداشت:</span><span>${a.note}</span></div>` : ''}
+      <div class="flex justify-between py-1 border-b border-white/10"><span class="text-[var(--text-muted)]">مقدار موجودی:</span><span class="number font-semibold">${fmt(a.qty, 4)} ${a.unit || ''}</span></div>
+      ${a.buyPrice ? `<div class="flex justify-between py-1 border-b border-white/10"><span class="text-[var(--text-muted)]">قیمت خرید هر واحد:</span><span class="number">${fmt(a.buyPrice)} تومان</span></div>` : ''}
+      ${pnl != null ? `<div class="flex justify-between py-1 border-b border-white/10"><span class="text-[var(--text-muted)]">سود / زیان کل:</span><span class="number font-bold ${pnl>=0?'text-emerald-400':'text-rose-400'}">${pnl>=0?'+':''}${fmt(pnl)} (${pnlPct>=0?'+':''}${pnlPct.toFixed(1)}%)</span></div>` : ''}
+      ${a.note ? `<div class="flex justify-between py-1 border-b border-white/10"><span class="text-[var(--text-muted)]">یادداشت:</span><span>${a.note}</span></div>` : ''}
       <div class="flex justify-between py-1"><span class="text-[var(--text-muted)]">تاریخ ثبت:</span><span>${new Date(a.addedAt).toLocaleDateString('fa-IR')}</span></div>
     </div>
     <div class="flex gap-2 mt-4">
-      <button class="btn-action-pill flex-1 py-2 text-xs" onclick="closeModal('detail')">بستن</button>
-      <button class="btn-action-pill text-rose-400 border-rose-400/30 text-xs py-2 px-3" onclick="closeModal('detail');deleteAsset(${i})">حذف دارایی</button>
+      <button class="liquid-pill flex-1 py-2 text-xs" onclick="closeModal('detail')">بستن</button>
+      <button class="liquid-pill text-rose-400 border-rose-400/30 text-xs py-2 px-3.5" onclick="closeModal('detail');deleteAsset(${i})">حذف دارایی</button>
     </div>`;
   openModal('detail');
 }
@@ -1749,7 +1810,7 @@ async function pasteFromClipboard() {
     el$('smartPasteInput').value = text;
     previewExtractedPrices();
   } catch(e) {
-    toast('لطفاً متن را مستقیماً در کادر بچسبانید', 'gold');
+    toast('متن را مستقیماً در کادر بچسبانید', 'gold');
   }
 }
 
@@ -1774,9 +1835,9 @@ function previewExtractedPrices() {
 
   itemsBox.innerHTML = keys.map(k => {
     const def = PRICE_DEF[k] || { name: k, icon: '📌' };
-    return `<div class="bg-white/[0.04] p-2 rounded-lg border border-[var(--border-subtle)]">
+    return `<div class="liquid-glass p-2 rounded-xl">
       <div class="text-[10px] text-[var(--text-muted)]">${def.icon} ${def.name}</div>
-      <div class="number text-xs font-bold text-[var(--accent-main)] mt-0.5">${fmt(parsed[k])}</div>
+      <div class="number text-xs font-bold text-[var(--accent)] mt-0.5">${fmt(parsed[k])}</div>
     </div>`;
   }).join('');
 }
@@ -1792,7 +1853,7 @@ function applySmartPaste() {
   closeModal('smartPaste');
   renderAll();
   saveSnapshot();
-  toast('✅ نرخ‌های استخراج‌شده از تلگرام با موفقیت اعمال شدند', 'gold');
+  toast('✅ نرخ‌های تلگرام در سیستم ثبت شدند', 'gold');
 }
 
 function exportCSV() {
@@ -1800,24 +1861,25 @@ function exportCSV() {
   S.assets.forEach(a => rows.push([a.label, TC[a.type]?.label, a.qty, a.unit||'', assetVal(a), a.buyPrice||'-', new Date(a.addedAt).toLocaleDateString('fa-IR')]));
   const csv = '\uFEFF' + rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
-  a.download = 'my-wealth.csv'; a.click();
+  a.download = 'my-wealth-liquid.csv'; a.click();
 }
 
 function toast(msg, type='gold') {
   const t = document.createElement('div');
   t.textContent = msg;
   Object.assign(t.style, {
-    position:'fixed', top:'18px', left:'50%', transform:'translateX(-50%)',
-    background: 'var(--surface-elevated)', color: 'var(--text-main)',
-    border: '1px solid var(--accent-main)', padding:'9px 20px', borderRadius:'14px',
-    fontSize:'12px', fontWeight:'700', zIndex:'999', boxShadow:'0 12px 35px rgba(0,0,0,0.6)',
-    transition:'opacity 0.3s', fontFamily:'inherit', backdropFilter:'blur(16px)'
+    position:'fixed', top:'20px', left:'50%', transform:'translateX(-50%)',
+    background: 'var(--modal-bg)', color: 'var(--text-main)',
+    border: '1px solid var(--glass-border)', padding:'10px 22px', borderRadius:'9999px',
+    fontSize:'12px', fontWeight:'700', zIndex:'999', boxShadow:'0 16px 40px rgba(0,0,0,0.6)',
+    transition:'opacity 0.3s', fontFamily:'inherit', backdropFilter:'blur(28px)',
+    WebkitBackdropFilter:'blur(28px)'
   });
   document.body.appendChild(t);
   setTimeout(() => { t.style.opacity='0'; setTimeout(()=>t.remove(), 300); }, 3000);
 }
 
-// Service Worker for PWA
+// Service Worker Registration for PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').catch(() => {});
