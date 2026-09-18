@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" data-theme="midnight" data-density="comfortable">
+<html lang="fa" dir="rtl" data-theme="lavender" data-density="comfortable">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
-  <title>MY Wealth | Liquid Glass Edition</title>
+  <title>MY Wealth | Serene Glass Edition</title>
   
   <!-- PWA & Mobile Meta Tags -->
   <link rel="manifest" href="./manifest.json"/>
-  <meta name="theme-color" content="#060512"/>
+  <meta name="theme-color" content="#f0eef6"/>
   <meta name="mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
   <meta name="apple-mobile-web-app-title" content="MY Wealth"/>
   <link rel="apple-touch-icon" href="./icon-192.png"/>
   <link rel="icon" type="image/svg+xml" href="./icon.svg"/>
@@ -18,99 +18,155 @@
   <!-- Tailwind CSS -->
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
     
-    /* ==================== LIQUID GLASS THEMES ==================== */
-    [data-theme="midnight"] {
-      --bg-canvas: #060512;
-      --orb-1: #6366f1;
-      --orb-2: #ec4899;
-      --orb-3: #f59e0b;
-      --glass-base: rgba(255, 255, 255, 0.04);
-      --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(255, 255, 255, 0.01) 60%, rgba(255, 255, 255, 0.07) 100%);
-      --glass-border: rgba(255, 255, 255, 0.16);
-      --bevel-top: rgba(255, 255, 255, 0.65);
-      --text-main: #f8fafc;
-      --text-muted: rgba(255, 255, 255, 0.55);
-      --text-dim: rgba(255, 255, 255, 0.32);
-      --accent: #f5c842;
-      --accent-glow: rgba(245, 200, 66, 0.35);
-      --modal-bg: rgba(14, 11, 31, 0.88);
-      --chart-color: #f5c842;
+    /* ==================== SERENE PASTEL THEMES ==================== */
+    [data-theme="lavender"] {
+      --bg-canvas: #f0eef6;
+      --bg-mesh-1: #d8d0f0;
+      --bg-mesh-2: #f0d4e8;
+      --bg-mesh-3: #cce0f0;
+      --glass-bg: rgba(255, 255, 255, 0.55);
+      --glass-bg-strong: rgba(255, 255, 255, 0.72);
+      --glass-border: rgba(255, 255, 255, 0.50);
+      --glass-border-hover: rgba(255, 255, 255, 0.70);
+      --glass-shadow: rgba(120, 100, 160, 0.08);
+      --glass-inset: rgba(255, 255, 255, 0.75);
+      --text-primary: #2d2b3f;
+      --text-secondary: #6b6888;
+      --text-tertiary: #9e9bb5;
+      --accent: #8b7ec8;
+      --accent-light: rgba(139, 126, 200, 0.15);
+      --accent-glow: rgba(139, 126, 200, 0.25);
+      --accent-text: #ffffff;
+      --modal-overlay: rgba(120, 110, 150, 0.35);
+      --modal-bg: rgba(255, 255, 255, 0.88);
+      --chart-color: #8b7ec8;
+      --badge-up-bg: rgba(34, 197, 94, 0.10);
+      --badge-up-text: #16a34a;
+      --badge-up-border: rgba(34, 197, 94, 0.18);
+      --badge-down-bg: rgba(244, 63, 94, 0.08);
+      --badge-down-text: #e11d48;
+      --badge-down-border: rgba(244, 63, 94, 0.15);
     }
 
-    [data-theme="ocean"] {
-      --bg-canvas: #030b17;
-      --orb-1: #0284c7;
-      --orb-2: #06b6d4;
-      --orb-3: #10b981;
-      --glass-base: rgba(255, 255, 255, 0.05);
-      --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.04) 40%, rgba(255, 255, 255, 0.01) 60%, rgba(255, 255, 255, 0.08) 100%);
-      --glass-border: rgba(56, 189, 248, 0.22);
-      --bevel-top: rgba(255, 255, 255, 0.75);
-      --text-main: #f0f9ff;
-      --text-muted: rgba(240, 249, 255, 0.6);
-      --text-dim: rgba(240, 249, 255, 0.35);
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.4);
-      --modal-bg: rgba(5, 17, 34, 0.88);
-      --chart-color: #38bdf8;
+    [data-theme="rose"] {
+      --bg-canvas: #f5eeef;
+      --bg-mesh-1: #f0d0d8;
+      --bg-mesh-2: #e8d4f0;
+      --bg-mesh-3: #f0e0cc;
+      --glass-bg: rgba(255, 255, 255, 0.55);
+      --glass-bg-strong: rgba(255, 255, 255, 0.72);
+      --glass-border: rgba(255, 255, 255, 0.50);
+      --glass-border-hover: rgba(255, 255, 255, 0.70);
+      --glass-shadow: rgba(160, 100, 120, 0.08);
+      --glass-inset: rgba(255, 255, 255, 0.75);
+      --text-primary: #3f2d32;
+      --text-secondary: #886870;
+      --text-tertiary: #b59ba0;
+      --accent: #c4929a;
+      --accent-light: rgba(196, 146, 154, 0.15);
+      --accent-glow: rgba(196, 146, 154, 0.25);
+      --accent-text: #ffffff;
+      --modal-overlay: rgba(150, 110, 120, 0.35);
+      --modal-bg: rgba(255, 255, 255, 0.88);
+      --chart-color: #c4929a;
+      --badge-up-bg: rgba(34, 197, 94, 0.10);
+      --badge-up-text: #16a34a;
+      --badge-up-border: rgba(34, 197, 94, 0.18);
+      --badge-down-bg: rgba(244, 63, 94, 0.08);
+      --badge-down-text: #e11d48;
+      --badge-down-border: rgba(244, 63, 94, 0.15);
     }
 
-    [data-theme="emerald"] {
-      --bg-canvas: #020f08;
-      --orb-1: #059669;
-      --orb-2: #10b981;
-      --orb-3: #eab308;
-      --glass-base: rgba(255, 255, 255, 0.045);
-      --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(255, 255, 255, 0.01) 60%, rgba(255, 255, 255, 0.07) 100%);
-      --glass-border: rgba(16, 185, 129, 0.22);
-      --bevel-top: rgba(255, 255, 255, 0.7);
-      --text-main: #ecfdf5;
-      --text-muted: rgba(236, 253, 245, 0.6);
-      --text-dim: rgba(236, 253, 245, 0.32);
-      --accent: #10b981;
-      --accent-glow: rgba(16, 185, 129, 0.4);
-      --modal-bg: rgba(4, 21, 13, 0.88);
-      --chart-color: #10b981;
+    [data-theme="sage"] {
+      --bg-canvas: #ecf2ed;
+      --bg-mesh-1: #c8e0cc;
+      --bg-mesh-2: #d0e8e0;
+      --bg-mesh-3: #e0e8c8;
+      --glass-bg: rgba(255, 255, 255, 0.55);
+      --glass-bg-strong: rgba(255, 255, 255, 0.72);
+      --glass-border: rgba(255, 255, 255, 0.50);
+      --glass-border-hover: rgba(255, 255, 255, 0.70);
+      --glass-shadow: rgba(80, 130, 100, 0.08);
+      --glass-inset: rgba(255, 255, 255, 0.75);
+      --text-primary: #2b3f2e;
+      --text-secondary: #5e7a64;
+      --text-tertiary: #94b09a;
+      --accent: #7fa886;
+      --accent-light: rgba(127, 168, 134, 0.15);
+      --accent-glow: rgba(127, 168, 134, 0.25);
+      --accent-text: #ffffff;
+      --modal-overlay: rgba(90, 130, 100, 0.30);
+      --modal-bg: rgba(255, 255, 255, 0.88);
+      --chart-color: #7fa886;
+      --badge-up-bg: rgba(34, 197, 94, 0.10);
+      --badge-up-text: #16a34a;
+      --badge-up-border: rgba(34, 197, 94, 0.18);
+      --badge-down-bg: rgba(244, 63, 94, 0.08);
+      --badge-down-text: #e11d48;
+      --badge-down-border: rgba(244, 63, 94, 0.15);
     }
 
-    [data-theme="amethyst"] {
-      --bg-canvas: #0b0416;
-      --orb-1: #9333ea;
-      --orb-2: #ec4899;
-      --orb-3: #6366f1;
-      --glass-base: rgba(255, 255, 255, 0.05);
-      --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.04) 40%, rgba(255, 255, 255, 0.01) 60%, rgba(255, 255, 255, 0.08) 100%);
-      --glass-border: rgba(192, 132, 252, 0.24);
-      --bevel-top: rgba(255, 255, 255, 0.75);
-      --text-main: #faf5ff;
-      --text-muted: rgba(250, 245, 255, 0.6);
-      --text-dim: rgba(250, 245, 255, 0.35);
-      --accent: #c084fc;
-      --accent-glow: rgba(192, 132, 252, 0.4);
-      --modal-bg: rgba(18, 8, 36, 0.88);
-      --chart-color: #c084fc;
+    [data-theme="sand"] {
+      --bg-canvas: #f4f0ea;
+      --bg-mesh-1: #e8dcc8;
+      --bg-mesh-2: #f0e0d0;
+      --bg-mesh-3: #d8d0c0;
+      --glass-bg: rgba(255, 255, 255, 0.55);
+      --glass-bg-strong: rgba(255, 255, 255, 0.72);
+      --glass-border: rgba(255, 255, 255, 0.50);
+      --glass-border-hover: rgba(255, 255, 255, 0.70);
+      --glass-shadow: rgba(140, 120, 80, 0.08);
+      --glass-inset: rgba(255, 255, 255, 0.75);
+      --text-primary: #3f3628;
+      --text-secondary: #887860;
+      --text-tertiary: #b5a890;
+      --accent: #b8a07e;
+      --accent-light: rgba(184, 160, 126, 0.15);
+      --accent-glow: rgba(184, 160, 126, 0.25);
+      --accent-text: #ffffff;
+      --modal-overlay: rgba(140, 120, 90, 0.30);
+      --modal-bg: rgba(255, 255, 255, 0.88);
+      --chart-color: #b8a07e;
+      --badge-up-bg: rgba(34, 197, 94, 0.10);
+      --badge-up-text: #16a34a;
+      --badge-up-border: rgba(34, 197, 94, 0.18);
+      --badge-down-bg: rgba(244, 63, 94, 0.08);
+      --badge-down-text: #e11d48;
+      --badge-down-border: rgba(244, 63, 94, 0.15);
     }
 
-    [data-theme="light"] {
-      --bg-canvas: #f1f5f9;
-      --orb-1: #c7d2fe;
-      --orb-2: #fbcfe8;
-      --orb-3: #fed7aa;
-      --glass-base: rgba(255, 255, 255, 0.72);
-      --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 40%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.8) 100%);
-      --glass-border: rgba(255, 255, 255, 0.85);
-      --bevel-top: rgba(255, 255, 255, 0.95);
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --text-dim: #94a3b8;
-      --accent: #d97706;
-      --accent-glow: rgba(217, 119, 6, 0.25);
-      --modal-bg: rgba(255, 255, 255, 0.92);
-      --chart-color: #d97706;
+    [data-theme="night"] {
+      --bg-canvas: #1a1a2e;
+      --bg-mesh-1: #2a2548;
+      --bg-mesh-2: #1e2a3a;
+      --bg-mesh-3: #282040;
+      --glass-bg: rgba(255, 255, 255, 0.06);
+      --glass-bg-strong: rgba(255, 255, 255, 0.10);
+      --glass-border: rgba(255, 255, 255, 0.10);
+      --glass-border-hover: rgba(255, 255, 255, 0.18);
+      --glass-shadow: rgba(0, 0, 0, 0.20);
+      --glass-inset: rgba(255, 255, 255, 0.12);
+      --text-primary: #e2e0f0;
+      --text-secondary: #9a98b8;
+      --text-tertiary: #6a688a;
+      --accent: #8b9dc3;
+      --accent-light: rgba(139, 157, 195, 0.18);
+      --accent-glow: rgba(139, 157, 195, 0.25);
+      --accent-text: #1a1a2e;
+      --modal-overlay: rgba(10, 10, 25, 0.55);
+      --modal-bg: rgba(30, 30, 55, 0.92);
+      --chart-color: #8b9dc3;
+      --badge-up-bg: rgba(34, 197, 94, 0.14);
+      --badge-up-text: #4ade80;
+      --badge-up-border: rgba(34, 197, 94, 0.25);
+      --badge-down-bg: rgba(244, 63, 94, 0.12);
+      --badge-down-text: #fb7185;
+      --badge-down-border: rgba(244, 63, 94, 0.20);
     }
 
+    /* ==================== BASE RESET ==================== */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -122,123 +178,121 @@
       font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-canvas);
       min-height: 100vh;
-      color: var(--text-main);
+      color: var(--text-primary);
       padding-bottom: 96px;
       overflow-x: hidden;
       position: relative;
-      transition: background-color 0.4s ease, color 0.4s ease;
+      transition: background-color 0.5s ease, color 0.5s ease;
     }
 
     @media (min-width: 768px) {
       body { padding-bottom: 40px; }
     }
 
-    /* ==================== FLUID AMBIENT AURORA MESH ==================== */
-    .ambient-aurora-container {
+    /* ==================== SOFT AMBIENT MESH BACKGROUND ==================== */
+    .ambient-mesh-container {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
       overflow: hidden;
     }
-    .aurora-orb {
+    .mesh-blob {
       position: absolute;
       border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.35;
-      animation: floatMotion 18s ease-in-out infinite alternate;
+      filter: blur(120px);
+      opacity: 0.30;
       will-change: transform;
+      animation: meshDrift 45s ease-in-out infinite alternate;
     }
-    .aurora-orb-1 {
-      width: 480px;
-      height: 480px;
-      background: var(--orb-1);
-      top: -120px;
-      left: -80px;
-      animation-duration: 22s;
+    .mesh-blob-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--bg-mesh-1);
+      top: -15%;
+      left: -10%;
+      animation-duration: 50s;
     }
-    .aurora-orb-2 {
-      width: 420px;
-      height: 420px;
-      background: var(--orb-2);
-      top: 35%;
-      right: -100px;
-      animation-duration: 26s;
-      animation-delay: -5s;
+    .mesh-blob-2 {
+      width: 500px;
+      height: 500px;
+      background: var(--bg-mesh-2);
+      top: 40%;
+      right: -12%;
+      animation-duration: 55s;
+      animation-delay: -12s;
     }
-    .aurora-orb-3 {
-      width: 520px;
-      height: 520px;
-      background: var(--orb-3);
-      bottom: -150px;
-      left: 15%;
-      animation-duration: 20s;
-      animation-delay: -10s;
-      opacity: 0.28;
+    .mesh-blob-3 {
+      width: 550px;
+      height: 550px;
+      background: var(--bg-mesh-3);
+      bottom: -12%;
+      left: 20%;
+      animation-duration: 48s;
+      animation-delay: -25s;
+      opacity: 0.22;
     }
 
-    @keyframes floatMotion {
+    @keyframes meshDrift {
       0%   { transform: translate(0, 0) scale(1); }
-      50%  { transform: translate(45px, 65px) scale(1.1); }
-      100% { transform: translate(-35px, -45px) scale(0.95); }
+      33%  { transform: translate(30px, 20px) scale(1.04); }
+      66%  { transform: translate(-20px, 35px) scale(0.98); }
+      100% { transform: translate(15px, -15px) scale(1.02); }
     }
 
-    /* ==================== LIQUID GLASS CORE CLASSES ==================== */
-    .liquid-glass {
-      background: var(--glass-sheen), var(--glass-base);
-      backdrop-filter: blur(36px) saturate(210%);
-      -webkit-backdrop-filter: blur(36px) saturate(210%);
+    /* ==================== FROSTED GLASS CARD ==================== */
+    .frost-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
       border: 1px solid var(--glass-border);
-      box-shadow: 
-        inset 0 1px 1px 0 var(--bevel-top),
-        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25),
-        0 16px 40px -10px rgba(0, 0, 0, 0.45);
+      box-shadow:
+        0 4px 30px var(--glass-shadow),
+        inset 0 1px 0 var(--glass-inset);
       border-radius: 24px;
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
       position: relative;
       z-index: 1;
     }
 
-    .liquid-glass:hover {
-      border-color: rgba(255, 255, 255, 0.32);
-      box-shadow: 
-        inset 0 1.5px 2px 0 var(--bevel-top),
-        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25),
-        0 22px 50px -12px rgba(0, 0, 0, 0.55);
+    .frost-card:hover {
+      border-color: var(--glass-border-hover);
+      box-shadow:
+        0 8px 40px var(--glass-shadow),
+        inset 0 1px 0 var(--glass-inset);
     }
 
     /* Density Settings */
-    [data-density="compact"] .liquid-card-pad {
+    [data-density="compact"] .frost-pad {
       padding: 0.85rem !important;
       border-radius: 18px !important;
     }
-    [data-density="compact"] .liquid-asset-pad {
+    [data-density="compact"] .frost-asset-pad {
       padding: 0.55rem 0.85rem !important;
       border-radius: 14px !important;
       margin-bottom: 5px !important;
     }
-    [data-density="comfortable"] .liquid-card-pad {
+    [data-density="comfortable"] .frost-pad {
       padding: 1.35rem !important;
       border-radius: 26px !important;
     }
-    [data-density="comfortable"] .liquid-asset-pad {
+    [data-density="comfortable"] .frost-asset-pad {
       padding: 0.85rem 1.05rem !important;
       border-radius: 18px !important;
       margin-bottom: 7px !important;
     }
 
-    /* Liquid Glass Capsule Pill */
-    .liquid-pill {
-      background: var(--glass-sheen), var(--glass-base);
-      backdrop-filter: blur(28px) saturate(200%);
-      -webkit-backdrop-filter: blur(28px) saturate(200%);
+    /* ==================== SOFT PILL BUTTONS ==================== */
+    .soft-pill {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px) saturate(130%);
+      -webkit-backdrop-filter: blur(16px) saturate(130%);
       border: 1px solid var(--glass-border);
-      box-shadow: 
-        inset 0 1px 1px 0 var(--bevel-top),
-        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.2),
-        0 6px 18px -4px rgba(0, 0, 0, 0.35);
+      box-shadow:
+        0 2px 10px var(--glass-shadow),
+        inset 0 1px 0 var(--glass-inset);
       border-radius: 9999px;
-      color: var(--text-main);
+      color: var(--text-primary);
       padding: 7px 14px;
       font-size: 12px;
       font-weight: 600;
@@ -248,72 +302,68 @@
       justify-content: center;
       gap: 6px;
       white-space: nowrap;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .liquid-pill:hover {
-      transform: translateY(-1.5px);
-      box-shadow: 
-        inset 0 1.5px 1.5px 0 var(--bevel-top),
-        0 10px 24px -5px rgba(0, 0, 0, 0.45);
-      border-color: rgba(255, 255, 255, 0.4);
+    .soft-pill:hover {
+      transform: translateY(-1px);
+      border-color: var(--glass-border-hover);
+      box-shadow: 0 4px 16px var(--glass-shadow);
     }
 
-    .liquid-pill:active {
+    .soft-pill:active {
       transform: scale(0.97);
     }
 
-    .liquid-pill.active {
+    .soft-pill.active {
       background: var(--accent);
-      color: #060512;
+      color: var(--accent-text);
       border-color: transparent;
-      box-shadow: 0 4px 20px var(--accent-glow);
+      box-shadow: 0 4px 18px var(--accent-glow);
     }
 
-    /* Primary Gold Accent Action Button */
-    .btn-liquid-primary {
-      background: linear-gradient(135deg, #f5c842 0%, #ea580c 100%);
-      color: #060512;
+    /* Primary Accent CTA */
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-text);
       border: none;
       border-radius: 9999px;
       padding: 9px 18px;
       font-family: inherit;
-      font-weight: 800;
+      font-weight: 700;
       font-size: 12px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
-      box-shadow: 
-        inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.7),
-        0 8px 24px -4px var(--accent-glow);
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow:
+        0 4px 18px var(--accent-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .btn-liquid-primary:hover {
-      transform: translateY(-1.5px);
-      box-shadow: 0 12px 28px -4px var(--accent-glow);
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px var(--accent-glow);
       filter: brightness(1.05);
     }
 
-    .btn-liquid-primary:active {
+    .btn-primary:active {
       transform: scale(0.97);
     }
 
-    /* Liquid Island Header */
-    .liquid-island-header {
-      background: var(--glass-sheen), var(--glass-base);
-      backdrop-filter: blur(40px) saturate(220%);
-      -webkit-backdrop-filter: blur(40px) saturate(220%);
+    /* ==================== FROSTED HEADER ==================== */
+    .frost-header {
+      background: var(--glass-bg-strong);
+      backdrop-filter: blur(28px) saturate(150%);
+      -webkit-backdrop-filter: blur(28px) saturate(150%);
       border-bottom: 1px solid var(--glass-border);
-      box-shadow: 
-        inset 0 1px 1px 0 var(--bevel-top),
-        0 8px 32px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 2px 20px var(--glass-shadow);
     }
 
-    /* Floating Island Mobile Nav */
-    .liquid-island-nav {
+    /* ==================== FLOATING ISLAND NAV ==================== */
+    .frost-island-nav {
       position: fixed;
       bottom: 14px;
       left: 14px;
@@ -321,15 +371,14 @@
       margin: 0 auto;
       max-width: 440px;
       height: 62px;
-      background: var(--glass-sheen), var(--glass-base);
-      backdrop-filter: blur(40px) saturate(230%);
-      -webkit-backdrop-filter: blur(40px) saturate(230%);
+      background: var(--glass-bg-strong);
+      backdrop-filter: blur(30px) saturate(160%);
+      -webkit-backdrop-filter: blur(30px) saturate(160%);
       border: 1px solid var(--glass-border);
       border-radius: 9999px;
-      box-shadow: 
-        inset 0 1.5px 2px 0 var(--bevel-top),
-        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25),
-        0 20px 50px -10px rgba(0, 0, 0, 0.6);
+      box-shadow:
+        0 8px 32px var(--glass-shadow),
+        inset 0 1px 0 var(--glass-inset);
       display: flex;
       align-items: center;
       justify-content: space-around;
@@ -337,12 +386,12 @@
       padding: 0 8px;
     }
 
-    .nav-pill-item {
+    .nav-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: var(--text-muted);
+      color: var(--text-tertiary);
       font-size: 10px;
       font-weight: 600;
       gap: 2px;
@@ -352,66 +401,69 @@
       flex: 1;
       padding: 6px 0;
       border-radius: 9999px;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .nav-pill-item.active {
+    .nav-item.active {
       color: var(--accent);
       transform: translateY(-2px);
     }
 
-    .nav-pill-item.active .nav-icon {
-      filter: drop-shadow(0 2px 8px var(--accent-glow));
-    }
-
-    .nav-icon {
+    .nav-item .nav-icon {
       font-size: 17px;
       transition: transform 0.2s ease;
     }
 
-    /* Badges */
-    .liquid-badge {
+    /* ==================== BADGES ==================== */
+    .serene-badge {
       font-size: 10px;
       padding: 2px 8px;
       border-radius: 9999px;
-      font-weight: 700;
+      font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 3px;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
     }
-    .badge-up { background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-    .badge-down { background: rgba(244, 63, 94, 0.18); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
+    .badge-up {
+      background: var(--badge-up-bg);
+      color: var(--badge-up-text);
+      border: 1px solid var(--badge-up-border);
+    }
+    .badge-down {
+      background: var(--badge-down-bg);
+      color: var(--badge-down-text);
+      border: 1px solid var(--badge-down-border);
+    }
 
-    /* Inputs */
+    /* ==================== INPUTS ==================== */
     input, select, textarea {
-      background: var(--glass-base);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--glass-border);
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
       border-radius: 14px;
       padding: 10px 14px;
-      color: var(--text-main);
+      color: var(--text-primary);
       font-family: inherit;
       font-size: 13px;
       outline: none;
       width: 100%;
       direction: rtl;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.25s, box-shadow 0.25s;
     }
 
     input:focus, select:focus, textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
+      box-shadow: 0 0 0 3px var(--accent-light);
     }
 
     select option {
       background: var(--bg-canvas);
-      color: var(--text-main);
+      color: var(--text-primary);
     }
 
-    /* Privacy Mode Blur */
+    /* ==================== PRIVACY MODE ==================== */
     .privacy-active .privacy-sensitive {
       filter: blur(10px) !important;
       user-select: none !important;
@@ -424,13 +476,13 @@
       letter-spacing: -0.3px;
     }
 
-    /* Modals & Bottom Sheets */
+    /* ==================== MODALS & BOTTOM SHEETS ==================== */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.72);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: var(--modal-overlay);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 100;
       display: flex;
       align-items: center;
@@ -440,19 +492,19 @@
 
     .modal-box {
       background: var(--modal-bg);
-      backdrop-filter: blur(40px) saturate(220%);
-      -webkit-backdrop-filter: blur(40px) saturate(220%);
+      backdrop-filter: blur(40px) saturate(160%);
+      -webkit-backdrop-filter: blur(40px) saturate(160%);
       border: 1px solid var(--glass-border);
-      box-shadow: 
-        inset 0 1.5px 1.5px 0 var(--bevel-top),
-        0 30px 70px rgba(0, 0, 0, 0.7);
+      box-shadow:
+        0 20px 60px var(--glass-shadow),
+        inset 0 1px 0 var(--glass-inset);
       border-radius: 28px;
       padding: 24px;
       width: 100%;
       max-width: 500px;
       max-height: 90vh;
       overflow-y: auto;
-      color: var(--text-main);
+      color: var(--text-primary);
     }
 
     @media (max-width: 640px) {
@@ -467,14 +519,14 @@
         border-top-left-radius: 32px;
         border-top-right-radius: 32px;
         max-height: 88vh;
-        animation: slideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       }
       .sheet-handle {
         width: 42px;
         height: 5px;
         border-radius: 3px;
-        background: var(--glass-border);
-        box-shadow: inset 0 1px 1px var(--bevel-top);
+        background: var(--text-tertiary);
+        opacity: 0.4;
         margin: 0 auto 16px auto;
       }
     }
@@ -484,49 +536,56 @@
       to { transform: translateY(0); }
     }
 
-    /* Live Dot */
-    .live-dot-glow {
+    /* Live Indicator */
+    .live-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 10px #10b981;
-      animation: pulseGlow 2s infinite;
+      background: var(--badge-up-text);
+      box-shadow: 0 0 8px var(--badge-up-text);
+      animation: pulseSoft 2.5s infinite;
     }
-    @keyframes pulseGlow {
+    @keyframes pulseSoft {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+      50% { opacity: 0.45; transform: scale(0.85); }
     }
 
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Category color dots */
+    .cat-gold   { color: #c4a24e; }
+    .cat-crypto { color: #d47a3a; }
+    .cat-usd    { color: #5a9ebe; }
+    .cat-stock  { color: #5aaa7a; }
+    .cat-other  { color: #8a82b8; }
   </style>
 </head>
 <body>
 
-<!-- FLUID AMBIENT AURORA MESH LAYER (Moving background lights) -->
-<div class="ambient-aurora-container" aria-hidden="true">
-  <div class="aurora-orb aurora-orb-1"></div>
-  <div class="aurora-orb aurora-orb-2"></div>
-  <div class="aurora-orb aurora-orb-3"></div>
+<!-- SOFT AMBIENT MESH BACKGROUND -->
+<div class="ambient-mesh-container" aria-hidden="true">
+  <div class="mesh-blob mesh-blob-1"></div>
+  <div class="mesh-blob mesh-blob-2"></div>
+  <div class="mesh-blob mesh-blob-3"></div>
 </div>
 
-<!-- TOP LIQUID ISLAND HEADER -->
-<header class="sticky top-0 z-40 liquid-island-header">
+<!-- FROSTED HEADER -->
+<header class="sticky top-0 z-40 frost-header">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
     
     <!-- Brand -->
     <div class="flex items-center gap-2.5">
-      <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-amber-400 via-orange-500 to-rose-500 flex items-center justify-center text-base shadow-lg shadow-amber-500/25 border border-white/40">
+      <div class="w-9 h-9 rounded-2xl flex items-center justify-center text-base shadow-sm border border-white/40" style="background: var(--accent-light);">
         💎
       </div>
       <div>
         <div class="flex items-center gap-1.5">
-          <h1 class="font-extrabold text-sm tracking-tight text-[var(--text-main)]">MY Wealth</h1>
-          <span class="text-[9px] px-2 py-0.5 rounded-full liquid-pill text-[var(--accent)] font-mono font-bold">Liquid Glass</span>
+          <h1 class="font-bold text-sm tracking-tight" style="color: var(--text-primary);">MY Wealth</h1>
+          <span class="text-[9px] px-2 py-0.5 rounded-full soft-pill font-mono font-semibold" style="color: var(--accent);">Serene</span>
         </div>
-        <div class="flex items-center gap-1.5 text-[9px] text-[var(--text-muted)]">
-          <span class="live-dot-glow"></span>
+        <div class="flex items-center gap-1.5 text-[9px]" style="color: var(--text-secondary);">
+          <span class="live-dot"></span>
           <span id="headerLiveStatus">نرخ زنده و بدون قطعی</span>
         </div>
       </div>
@@ -534,110 +593,110 @@
 
     <!-- Quick Action Pills -->
     <div class="flex items-center gap-2">
-      <!-- Privacy Toggle (Eye) -->
-      <button onclick="togglePrivacyMode()" id="btnPrivacyToggle" class="liquid-pill text-xs px-3 py-1.5" title="حالت حریم خصوصی (پوشاندن مبالغ)">
+      <!-- Privacy Toggle -->
+      <button onclick="togglePrivacyMode()" id="btnPrivacyToggle" class="soft-pill text-xs px-3 py-1.5" title="حالت حریم خصوصی">
         <span id="privacyEyeIcon">👁️</span>
         <span class="hidden sm:inline" id="privacyTextLabel">مخفی</span>
       </button>
 
       <!-- UI Customizer -->
-      <button onclick="openModal('uiCustomizer')" class="liquid-pill text-xs px-3 py-1.5 text-[var(--accent)]" title="تنظیمات ظاهر و تم">
+      <button onclick="openModal('uiCustomizer')" class="soft-pill text-xs px-3 py-1.5" style="color: var(--accent);" title="تنظیمات ظاهر">
         <span>🎨</span>
         <span class="hidden sm:inline">ظاهر</span>
       </button>
 
       <!-- Smart Telegram Paste -->
-      <button onclick="openModal('smartPaste')" class="liquid-pill text-xs px-3 py-1.5 text-sky-400" title="استخراج سریع از تلگرام">
+      <button onclick="openModal('smartPaste')" class="soft-pill text-xs px-3 py-1.5" style="color: #5a9ebe;" title="استخراج سریع از تلگرام">
         <span>📲</span>
         <span class="hidden sm:inline">تلگرام</span>
       </button>
 
-      <!-- Add Asset Button -->
-      <button onclick="openModal('addAsset')" class="btn-liquid-primary text-xs px-3.5 py-1.5">
+      <!-- Add Asset -->
+      <button onclick="openModal('addAsset')" class="btn-primary text-xs px-3.5 py-1.5">
         <span>+</span>
         <span>دارایی</span>
       </button>
     </div>
   </div>
 
-  <!-- Realtime Market Ticker (Collapsible Liquid Strip) -->
-  <div id="widget-ticker" class="bg-black/15 border-t border-white/[0.06] py-1 px-3 overflow-hidden">
+  <!-- Realtime Market Ticker -->
+  <div id="widget-ticker" style="background: var(--glass-bg); border-top: 1px solid var(--glass-border);" class="py-1 px-3 overflow-hidden">
     <div class="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar items-center" id="tickerItems">
       <!-- Live ticker items injected by JS -->
     </div>
   </div>
 </header>
 
-<!-- MAIN CONTAINER (BENTO GRID WITH LIQUID GLASS MATERIAL) -->
+<!-- MAIN CONTAINER -->
 <main class="max-w-6xl mx-auto px-4 pt-4 space-y-4 relative z-10">
 
-  <!-- ==================== BENTO SECTION 1: HERO & ALLOCATION ==================== -->
+  <!-- ==================== SECTION 1: HERO & ALLOCATION ==================== -->
   <section class="grid grid-cols-1 lg:grid-cols-3 gap-4" id="bento-hero-section">
     
-    <!-- Hero Net Worth Card (2 Cols on Desktop) -->
-    <div class="liquid-glass liquid-card-pad lg:col-span-2 flex flex-col justify-between" id="widget-hero">
+    <!-- Hero Net Worth Card -->
+    <div class="frost-card frost-pad lg:col-span-2 flex flex-col justify-between" id="widget-hero">
       <div>
         <div class="flex items-center justify-between mb-1">
-          <div class="text-xs text-[var(--text-muted)] flex items-center gap-1.5 font-medium">
+          <div class="text-xs flex items-center gap-1.5 font-medium" style="color: var(--text-secondary);">
             <span>💼 ارزش خالص کل دارایی‌ها (دارایی − بدهی)</span>
           </div>
-          <button onclick="togglePrivacyMode()" class="liquid-pill text-[10px] py-1 px-2.5">
+          <button onclick="togglePrivacyMode()" class="soft-pill text-[10px] py-1 px-2.5">
             <span>حالت حریم خصوصی</span>
           </button>
         </div>
 
-        <!-- Big Liquid Net Worth Counter -->
+        <!-- Big Net Worth -->
         <div class="flex items-baseline gap-2.5 mt-1.5">
-          <span class="number text-3xl sm:text-5xl font-black text-[var(--accent)] privacy-sensitive drop-shadow-sm" id="heroNetWorth">—</span>
-          <span class="text-xs text-[var(--text-muted)] font-semibold" id="currencyUnitLabel">تومان</span>
+          <span class="number text-3xl sm:text-5xl font-bold privacy-sensitive" style="color: var(--accent);" id="heroNetWorth">—</span>
+          <span class="text-xs font-medium" style="color: var(--text-secondary);" id="currencyUnitLabel">تومان</span>
         </div>
 
         <div class="flex items-center gap-2 mt-3">
-          <span class="liquid-badge badge-up" id="heroTotalChange">+۰.۰٪</span>
-          <span class="text-[11px] text-[var(--text-muted)]">نسبت به بازه زمانی قبلی</span>
+          <span class="serene-badge badge-up" id="heroTotalChange">+۰.۰٪</span>
+          <span class="text-[11px]" style="color: var(--text-secondary);">نسبت به بازه زمانی قبلی</span>
         </div>
       </div>
 
       <!-- Quick Metrics Strip -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-4 mt-4 border-t border-white/[0.08]">
-        <div class="liquid-glass p-2.5 text-right rounded-xl">
-          <div class="text-[10px] text-[var(--text-muted)]">دارایی نقد 💧</div>
-          <div class="number text-xs sm:text-sm font-bold text-emerald-400 mt-0.5 privacy-sensitive" id="quickLiquid">—</div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-4 mt-4" style="border-top: 1px solid var(--glass-border);">
+        <div class="frost-card p-2.5 text-right rounded-xl">
+          <div class="text-[10px]" style="color: var(--text-secondary);">دارایی نقد 💧</div>
+          <div class="number text-xs sm:text-sm font-semibold mt-0.5 privacy-sensitive" style="color: var(--badge-up-text);" id="quickLiquid">—</div>
         </div>
-        <div class="liquid-glass p-2.5 text-right rounded-xl">
-          <div class="text-[10px] text-[var(--text-muted)]">غیرنقد 🔒</div>
-          <div class="number text-xs sm:text-sm font-bold text-violet-400 mt-0.5 privacy-sensitive" id="quickIlliquid">—</div>
+        <div class="frost-card p-2.5 text-right rounded-xl">
+          <div class="text-[10px]" style="color: var(--text-secondary);">غیرنقد 🔒</div>
+          <div class="number text-xs sm:text-sm font-semibold mt-0.5 privacy-sensitive" style="color: #8a82b8;" id="quickIlliquid">—</div>
         </div>
-        <div class="liquid-glass p-2.5 text-right rounded-xl">
-          <div class="text-[10px] text-[var(--text-muted)]">کل بدهی‌ها 💸</div>
-          <div class="number text-xs sm:text-sm font-bold text-rose-400 mt-0.5 privacy-sensitive" id="quickDebt">—</div>
+        <div class="frost-card p-2.5 text-right rounded-xl">
+          <div class="text-[10px]" style="color: var(--text-secondary);">کل بدهی‌ها 💸</div>
+          <div class="number text-xs sm:text-sm font-semibold mt-0.5 privacy-sensitive" style="color: var(--badge-down-text);" id="quickDebt">—</div>
         </div>
-        <div class="liquid-glass p-2.5 text-right rounded-xl">
-          <div class="text-[10px] text-[var(--text-muted)]">سود/زیان کل 💹</div>
-          <div class="number text-xs sm:text-sm font-bold mt-0.5 privacy-sensitive" id="quickPnl">—</div>
+        <div class="frost-card p-2.5 text-right rounded-xl">
+          <div class="text-[10px]" style="color: var(--text-secondary);">سود/زیان کل 💹</div>
+          <div class="number text-xs sm:text-sm font-semibold mt-0.5 privacy-sensitive" id="quickPnl">—</div>
         </div>
       </div>
     </div>
 
-    <!-- Allocation Donut Hub (1 Col) -->
-    <div class="liquid-glass liquid-card-pad flex flex-col items-center justify-between" id="widget-allocation">
+    <!-- Allocation Donut -->
+    <div class="frost-card frost-pad flex flex-col items-center justify-between" id="widget-allocation">
       <div class="flex items-center justify-between w-full mb-1">
-        <div class="text-xs font-bold text-[var(--text-main)]">ترکیب سبد دارایی</div>
-        <span class="liquid-pill text-[10px] py-0.5 px-2" id="totalAssetCountBadge">۰ قلم</span>
+        <div class="text-xs font-bold" style="color: var(--text-primary);">ترکیب سبد دارایی</div>
+        <span class="soft-pill text-[10px] py-0.5 px-2" id="totalAssetCountBadge">۰ قلم</span>
       </div>
 
       <div class="relative w-32 h-32 my-1.5">
         <svg viewBox="0 0 100 100" class="w-32 h-32 -rotate-90">
-          <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="13"/>
-          <circle id="d-gold"   cx="50" cy="50" r="38" fill="none" stroke="#f5c842" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
-          <circle id="d-crypto" cx="50" cy="50" r="38" fill="none" stroke="#f97316" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
-          <circle id="d-usd"    cx="50" cy="50" r="38" fill="none" stroke="#38bdf8" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
-          <circle id="d-stock"  cx="50" cy="50" r="38" fill="none" stroke="#10b981" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
-          <circle id="d-other"  cx="50" cy="50" r="38" fill="none" stroke="#818cf8" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(0,0,0,0.04)" stroke-width="13"/>
+          <circle id="d-gold"   cx="50" cy="50" r="38" fill="none" stroke="#c4a24e" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
+          <circle id="d-crypto" cx="50" cy="50" r="38" fill="none" stroke="#d47a3a" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
+          <circle id="d-usd"    cx="50" cy="50" r="38" fill="none" stroke="#5a9ebe" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
+          <circle id="d-stock"  cx="50" cy="50" r="38" fill="none" stroke="#5aaa7a" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
+          <circle id="d-other"  cx="50" cy="50" r="38" fill="none" stroke="#8a82b8" stroke-width="12" stroke-dasharray="0 238" class="transition-all duration-700"/>
         </svg>
         <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <span class="text-[9px] text-[var(--text-muted)]">کل دارایی</span>
-          <span class="number text-[11px] font-bold text-[var(--text-main)] privacy-sensitive" id="donutTotalText">—</span>
+          <span class="text-[9px]" style="color: var(--text-secondary);">کل دارایی</span>
+          <span class="number text-[11px] font-bold privacy-sensitive" style="color: var(--text-primary);" id="donutTotalText">—</span>
         </div>
       </div>
 
@@ -648,31 +707,31 @@
 
   </section>
 
-  <!-- ==================== BENTO SECTION 2: CHARTS & MARKET ==================== -->
+  <!-- ==================== SECTION 2: CHARTS & MARKET ==================== -->
   <section class="grid grid-cols-1 lg:grid-cols-3 gap-4">
     
-    <!-- Portfolio History Chart (2 Cols) -->
-    <div class="liquid-glass liquid-card-pad lg:col-span-2 flex flex-col justify-between" id="widget-chart">
+    <!-- Portfolio History Chart -->
+    <div class="frost-card frost-pad lg:col-span-2 flex flex-col justify-between" id="widget-chart">
       <div class="flex items-center justify-between mb-3">
-        <div class="text-xs font-bold text-[var(--text-main)] flex items-center gap-1.5">
+        <div class="text-xs font-bold flex items-center gap-1.5" style="color: var(--text-primary);">
           <span>📈 نمودار تغییرات ارزش زمانی</span>
         </div>
         <div class="flex gap-1.5">
-          <button class="liquid-pill active text-[10px] px-2.5 py-1" onclick="setChartRange('1d', this)">۱ روز</button>
-          <button class="liquid-pill text-[10px] px-2.5 py-1" onclick="setChartRange('7d', this)">۷ روز</button>
-          <button class="liquid-pill text-[10px] px-2.5 py-1" onclick="setChartRange('30d', this)">۳۰ روز</button>
+          <button class="soft-pill active text-[10px] px-2.5 py-1" onclick="setChartRange('1d', this)">۱ روز</button>
+          <button class="soft-pill text-[10px] px-2.5 py-1" onclick="setChartRange('7d', this)">۷ روز</button>
+          <button class="soft-pill text-[10px] px-2.5 py-1" onclick="setChartRange('30d', this)">۳۰ روز</button>
         </div>
       </div>
       <canvas id="historyChart" style="width:100%;height:150px;" width="650" height="150"></canvas>
     </div>
 
-    <!-- Live Market Snapshot Cards (1 Col) -->
-    <div class="liquid-glass liquid-card-pad flex flex-col justify-between" id="widget-market-snap">
+    <!-- Live Market Snapshot -->
+    <div class="frost-card frost-pad flex flex-col justify-between" id="widget-market-snap">
       <div class="flex items-center justify-between mb-2">
-        <div class="text-xs font-bold text-[var(--text-main)] flex items-center gap-1.5">
+        <div class="text-xs font-bold flex items-center gap-1.5" style="color: var(--text-primary);">
           <span>⚡ تابلو لحظه‌ای بازار</span>
         </div>
-        <button onclick="fetchAllPrices(true)" class="liquid-pill text-[10px] py-0.5 px-2 text-[var(--accent)]">تازه سازی 🔄</button>
+        <button onclick="fetchAllPrices(true)" class="soft-pill text-[10px] py-0.5 px-2" style="color: var(--accent);">تازه سازی 🔄</button>
       </div>
 
       <div class="space-y-2 flex-1 mt-1" id="marketSnapItems">
@@ -682,35 +741,33 @@
 
   </section>
 
-  <!-- ==================== BENTO SECTION 3: ASSET HUB ==================== -->
-  <section class="liquid-glass liquid-card-pad" id="widget-assets-hub">
-    <!-- Header with category filter capsules -->
+  <!-- ==================== SECTION 3: ASSET HUB ==================== -->
+  <section class="frost-card frost-pad" id="widget-assets-hub">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <div>
-        <h2 class="text-sm font-extrabold text-[var(--text-main)] flex items-center gap-2">
+        <h2 class="text-sm font-bold flex items-center gap-2" style="color: var(--text-primary);">
           <span>🏦</span>
           <span>مدیریت دارایی‌ها (پورتفولیو)</span>
         </h2>
-        <div class="text-[11px] text-[var(--text-muted)]" id="assetSubtitleDetail">پایش زنده ارزش و سود/زیان هر قلم دارایی</div>
+        <div class="text-[11px]" style="color: var(--text-secondary);" id="assetSubtitleDetail">پایش زنده ارزش و سود/زیان هر قلم دارایی</div>
       </div>
 
-      <!-- Action buttons -->
       <div class="flex items-center gap-2">
-        <button onclick="exportCSV()" class="liquid-pill text-xs px-3 py-1.5">📥 خروجی CSV</button>
-        <button onclick="window.print()" class="liquid-pill text-xs px-3 py-1.5 hidden sm:inline-flex">🖨️ چاپ</button>
-        <button onclick="openModal('addAsset')" class="btn-liquid-primary text-xs px-3.5 py-1.5">+ دارایی جدید</button>
+        <button onclick="exportCSV()" class="soft-pill text-xs px-3 py-1.5">📥 خروجی CSV</button>
+        <button onclick="window.print()" class="soft-pill text-xs px-3 py-1.5 hidden sm:inline-flex">🖨️ چاپ</button>
+        <button onclick="openModal('addAsset')" class="btn-primary text-xs px-3.5 py-1.5">+ دارایی جدید</button>
       </div>
     </div>
 
-    <!-- Category Filter Bar (Liquid Capsule Pills) -->
+    <!-- Category Filter Bar -->
     <div class="flex gap-2 overflow-x-auto whitespace-nowrap pb-2 mb-3.5 no-scrollbar" id="categoryFilterBar">
-      <button class="liquid-pill active text-xs py-1.5 px-3.5" onclick="filterAssetCategory('all', this)">همه دارایی‌ها</button>
-      <button class="liquid-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('gold', this)">🥇 طلا و سکه</button>
-      <button class="liquid-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('usd', this)">💵 ارز و اسکناس</button>
-      <button class="liquid-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('crypto', this)">🪙 رمزارز</button>
-      <button class="liquid-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('stock', this)">📈 سهام بورس</button>
-      <button class="liquid-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('realty', this)">🏠 املاک</button>
-      <button class="liquid-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('cash', this)">💴 حساب بانکی</button>
+      <button class="soft-pill active text-xs py-1.5 px-3.5" onclick="filterAssetCategory('all', this)">همه دارایی‌ها</button>
+      <button class="soft-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('gold', this)">🥇 طلا و سکه</button>
+      <button class="soft-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('usd', this)">💵 ارز و اسکناس</button>
+      <button class="soft-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('crypto', this)">🪙 رمزارز</button>
+      <button class="soft-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('stock', this)">📈 سهام بورس</button>
+      <button class="soft-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('realty', this)">🏠 املاک</button>
+      <button class="soft-pill text-xs py-1.5 px-3.5" onclick="filterAssetCategory('cash', this)">💴 حساب بانکی</button>
     </div>
 
     <!-- Assets List Container -->
@@ -719,38 +776,38 @@
     </div>
   </section>
 
-  <!-- ==================== BENTO SECTION 4: DEBTS & LIABILITIES ==================== -->
+  <!-- ==================== SECTION 4: DEBTS ==================== -->
   <section class="grid grid-cols-1 lg:grid-cols-3 gap-4" id="widget-debts">
     
-    <!-- Debt Summary & Ratio (1 Col) -->
-    <div class="liquid-glass liquid-card-pad flex flex-col justify-between">
+    <!-- Debt Summary -->
+    <div class="frost-card frost-pad flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-bold text-[var(--text-main)]">💸 وضعیت بدهی‌ها</span>
-          <button onclick="openModal('addDebt')" class="liquid-pill text-[10px] py-0.5 px-2 text-rose-400">+ ثبت بدهی</button>
+          <span class="text-xs font-bold" style="color: var(--text-primary);">💸 وضعیت بدهی‌ها</span>
+          <button onclick="openModal('addDebt')" class="soft-pill text-[10px] py-0.5 px-2" style="color: var(--badge-down-text);">+ ثبت بدهی</button>
         </div>
 
-        <div class="text-[10px] text-[var(--text-muted)]">مجموع مانده اقساط و تعهدات:</div>
-        <div class="number text-2xl font-black text-rose-400 mt-1 privacy-sensitive" id="debtTotalVal">—</div>
+        <div class="text-[10px]" style="color: var(--text-secondary);">مجموع مانده اقساط و تعهدات:</div>
+        <div class="number text-2xl font-bold mt-1 privacy-sensitive" style="color: var(--badge-down-text);" id="debtTotalVal">—</div>
         
-        <div class="mt-4 pt-3 border-t border-white/[0.08] space-y-2 text-xs">
+        <div class="mt-4 pt-3 space-y-2 text-xs" style="border-top: 1px solid var(--glass-border);">
           <div class="flex justify-between">
-            <span class="text-[var(--text-muted)]">نسبت اهرمی بدهی به دارایی:</span>
-            <span class="number font-bold text-[var(--accent)]" id="debtRatioVal">۰٪</span>
+            <span style="color: var(--text-secondary);">نسبت اهرمی بدهی به دارایی:</span>
+            <span class="number font-bold" style="color: var(--accent);" id="debtRatioVal">۰٪</span>
           </div>
-          <div class="w-full h-2 bg-black/20 rounded-full overflow-hidden border border-white/10">
-            <div class="h-full bg-gradient-to-r from-rose-500 to-amber-500 rounded-full transition-all duration-500" id="debtRatioBar" style="width:0%;"></div>
+          <div class="w-full h-2 rounded-full overflow-hidden" style="background: var(--glass-bg); border: 1px solid var(--glass-border);">
+            <div class="h-full rounded-full transition-all duration-500" style="background: linear-gradient(90deg, var(--badge-down-text), var(--accent)); width:0%;" id="debtRatioBar"></div>
           </div>
         </div>
       </div>
 
-      <div class="text-[10px] text-[var(--text-dim)] mt-3">ارزش خالص دارایی‌های شما با کسر بدهی‌ها محاسبه می‌شود.</div>
+      <div class="text-[10px] mt-3" style="color: var(--text-tertiary);">ارزش خالص دارایی‌های شما با کسر بدهی‌ها محاسبه می‌شود.</div>
     </div>
 
-    <!-- Debt Items List (2 Cols) -->
-    <div class="liquid-glass liquid-card-pad lg:col-span-2">
+    <!-- Debt Items List -->
+    <div class="frost-card frost-pad lg:col-span-2">
       <div class="flex items-center justify-between mb-2">
-        <span class="text-xs font-bold text-[var(--text-main)]">لیست وام‌ها و اقساط ثبت‌شده</span>
+        <span class="text-xs font-bold" style="color: var(--text-primary);">لیست وام‌ها و اقساط ثبت‌شده</span>
       </div>
       <div id="debtList" class="space-y-2">
         <!-- Injected by JS -->
@@ -761,133 +818,133 @@
 
 </main>
 
-<!-- FLOATING LIQUID ISLAND BOTTOM NAV (Visible on mobile) -->
-<nav class="liquid-island-nav md:hidden">
-  <button class="nav-pill-item active" onclick="scrollToWidget('bento-hero-section', this)">
+<!-- FLOATING ISLAND NAV (Mobile) -->
+<nav class="frost-island-nav md:hidden">
+  <button class="nav-item active" onclick="scrollToWidget('bento-hero-section', this)">
     <span class="nav-icon">📊</span>
     <span>داشبورد</span>
   </button>
-  <button class="nav-pill-item" onclick="scrollToWidget('widget-assets-hub', this)">
+  <button class="nav-item" onclick="scrollToWidget('widget-assets-hub', this)">
     <span class="nav-icon">🏦</span>
     <span>دارایی‌ها</span>
   </button>
-  <button class="nav-pill-item" onclick="openModal('smartPaste')">
-    <span class="nav-icon text-sky-400">📲</span>
+  <button class="nav-item" onclick="openModal('smartPaste')">
+    <span class="nav-icon" style="color: #5a9ebe;">📲</span>
     <span>تلگرام</span>
   </button>
-  <button class="nav-pill-item" onclick="scrollToWidget('widget-debts', this)">
+  <button class="nav-item" onclick="scrollToWidget('widget-debts', this)">
     <span class="nav-icon">💸</span>
     <span>بدهی‌ها</span>
   </button>
-  <button class="nav-pill-item" onclick="openModal('uiCustomizer')">
-    <span class="nav-icon text-[var(--accent)]">🎨</span>
+  <button class="nav-item" onclick="openModal('uiCustomizer')">
+    <span class="nav-icon" style="color: var(--accent);">🎨</span>
     <span>ظاهر</span>
   </button>
 </nav>
 
-<!-- ==================== MODALS & DRAWERS ==================== -->
+<!-- ==================== MODALS ==================== -->
 
-<!-- 1. UI CUSTOMIZER MODAL (Liquid Glass Edition) -->
+<!-- 1. UI CUSTOMIZER MODAL -->
 <div id="modal-uiCustomizer" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeModal('uiCustomizer')">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="sheet-handle sm:hidden"></div>
-    <div class="flex items-center justify-between mb-4 pb-2 border-b border-white/10">
-      <h3 class="font-bold text-sm text-[var(--accent)] flex items-center gap-2">
-        <span>🎨</span> تنظیمات و شخصی‌سازی ظاهر Liquid Glass
+    <div class="flex items-center justify-between mb-4 pb-2" style="border-bottom: 1px solid var(--glass-border);">
+      <h3 class="font-bold text-sm flex items-center gap-2" style="color: var(--accent);">
+        <span>🎨</span> تنظیمات و شخصی‌سازی ظاهر
       </h3>
-      <button onclick="closeModal('uiCustomizer')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
+      <button onclick="closeModal('uiCustomizer')" class="hover:opacity-70 text-lg" style="color: var(--text-tertiary);">✕</button>
     </div>
 
     <div class="space-y-4 text-xs">
       
       <!-- 1. Theme Selection -->
       <div>
-        <label class="block font-bold mb-2 text-[var(--text-main)]">۱. تم و پالت رنگی Liquid Glass:</label>
+        <label class="block font-bold mb-2" style="color: var(--text-primary);">۱. تم و پالت رنگی:</label>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="themePickerGrid">
-          <button onclick="setTheme('midnight')" class="p-3 rounded-2xl liquid-glass text-right flex flex-col gap-1.5 hover:scale-102 transition" id="themeBtn-midnight">
+          <button onclick="setTheme('lavender')" class="p-3 rounded-2xl frost-card text-right flex flex-col gap-1.5 hover:scale-[1.02] transition" id="themeBtn-lavender">
             <div class="flex items-center justify-between">
-              <span class="font-bold text-[11px]">Midnight</span>
-              <span class="w-3 h-3 rounded-full bg-[#f5c842] shadow-sm"></span>
+              <span class="font-bold text-[11px]">Lavender Mist</span>
+              <span class="w-3 h-3 rounded-full bg-[#8b7ec8] shadow-sm"></span>
             </div>
-            <span class="text-[9px] text-white/50">مشکی پیور و گلد لوکس</span>
+            <span class="text-[9px]" style="color: var(--text-tertiary);">بنفش مه‌آلود ملایم</span>
           </button>
 
-          <button onclick="setTheme('ocean')" class="p-3 rounded-2xl liquid-glass text-right flex flex-col gap-1.5 hover:scale-102 transition" id="themeBtn-ocean">
+          <button onclick="setTheme('rose')" class="p-3 rounded-2xl frost-card text-right flex flex-col gap-1.5 hover:scale-[1.02] transition" id="themeBtn-rose">
             <div class="flex items-center justify-between">
-              <span class="font-bold text-[11px]">Deep Ocean</span>
-              <span class="w-3 h-3 rounded-full bg-[#38bdf8] shadow-sm"></span>
+              <span class="font-bold text-[11px]">Rose Quartz</span>
+              <span class="w-3 h-3 rounded-full bg-[#c4929a] shadow-sm"></span>
             </div>
-            <span class="text-[9px] text-sky-200/50">سرمه‌ای و فیروزه‌ای</span>
+            <span class="text-[9px]" style="color: var(--text-tertiary);">صورتی مات خاموش</span>
           </button>
 
-          <button onclick="setTheme('emerald')" class="p-3 rounded-2xl liquid-glass text-right flex flex-col gap-1.5 hover:scale-102 transition" id="themeBtn-emerald">
+          <button onclick="setTheme('sage')" class="p-3 rounded-2xl frost-card text-right flex flex-col gap-1.5 hover:scale-[1.02] transition" id="themeBtn-sage">
             <div class="flex items-center justify-between">
-              <span class="font-bold text-[11px]">Emerald</span>
-              <span class="w-3 h-3 rounded-full bg-[#10b981] shadow-sm"></span>
+              <span class="font-bold text-[11px]">Sage Garden</span>
+              <span class="w-3 h-3 rounded-full bg-[#7fa886] shadow-sm"></span>
             </div>
-            <span class="text-[9px] text-emerald-200/50">سبز زمردی بازار</span>
+            <span class="text-[9px]" style="color: var(--text-tertiary);">سبز نعنایی طبیعی</span>
           </button>
 
-          <button onclick="setTheme('amethyst')" class="p-3 rounded-2xl liquid-glass text-right flex flex-col gap-1.5 hover:scale-102 transition" id="themeBtn-amethyst">
+          <button onclick="setTheme('sand')" class="p-3 rounded-2xl frost-card text-right flex flex-col gap-1.5 hover:scale-[1.02] transition" id="themeBtn-sand">
             <div class="flex items-center justify-between">
-              <span class="font-bold text-[11px]">Amethyst</span>
-              <span class="w-3 h-3 rounded-full bg-[#c084fc] shadow-sm"></span>
+              <span class="font-bold text-[11px]">Warm Sand</span>
+              <span class="w-3 h-3 rounded-full bg-[#b8a07e] shadow-sm"></span>
             </div>
-            <span class="text-[9px] text-purple-200/50">بنفش نئونی مدرن</span>
+            <span class="text-[9px]" style="color: var(--text-tertiary);">کرم گرم و کلاسیک</span>
           </button>
 
-          <button onclick="setTheme('light')" class="p-3 rounded-2xl liquid-glass text-right flex flex-col gap-1.5 hover:scale-102 transition col-span-2 sm:col-span-1" id="themeBtn-light">
+          <button onclick="setTheme('night')" class="p-3 rounded-2xl frost-card text-right flex flex-col gap-1.5 hover:scale-[1.02] transition col-span-2 sm:col-span-1" id="themeBtn-night">
             <div class="flex items-center justify-between">
-              <span class="font-bold text-[11px]">Minimal Light</span>
-              <span class="w-3 h-3 rounded-full bg-[#d97706] shadow-sm"></span>
+              <span class="font-bold text-[11px]">Soft Night</span>
+              <span class="w-3 h-3 rounded-full bg-[#8b9dc3] shadow-sm"></span>
             </div>
-            <span class="text-[9px] text-slate-500">تم سفید کریستالی</span>
+            <span class="text-[9px]" style="color: var(--text-tertiary);">تم تاریک آرام</span>
           </button>
         </div>
       </div>
 
       <!-- 2. Density -->
-      <div class="pt-2 border-t border-white/10">
-        <label class="block font-bold mb-2 text-[var(--text-main)]">۲. تراکم چیدمان (Layout Density):</label>
+      <div class="pt-2" style="border-top: 1px solid var(--glass-border);">
+        <label class="block font-bold mb-2" style="color: var(--text-primary);">۲. تراکم چیدمان (Layout Density):</label>
         <div class="grid grid-cols-2 gap-2">
-          <button onclick="setDensity('compact')" id="densityBtn-compact" class="liquid-pill text-xs py-2">
+          <button onclick="setDensity('compact')" id="densityBtn-compact" class="soft-pill text-xs py-2">
             <span>📱</span> حالت فشرده (Compact)
           </button>
-          <button onclick="setDensity('comfortable')" id="densityBtn-comfortable" class="liquid-pill text-xs py-2 active">
+          <button onclick="setDensity('comfortable')" id="densityBtn-comfortable" class="soft-pill text-xs py-2 active">
             <span>🧘</span> حالت استاندارد (Comfortable)
           </button>
         </div>
       </div>
 
-      <!-- 3. Widget Visibility Toggles -->
-      <div class="pt-2 border-t border-white/10">
-        <label class="block font-bold mb-2 text-[var(--text-main)]">۳. ماژول‌های فعال در صفحه:</label>
+      <!-- 3. Widget Toggles -->
+      <div class="pt-2" style="border-top: 1px solid var(--glass-border);">
+        <label class="block font-bold mb-2" style="color: var(--text-primary);">۳. ماژول‌های فعال در صفحه:</label>
         <div class="space-y-2">
-          <label class="flex items-center justify-between p-2.5 rounded-2xl liquid-glass">
+          <label class="flex items-center justify-between p-2.5 rounded-2xl frost-card">
             <span>📈 نمودار تغییرات ارزش پورتفولیو</span>
-            <input type="checkbox" id="toggle-chart" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent)]"/>
+            <input type="checkbox" id="toggle-chart" checked onchange="saveWidgetPreferences()" class="w-auto" style="accent-color: var(--accent);"/>
           </label>
-          <label class="flex items-center justify-between p-2.5 rounded-2xl liquid-glass">
+          <label class="flex items-center justify-between p-2.5 rounded-2xl frost-card">
             <span>⚡ نوار تیکر بازار لحظه‌ای</span>
-            <input type="checkbox" id="toggle-ticker" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent)]"/>
+            <input type="checkbox" id="toggle-ticker" checked onchange="saveWidgetPreferences()" class="w-auto" style="accent-color: var(--accent);"/>
           </label>
-          <label class="flex items-center justify-between p-2.5 rounded-2xl liquid-glass">
+          <label class="flex items-center justify-between p-2.5 rounded-2xl frost-card">
             <span>🍩 حلقه توزیع سبد دارایی</span>
-            <input type="checkbox" id="toggle-allocation" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent)]"/>
+            <input type="checkbox" id="toggle-allocation" checked onchange="saveWidgetPreferences()" class="w-auto" style="accent-color: var(--accent);"/>
           </label>
-          <label class="flex items-center justify-between p-2.5 rounded-2xl liquid-glass">
+          <label class="flex items-center justify-between p-2.5 rounded-2xl frost-card">
             <span>💸 بخش مدیریت بدهی‌ها</span>
-            <input type="checkbox" id="toggle-debts" checked onchange="saveWidgetPreferences()" class="w-auto accent-[var(--accent)]"/>
+            <input type="checkbox" id="toggle-debts" checked onchange="saveWidgetPreferences()" class="w-auto" style="accent-color: var(--accent);"/>
           </label>
         </div>
       </div>
 
       <!-- 4. Currency & Number Format -->
-      <div class="pt-2 border-t border-white/10">
-        <label class="block font-bold mb-2 text-[var(--text-main)]">۴. فرمت نمایش ارقام و واحد پول:</label>
+      <div class="pt-2" style="border-top: 1px solid var(--glass-border);">
+        <label class="block font-bold mb-2" style="color: var(--text-primary);">۴. فرمت نمایش ارقام و واحد پول:</label>
         <div class="grid grid-cols-2 gap-2">
           <div>
-            <label class="block text-[10px] text-[var(--text-muted)] mb-1">واحد پول اصلی:</label>
+            <label class="block text-[10px] mb-1" style="color: var(--text-secondary);">واحد پول اصلی:</label>
             <select id="ui-currency-select" onchange="changeCurrencyFormat(this.value)">
               <option value="toman">تومان</option>
               <option value="million_toman">میلیون تومان (خلاصه)</option>
@@ -895,7 +952,7 @@
             </select>
           </div>
           <div>
-            <label class="block text-[10px] text-[var(--text-muted)] mb-1">نوع ارقام:</label>
+            <label class="block text-[10px] mb-1" style="color: var(--text-secondary);">نوع ارقام:</label>
             <select id="ui-digit-select" onchange="changeDigitFormat(this.value)">
               <option value="persian">ارقام فارسی (۱۲۳٬۰۰۰)</option>
               <option value="english">ارقام انگلیسی (123,000)</option>
@@ -906,8 +963,8 @@
 
       <!-- Buttons -->
       <div class="pt-2 flex justify-between items-center">
-        <button onclick="resetUIDefaults()" class="text-[11px] text-rose-400 hover:underline">بازنشانی پیش‌فرض</button>
-        <button onclick="closeModal('uiCustomizer')" class="btn-liquid-primary text-xs px-5 py-2">تأیید و بستن</button>
+        <button onclick="resetUIDefaults()" class="text-[11px] hover:underline" style="color: var(--badge-down-text);">بازنشانی پیش‌فرض</button>
+        <button onclick="closeModal('uiCustomizer')" class="btn-primary text-xs px-5 py-2">تأیید و بستن</button>
       </div>
 
     </div>
@@ -919,35 +976,35 @@
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="sheet-handle sm:hidden"></div>
     <div class="flex items-center justify-between mb-3">
-      <h3 class="font-bold text-sm text-sky-400 flex items-center gap-1.5">
+      <h3 class="font-bold text-sm flex items-center gap-1.5" style="color: #5a9ebe;">
         <span>📲</span> استخراج هوشمند قیمت از متن پیام تلگرام
       </h3>
-      <button onclick="closeModal('smartPaste')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
+      <button onclick="closeModal('smartPaste')" class="hover:opacity-70 text-lg" style="color: var(--text-tertiary);">✕</button>
     </div>
 
-    <p class="text-[11px] text-[var(--text-muted)] leading-relaxed mb-3">
+    <p class="text-[11px] leading-relaxed mb-3" style="color: var(--text-secondary);">
       پیام اعلام نرخ روزانه را از هر کانال تلگرامی کپی کرده و در کادر زیر قرار دهید. سیستم تمام نرخ‌های دلار، طلا، سکه و ارز را بدون نیاز به فیلترشکن استخراج و در پورتفولیو اعمال می‌کند.
     </p>
 
     <div class="space-y-2 mb-3">
       <div class="flex justify-between items-center text-xs">
-        <span class="text-[11px] text-[var(--text-muted)]">متن پیام تلگرام:</span>
-        <button onclick="pasteFromClipboard()" class="text-[10px] text-sky-400 hover:underline">📋 خواندن خودکار از کلیپ‌بورد</button>
+        <span class="text-[11px]" style="color: var(--text-secondary);">متن پیام تلگرام:</span>
+        <button onclick="pasteFromClipboard()" class="text-[10px] hover:underline" style="color: #5a9ebe;">📋 خواندن خودکار از کلیپ‌بورد</button>
       </div>
       <textarea id="smartPasteInput" rows="4" placeholder="مثلاً:&#10;دلار نقدی: 231,500&#10;طلای 18 عیار: 23,280,000&#10;سکه امامی: 235,000,000" oninput="previewExtractedPrices()"></textarea>
     </div>
 
     <!-- Preview -->
-    <div id="smartPasteResults" class="hidden liquid-glass p-3 mb-3 rounded-2xl">
-      <div class="text-[10px] text-[var(--accent)] mb-1.5 font-bold">🔍 موارد شناسایی‌شده:</div>
+    <div id="smartPasteResults" class="hidden frost-card p-3 mb-3 rounded-2xl">
+      <div class="text-[10px] mb-1.5 font-bold" style="color: var(--accent);">🔍 موارد شناسایی‌شده:</div>
       <div id="smartPasteItems" class="grid grid-cols-2 gap-2 text-xs"></div>
     </div>
 
     <div class="flex gap-2">
-      <button class="btn-liquid-primary flex-1 py-2.5 text-xs" id="btnApplySmartPaste" onclick="applySmartPaste()" disabled>
+      <button class="btn-primary flex-1 py-2.5 text-xs" id="btnApplySmartPaste" onclick="applySmartPaste()" disabled>
         ✅ اعمال در پورتفولیو
       </button>
-      <button class="liquid-pill py-2 text-xs px-4" onclick="closeModal('smartPaste')">لغو</button>
+      <button class="soft-pill py-2 text-xs px-4" onclick="closeModal('smartPaste')">لغو</button>
     </div>
   </div>
 </div>
@@ -958,25 +1015,25 @@
     <div class="sheet-handle sm:hidden"></div>
     <div class="flex items-center justify-between mb-3">
       <h3 class="font-bold text-sm">ثبت دارایی جدید</h3>
-      <button onclick="closeModal('addAsset')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
+      <button onclick="closeModal('addAsset')" class="hover:opacity-70 text-lg" style="color: var(--text-tertiary);">✕</button>
     </div>
 
     <!-- Category selector -->
     <div class="flex gap-1.5 overflow-x-auto whitespace-nowrap pb-2 mb-3.5 no-scrollbar">
-      <button class="liquid-pill active text-xs py-1.5 px-3.5" id="tb-gold"   onclick="setType('gold')">🥇 طلا و سکه</button>
-      <button class="liquid-pill text-xs py-1.5 px-3.5" id="tb-crypto" onclick="setType('crypto')">🪙 رمزارز</button>
-      <button class="liquid-pill text-xs py-1.5 px-3.5" id="tb-usd"    onclick="setType('usd')">💵 ارز و اسکناس</button>
-      <button class="liquid-pill text-xs py-1.5 px-3.5" id="tb-stock"  onclick="setType('stock')">📈 بورس</button>
-      <button class="liquid-pill text-xs py-1.5 px-3.5" id="tb-realty" onclick="setType('realty')">🏠 املاک</button>
-      <button class="liquid-pill text-xs py-1.5 px-3.5" id="tb-cash"   onclick="setType('cash')">💴 حساب بانکی</button>
-      <button class="liquid-pill text-xs py-1.5 px-3.5" id="tb-other"  onclick="setType('other')">📦 سایر</button>
+      <button class="soft-pill active text-xs py-1.5 px-3.5" id="tb-gold"   onclick="setType('gold')">🥇 طلا و سکه</button>
+      <button class="soft-pill text-xs py-1.5 px-3.5" id="tb-crypto" onclick="setType('crypto')">🪙 رمزارز</button>
+      <button class="soft-pill text-xs py-1.5 px-3.5" id="tb-usd"    onclick="setType('usd')">💵 ارز و اسکناس</button>
+      <button class="soft-pill text-xs py-1.5 px-3.5" id="tb-stock"  onclick="setType('stock')">📈 بورس</button>
+      <button class="soft-pill text-xs py-1.5 px-3.5" id="tb-realty" onclick="setType('realty')">🏠 املاک</button>
+      <button class="soft-pill text-xs py-1.5 px-3.5" id="tb-cash"   onclick="setType('cash')">💴 حساب بانکی</button>
+      <button class="soft-pill text-xs py-1.5 px-3.5" id="tb-other"  onclick="setType('other')">📦 سایر</button>
     </div>
 
     <div id="modal-asset-fields" class="space-y-3"></div>
 
     <div class="flex gap-2 mt-4">
-      <button class="btn-liquid-primary flex-1 py-2.5 text-xs" onclick="saveAsset()">💾 ذخیره دارایی</button>
-      <button class="liquid-pill py-2 text-xs px-4" onclick="closeModal('addAsset')">لغو</button>
+      <button class="btn-primary flex-1 py-2.5 text-xs" onclick="saveAsset()">💾 ذخیره دارایی</button>
+      <button class="soft-pill py-2 text-xs px-4" onclick="closeModal('addAsset')">لغو</button>
     </div>
   </div>
 </div>
@@ -987,17 +1044,17 @@
     <div class="sheet-handle sm:hidden"></div>
     <div class="flex items-center justify-between mb-3">
       <h3 class="font-bold text-sm">ثبت بدهی یا تعهد مالی</h3>
-      <button onclick="closeModal('addDebt')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
+      <button onclick="closeModal('addDebt')" class="hover:opacity-70 text-lg" style="color: var(--text-tertiary);">✕</button>
     </div>
 
     <div class="space-y-3">
       <div>
-        <label class="block text-[11px] text-[var(--text-muted)] mb-1">عنوان بدهی</label>
+        <label class="block text-[11px] mb-1" style="color: var(--text-secondary);">عنوان بدهی</label>
         <input type="text" id="d-label" placeholder="مثلاً: وام خرید مسکن"/>
       </div>
       <div class="grid grid-cols-2 gap-2">
         <div>
-          <label class="block text-[11px] text-[var(--text-muted)] mb-1">نوع</label>
+          <label class="block text-[11px] mb-1" style="color: var(--text-secondary);">نوع</label>
           <select id="d-type">
             <option value="loan">وام بانکی</option>
             <option value="personal">قرض و بدهی شخصی</option>
@@ -1005,23 +1062,23 @@
           </select>
         </div>
         <div>
-          <label class="block text-[11px] text-[var(--text-muted)] mb-1">مانده پرداخت‌نشده (تومان)</label>
+          <label class="block text-[11px] mb-1" style="color: var(--text-secondary);">مانده پرداخت‌نشده (تومان)</label>
           <input type="number" id="d-remaining" placeholder="مبلغ باقی‌مانده"/>
         </div>
       </div>
       <div>
-        <label class="block text-[11px] text-[var(--text-muted)] mb-1">مبلغ کل اولیه (تومان)</label>
+        <label class="block text-[11px] mb-1" style="color: var(--text-secondary);">مبلغ کل اولیه (تومان)</label>
         <input type="number" id="d-total" placeholder="مبلغ اصل بدهی"/>
       </div>
       <div>
-        <label class="block text-[11px] text-[var(--text-muted)] mb-1">یادداشت سررسید (اختیاری)</label>
+        <label class="block text-[11px] mb-1" style="color: var(--text-secondary);">یادداشت سررسید (اختیاری)</label>
         <input type="text" id="d-note" placeholder="مثلاً: قسط هر ماه ۲۰ ام"/>
       </div>
     </div>
 
     <div class="flex gap-2 mt-4">
-      <button class="btn-liquid-primary flex-1 py-2.5 text-xs" onclick="saveDebt()">💾 ثبت بدهی</button>
-      <button class="liquid-pill py-2 text-xs px-4" onclick="closeModal('addDebt')">لغو</button>
+      <button class="btn-primary flex-1 py-2.5 text-xs" onclick="saveDebt()">💾 ثبت بدهی</button>
+      <button class="soft-pill py-2 text-xs px-4" onclick="closeModal('addDebt')">لغو</button>
     </div>
   </div>
 </div>
@@ -1032,7 +1089,7 @@
     <div class="sheet-handle sm:hidden"></div>
     <div class="flex items-center justify-between mb-3">
       <h3 class="font-bold text-sm" id="detail-title">جزئیات دارایی</h3>
-      <button onclick="closeModal('detail')" class="text-[var(--text-muted)] hover:text-white text-lg">✕</button>
+      <button onclick="closeModal('detail')" class="hover:opacity-70 text-lg" style="color: var(--text-tertiary);">✕</button>
     </div>
     <div id="detail-body"></div>
   </div>
@@ -1046,7 +1103,7 @@ const DB = {
 };
 
 const defaultUISettings = {
-  theme: 'midnight',
+  theme: 'lavender',
   density: 'comfortable',
   privacy: false,
   currency: 'toman',
@@ -1075,27 +1132,27 @@ const S = {
 
 // ==================== DEFINITIONS ====================
 const TC = {
-  gold:  { label:'طلا و سکه', icon:'🥇', color:'#f5c842', liquid:true  },
-  crypto:{ label:'رمزارز',   icon:'🪙', color:'#f97316', liquid:true  },
-  usd:   { label:'ارز و اسکناس', icon:'💵', color:'#38bdf8', liquid:true  },
-  stock: { label:'سهام بورس', icon:'📈', color:'#10b981', liquid:true  },
-  realty:{ label:'املاک',    icon:'🏠', color:'#f43f5e', liquid:false },
-  cash:  { label:'حساب بانکی', icon:'💴', color:'#22d3ee', liquid:true  },
-  other: { label:'سایر',     icon:'📦', color:'#818cf8', liquid:false },
+  gold:  { label:'طلا و سکه', icon:'🥇', color:'#c4a24e', liquid:true  },
+  crypto:{ label:'رمزارز',   icon:'🪙', color:'#d47a3a', liquid:true  },
+  usd:   { label:'ارز و اسکناس', icon:'💵', color:'#5a9ebe', liquid:true  },
+  stock: { label:'سهام بورس', icon:'📈', color:'#5aaa7a', liquid:true  },
+  realty:{ label:'املاک',    icon:'🏠', color:'#c47070', liquid:false },
+  cash:  { label:'حساب بانکی', icon:'💴', color:'#5abeaa', liquid:true  },
+  other: { label:'سایر',     icon:'📦', color:'#8a82b8', liquid:false },
 };
 
 const PRICE_DEF = {
-  usd:     { name:'دلار آمریکا', unit:'دلار', icon:'💵', color:'#38bdf8', base:231000 },
-  eur:     { name:'یورو',        unit:'یورو', icon:'💶', color:'#22d3ee', base:268000 },
-  aed:     { name:'درهم امارات', unit:'درهم', icon:'🇦🇪', color:'#10b981', base:63300 },
-  gold18:  { name:'طلای ۱۸ عیار', unit:'گرم',  icon:'🥇', color:'#f5c842', base:23280000 },
-  goldCoin:{ name:'سکه امامی',   unit:'عدد',  icon:'🪙', color:'#f5c842', base:235000000 },
-  goldHalf:{ name:'نیم سکه',     unit:'عدد',  icon:'🟡', color:'#fbbf24', base:119000000 },
-  goldQ:   { name:'ربع سکه',     unit:'عدد',  icon:'🟠', color:'#fbbf24', base:63000000 },
-  btc:     { name:'بیت‌کوین',    unit:'BTC',  icon:'₿',  color:'#f97316', base:0, usd:79000 },
-  eth:     { name:'اتریوم',      unit:'ETH',  icon:'◆',  color:'#818cf8', base:0, usd:2550 },
-  usdt:    { name:'تتر',         unit:'USDT', icon:'₮',  color:'#10b981', base:0, usd:1 },
-  sol:     { name:'سولانا',      unit:'SOL',  icon:'◎',  color:'#a78bfa', base:0, usd:103 }
+  usd:     { name:'دلار آمریکا', unit:'دلار', icon:'💵', color:'#5a9ebe', base:231000 },
+  eur:     { name:'یورو',        unit:'یورو', icon:'💶', color:'#5abeaa', base:268000 },
+  aed:     { name:'درهم امارات', unit:'درهم', icon:'🇦🇪', color:'#5aaa7a', base:63300 },
+  gold18:  { name:'طلای ۱۸ عیار', unit:'گرم',  icon:'🥇', color:'#c4a24e', base:23280000 },
+  goldCoin:{ name:'سکه امامی',   unit:'عدد',  icon:'🪙', color:'#c4a24e', base:235000000 },
+  goldHalf:{ name:'نیم سکه',     unit:'عدد',  icon:'🟡', color:'#c4a24e', base:119000000 },
+  goldQ:   { name:'ربع سکه',     unit:'عدد',  icon:'🟠', color:'#c4a24e', base:63000000 },
+  btc:     { name:'بیت‌کوین',    unit:'BTC',  icon:'₿',  color:'#d47a3a', base:0, usd:79000 },
+  eth:     { name:'اتریوم',      unit:'ETH',  icon:'◆',  color:'#8a82b8', base:0, usd:2550 },
+  usdt:    { name:'تتر',         unit:'USDT', icon:'₮',  color:'#5aaa7a', base:0, usd:1 },
+  sol:     { name:'سولانا',      unit:'SOL',  icon:'◎',  color:'#a090c8', base:0, usd:103 }
 };
 
 // ==================== NUMBER & CURRENCY FORMATTERS ====================
@@ -1153,12 +1210,21 @@ function initPrices() {
 
 // ==================== UI CUSTOMIZATION ENGINE ====================
 function applyUISettings() {
-  // Theme
-  document.documentElement.setAttribute('data-theme', S.ui.theme || 'midnight');
+  // Theme — map old theme names to new ones
+  const themeMap = { midnight: 'lavender', ocean: 'sage', emerald: 'sage', amethyst: 'lavender', light: 'sand' };
+  let theme = S.ui.theme || 'lavender';
+  if (themeMap[theme]) theme = themeMap[theme];
+  S.ui.theme = theme;
+
+  document.documentElement.setAttribute('data-theme', theme);
   document.querySelectorAll('[id^="themeBtn-"]').forEach(b => {
-    b.classList.remove('ring-2', 'ring-amber-400');
+    b.classList.remove('ring-2');
+    b.style.removeProperty('box-shadow');
   });
-  el$('themeBtn-' + S.ui.theme)?.classList.add('ring-2', 'ring-amber-400');
+  const activeBtn = el$('themeBtn-' + theme);
+  if (activeBtn) {
+    activeBtn.style.boxShadow = 'inset 0 0 0 2px var(--accent)';
+  }
 
   // Density
   document.documentElement.setAttribute('data-density', S.ui.density || 'comfortable');
@@ -1199,7 +1265,7 @@ function setTheme(theme) {
   DB.set('ui_theme', S.ui);
   applyUISettings();
   drawChart();
-  toast(`تم ${theme} با موفقیت فعال شد`, 'gold');
+  toast(`تم ${theme} با موفقیت فعال شد`);
 }
 
 function setDensity(density) {
@@ -1212,7 +1278,7 @@ function togglePrivacyMode() {
   S.ui.privacy = !S.ui.privacy;
   DB.set('ui_theme', S.ui);
   applyUISettings();
-  toast(S.ui.privacy ? 'حالت حریم خصوصی فعال شد' : 'حالت عادی فعال شد', 'gold');
+  toast(S.ui.privacy ? 'حالت حریم خصوصی فعال شد' : 'حالت عادی فعال شد');
 }
 
 function saveWidgetPreferences() {
@@ -1245,7 +1311,7 @@ function resetUIDefaults() {
   DB.set('ui_theme', S.ui);
   applyUISettings();
   renderAll();
-  toast('تنظیمات به حالت پیش‌فرض بازگشت', 'gold');
+  toast('تنظیمات به حالت پیش‌فرض بازگشت');
 }
 
 // ==================== REAL DATA FETCHING ====================
@@ -1391,11 +1457,11 @@ function renderTicker() {
   el.innerHTML = keys.map(k => {
     const p = S.prices[k]; if (!p) return '';
     const ch = p.change24h || 0;
-    return `<div class="inline-flex items-center gap-1.5 text-xs text-[var(--text-main)] liquid-glass px-3 py-1 rounded-full border border-white/10">
+    return `<div class="inline-flex items-center gap-1.5 text-xs frost-card px-3 py-1 rounded-full" style="color: var(--text-primary);">
       <span>${p.icon}</span>
-      <span class="text-[11px] font-medium opacity-70">${p.name}:</span>
-      <span class="number font-bold text-[var(--accent)] text-[11px]">${fmt(p.price)}</span>
-      <span class="liquid-badge ${ch >= 0 ? 'badge-up' : 'badge-down'} text-[9px] py-0 px-1.5">${ch >= 0 ? '+' : ''}${ch}%</span>
+      <span class="text-[11px] font-medium" style="color: var(--text-secondary);">${p.name}:</span>
+      <span class="number font-bold text-[11px]" style="color: var(--accent);">${fmt(p.price)}</span>
+      <span class="serene-badge ${ch >= 0 ? 'badge-up' : 'badge-down'} text-[9px] py-0 px-1.5">${ch >= 0 ? '+' : ''}${ch}%</span>
     </div>`;
   }).join('');
 }
@@ -1407,14 +1473,14 @@ function renderMarketSnap() {
   el.innerHTML = keys.map(k => {
     const p = S.prices[k]; if (!p) return '';
     const ch = p.change24h || 0;
-    return `<div class="flex items-center justify-between p-2.5 rounded-2xl liquid-glass border border-white/10 text-xs">
+    return `<div class="flex items-center justify-between p-2.5 rounded-2xl frost-card text-xs">
       <div class="flex items-center gap-2">
         <span class="text-base">${p.icon}</span>
         <span class="font-bold">${p.name}</span>
       </div>
       <div class="text-left flex items-center gap-2">
-        <span class="number font-black text-[var(--accent)]">${fmt(p.price)}</span>
-        <span class="liquid-badge ${ch >= 0 ? 'badge-up' : 'badge-down'} text-[9px]">${ch >= 0 ? '+' : ''}${ch}%</span>
+        <span class="number font-bold" style="color: var(--accent);">${fmt(p.price)}</span>
+        <span class="serene-badge ${ch >= 0 ? 'badge-up' : 'badge-down'} text-[9px]">${ch >= 0 ? '+' : ''}${ch}%</span>
       </div>
     </div>`;
   }).join('');
@@ -1452,7 +1518,7 @@ function renderPortfolio() {
   // Donut rings
   const circ = 2 * Math.PI * 38;
   let off = 0;
-  [['gold', '#f5c842'], ['crypto', '#f97316'], ['usd', '#38bdf8'], ['stock', '#10b981'], ['other', '#818cf8']].forEach(([k, c]) => {
+  [['gold', '#c4a24e'], ['crypto', '#d47a3a'], ['usd', '#5a9ebe'], ['stock', '#5aaa7a'], ['other', '#8a82b8']].forEach(([k, c]) => {
     const el = el$('d-' + k); if (!el) return;
     const pct = total ? cats[k] / total : 0;
     const d = pct * circ;
@@ -1465,12 +1531,12 @@ function renderPortfolio() {
   const leg = el$('donutLegend');
   if (leg) {
     const labels = { gold:'طلا و سکه', crypto:'رمزارز', usd:'ارز و اسکناس', stock:'بورس', other:'املاک/نقد' };
-    const colors = { gold:'#f5c842', crypto:'#f97316', usd:'#38bdf8', stock:'#10b981', other:'#818cf8' };
+    const colors = { gold:'#c4a24e', crypto:'#d47a3a', usd:'#5a9ebe', stock:'#5aaa7a', other:'#8a82b8' };
     leg.innerHTML = Object.entries(cats).map(([k, v]) => `
       <div class="flex items-center gap-1.5">
         <span class="w-2 h-2 rounded-full shadow-sm" style="background:${colors[k]}"></span>
-        <span class="text-[var(--text-muted)] text-[10px] truncate">${labels[k]}</span>
-        <span class="number font-bold mr-auto text-[10px]">${total ? (v/total*100).toFixed(0) : 0}٪</span>
+        <span class="text-[10px] truncate" style="color: var(--text-secondary);">${labels[k]}</span>
+        <span class="number font-semibold mr-auto text-[10px]">${total ? (v/total*100).toFixed(0) : 0}٪</span>
       </div>`).join('');
   }
 
@@ -1497,7 +1563,7 @@ function renderFullAssetList() {
   }
 
   if (!list.length) {
-    el.innerHTML = `<div class="text-center py-8 text-xs text-[var(--text-muted)]">هیچ دارایی‌ای در این دسته‌بندی یافت نشد.</div>`;
+    el.innerHTML = `<div class="text-center py-8 text-xs" style="color: var(--text-secondary);">هیچ دارایی‌ای در این دسته‌بندی یافت نشد.</div>`;
     return;
   }
 
@@ -1508,20 +1574,20 @@ function renderFullAssetList() {
     const cost = assetCost(a);
     const pnl = cost > 0 ? v - cost : null;
     const pnlPct = cost > 0 ? ((v - cost) / cost * 100) : null;
-    return `<div class="liquid-glass liquid-asset-pad flex items-center gap-3 cursor-pointer" onclick="showDetail(${realIndex})">
-      <div class="w-9 h-9 rounded-2xl flex items-center justify-center text-base shadow-sm border border-white/20" style="background:${cfg.color}25;">${cfg.icon}</div>
+    return `<div class="frost-card frost-asset-pad flex items-center gap-3 cursor-pointer" onclick="showDetail(${realIndex})">
+      <div class="w-9 h-9 rounded-2xl flex items-center justify-center text-base shadow-sm" style="background:${cfg.color}18; border: 1px solid ${cfg.color}30;">${cfg.icon}</div>
       <div class="flex-1 min-w-0">
-        <div class="text-xs font-bold text-[var(--text-main)] truncate">${a.label || cfg.label}</div>
-        <div class="flex items-center gap-2 text-[10px] text-[var(--text-muted)] mt-0.5">
+        <div class="text-xs font-bold truncate" style="color: var(--text-primary);">${a.label || cfg.label}</div>
+        <div class="flex items-center gap-2 text-[10px] mt-0.5" style="color: var(--text-secondary);">
           <span>${fmt(a.qty, 4)} ${a.unit || ''}</span>
-          ${pnl != null ? `<span class="${pnl >= 0 ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold'}">(${pnl >= 0 ? '+' : ''}${pnlPct.toFixed(1)}%)</span>` : ''}
+          ${pnl != null ? `<span class="font-semibold" style="color: ${pnl >= 0 ? 'var(--badge-up-text)' : 'var(--badge-down-text)'};">(${pnl >= 0 ? '+' : ''}${pnlPct.toFixed(1)}%)</span>` : ''}
         </div>
       </div>
       <div class="flex flex-col items-end gap-1">
-        <div class="number text-xs font-black privacy-sensitive" style="color:${cfg.color};">${fmtS(v)}</div>
+        <div class="number text-xs font-bold privacy-sensitive" style="color:${cfg.color};">${fmtS(v)}</div>
         <div class="flex items-center gap-1.5">
-          <span class="text-[10px] text-[var(--text-dim)]">${total ? (v/total*100).toFixed(0) : 0}٪</span>
-          <button onclick="event.stopPropagation();deleteAsset(${realIndex})" class="text-rose-400/70 hover:text-rose-400 text-xs px-1.5 py-0.5 rounded-full hover:bg-rose-500/15">✕</button>
+          <span class="text-[10px]" style="color: var(--text-tertiary);">${total ? (v/total*100).toFixed(0) : 0}٪</span>
+          <button onclick="event.stopPropagation();deleteAsset(${realIndex})" class="text-xs px-1.5 py-0.5 rounded-full hover:opacity-70" style="color: var(--badge-down-text);">✕</button>
         </div>
       </div>
     </div>`;
@@ -1531,22 +1597,22 @@ function renderFullAssetList() {
 function renderDebtSection() {
   const el = el$('debtList'); if (!el) return;
   if (!S.debts.length) {
-    el.innerHTML = `<div class="text-center py-6 text-xs text-[var(--text-muted)]">هیچ بدهی یا تعهدی ثبت نشده است.</div>`;
+    el.innerHTML = `<div class="text-center py-6 text-xs" style="color: var(--text-secondary);">هیچ بدهی یا تعهدی ثبت نشده است.</div>`;
     return;
   }
   el.innerHTML = S.debts.map((d, i) => `
-    <div class="liquid-glass liquid-asset-pad flex items-center gap-3">
-      <div class="w-9 h-9 rounded-2xl bg-rose-500/15 flex items-center justify-center text-base border border-rose-500/30">💸</div>
+    <div class="frost-card frost-asset-pad flex items-center gap-3">
+      <div class="w-9 h-9 rounded-2xl flex items-center justify-center text-base" style="background: var(--badge-down-bg); border: 1px solid var(--badge-down-border);">💸</div>
       <div class="flex-1 min-w-0">
-        <div class="text-xs font-bold text-[var(--text-main)]">${d.label}</div>
-        <div class="text-[10px] text-[var(--text-muted)]">${d.note || 'بدون یادداشت'}</div>
+        <div class="text-xs font-bold" style="color: var(--text-primary);">${d.label}</div>
+        <div class="text-[10px]" style="color: var(--text-secondary);">${d.note || 'بدون یادداشت'}</div>
       </div>
       <div class="text-left flex items-center gap-2">
         <div>
-          <div class="number text-xs font-black text-rose-400 privacy-sensitive">${fmtS(d.remaining)}</div>
-          <div class="text-[9px] text-[var(--text-dim)]">از ${fmtS(d.total)}</div>
+          <div class="number text-xs font-bold privacy-sensitive" style="color: var(--badge-down-text);">${fmtS(d.remaining)}</div>
+          <div class="text-[9px]" style="color: var(--text-tertiary);">از ${fmtS(d.total)}</div>
         </div>
-        <button onclick="deleteDebt(${i})" class="text-rose-400/70 hover:text-rose-400 text-xs px-1.5 py-0.5 rounded-full hover:bg-rose-500/15">✕</button>
+        <button onclick="deleteDebt(${i})" class="text-xs px-1.5 py-0.5 rounded-full hover:opacity-70" style="color: var(--badge-down-text);">✕</button>
       </div>
     </div>`).join('');
 }
@@ -1590,7 +1656,7 @@ function drawChart() {
 
   ctx.clearRect(0, 0, w, h);
   if (data.length < 2) {
-    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.fillStyle = 'rgba(0,0,0,0.25)';
     ctx.font = '11px Vazirmatn, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText('نمودار با ثبت تغییرات پورتفولیو ترسیم می‌شود', w/2, h/2);
@@ -1606,12 +1672,12 @@ function drawChart() {
   const px = i => pad.l + (i / (data.length - 1)) * cw;
   const py = v => pad.t + ch - ((v - minV) / range) * ch;
 
-  const chartThemeColor = getComputedStyle(document.documentElement).getPropertyValue('--chart-color').trim() || '#f5c842';
+  const chartThemeColor = getComputedStyle(document.documentElement).getPropertyValue('--chart-color').trim() || '#8b7ec8';
 
-  // Liquid glass gradient fill
+  // Soft gradient fill
   const grad = ctx.createLinearGradient(0, pad.t, 0, pad.t + ch);
-  grad.addColorStop(0, chartThemeColor + '50');
-  grad.addColorStop(0.5, chartThemeColor + '15');
+  grad.addColorStop(0, chartThemeColor + '25');
+  grad.addColorStop(0.5, chartThemeColor + '0a');
   grad.addColorStop(1, chartThemeColor + '00');
   ctx.beginPath();
   ctx.moveTo(px(0), py(data[0].v));
@@ -1622,21 +1688,20 @@ function drawChart() {
   ctx.fillStyle = grad;
   ctx.fill();
 
-  // Glass Specular Line
+  // Thin serene line
   ctx.beginPath();
   ctx.strokeStyle = chartThemeColor;
-  ctx.lineWidth = 2.5;
-  ctx.shadowColor = chartThemeColor;
-  ctx.shadowBlur = 10;
+  ctx.lineWidth = 2;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
   ctx.moveTo(px(0), py(data[0].v));
   data.forEach((d, i) => { if (i > 0) ctx.lineTo(px(i), py(d.v)); });
   ctx.stroke();
-  ctx.shadowBlur = 0;
 }
 
 // ==================== MODALS & ACTIONS ====================
 function scrollToWidget(id, btn) {
-  document.querySelectorAll('.nav-pill-item').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   const target = el$(id);
   if (target) {
@@ -1665,8 +1730,8 @@ function setType(t) {
 
 function renderAssetForm() {
   const t = S.currentType, el = el$('modal-asset-fields'); if (!el) return;
-  const frow = (id, lbl, type='text', ph='') => `<div><label class="block text-[11px] text-[var(--text-muted)] mb-1 font-medium">${lbl}</label><input type="${type}" id="${id}" placeholder="${ph}"/></div>`;
-  const srow = (id, lbl, opts) => `<div><label class="block text-[11px] text-[var(--text-muted)] mb-1 font-medium">${lbl}</label><select id="${id}">${opts.map(([v, l]) => `<option value="${v}">${l}</option>`).join('')}</select></div>`;
+  const frow = (id, lbl, type='text', ph='') => `<div><label class="block text-[11px] mb-1 font-medium" style="color: var(--text-secondary);">${lbl}</label><input type="${type}" id="${id}" placeholder="${ph}"/></div>`;
+  const srow = (id, lbl, opts) => `<div><label class="block text-[11px] mb-1 font-medium" style="color: var(--text-secondary);">${lbl}</label><select id="${id}">${opts.map(([v, l]) => `<option value="${v}">${l}</option>`).join('')}</select></div>`;
 
   let f = frow('f_label', 'عنوان / برچسب دارایی', 'text', 'مثلاً: طلای گاوصندوق');
   if (t === 'gold') {
@@ -1716,7 +1781,7 @@ function saveAsset() {
   DB.set('assets', S.assets); DB.set('history', S.history);
   closeModal('addAsset');
   renderAll();
-  toast('✅ دارایی با موفقیت افزوده شد', 'gold');
+  toast('✅ دارایی با موفقیت افزوده شد');
 }
 
 function deleteAsset(i) {
@@ -1724,7 +1789,7 @@ function deleteAsset(i) {
   S.assets.splice(i, 1);
   DB.set('assets', S.assets);
   renderAll();
-  toast('🗑️ دارایی حذف شد', 'rose');
+  toast('🗑️ دارایی حذف شد');
 }
 
 function showDetail(i) {
@@ -1735,20 +1800,20 @@ function showDetail(i) {
   const pnlPct = cost > 0 ? ((v - cost) / cost * 100) : null;
   el$('detail-title').textContent = a.label || cfg.label;
   el$('detail-body').innerHTML = `
-    <div class="liquid-glass p-3.5 mb-3 text-center rounded-2xl">
-      <div class="text-xs text-[var(--text-muted)]">${cfg.label}</div>
-      <div class="number text-xl font-black mt-1 privacy-sensitive" style="color:${cfg.color};">${fmt(v)} تومان</div>
+    <div class="frost-card p-3.5 mb-3 text-center rounded-2xl">
+      <div class="text-xs" style="color: var(--text-secondary);">${cfg.label}</div>
+      <div class="number text-xl font-bold mt-1 privacy-sensitive" style="color:${cfg.color};">${fmt(v)} تومان</div>
     </div>
     <div class="space-y-2 text-xs">
-      <div class="flex justify-between py-1 border-b border-white/10"><span class="text-[var(--text-muted)]">مقدار موجودی:</span><span class="number font-semibold">${fmt(a.qty, 4)} ${a.unit || ''}</span></div>
-      ${a.buyPrice ? `<div class="flex justify-between py-1 border-b border-white/10"><span class="text-[var(--text-muted)]">قیمت خرید هر واحد:</span><span class="number">${fmt(a.buyPrice)} تومان</span></div>` : ''}
-      ${pnl != null ? `<div class="flex justify-between py-1 border-b border-white/10"><span class="text-[var(--text-muted)]">سود / زیان کل:</span><span class="number font-bold ${pnl>=0?'text-emerald-400':'text-rose-400'}">${pnl>=0?'+':''}${fmt(pnl)} (${pnlPct>=0?'+':''}${pnlPct.toFixed(1)}%)</span></div>` : ''}
-      ${a.note ? `<div class="flex justify-between py-1 border-b border-white/10"><span class="text-[var(--text-muted)]">یادداشت:</span><span>${a.note}</span></div>` : ''}
-      <div class="flex justify-between py-1"><span class="text-[var(--text-muted)]">تاریخ ثبت:</span><span>${new Date(a.addedAt).toLocaleDateString('fa-IR')}</span></div>
+      <div class="flex justify-between py-1" style="border-bottom: 1px solid var(--glass-border);"><span style="color: var(--text-secondary);">مقدار موجودی:</span><span class="number font-semibold">${fmt(a.qty, 4)} ${a.unit || ''}</span></div>
+      ${a.buyPrice ? `<div class="flex justify-between py-1" style="border-bottom: 1px solid var(--glass-border);"><span style="color: var(--text-secondary);">قیمت خرید هر واحد:</span><span class="number">${fmt(a.buyPrice)} تومان</span></div>` : ''}
+      ${pnl != null ? `<div class="flex justify-between py-1" style="border-bottom: 1px solid var(--glass-border);"><span style="color: var(--text-secondary);">سود / زیان کل:</span><span class="number font-bold" style="color: ${pnl>=0?'var(--badge-up-text)':'var(--badge-down-text)'};">${pnl>=0?'+':''}${fmt(pnl)} (${pnlPct>=0?'+':''}${pnlPct.toFixed(1)}%)</span></div>` : ''}
+      ${a.note ? `<div class="flex justify-between py-1" style="border-bottom: 1px solid var(--glass-border);"><span style="color: var(--text-secondary);">یادداشت:</span><span>${a.note}</span></div>` : ''}
+      <div class="flex justify-between py-1"><span style="color: var(--text-secondary);">تاریخ ثبت:</span><span>${new Date(a.addedAt).toLocaleDateString('fa-IR')}</span></div>
     </div>
     <div class="flex gap-2 mt-4">
-      <button class="liquid-pill flex-1 py-2 text-xs" onclick="closeModal('detail')">بستن</button>
-      <button class="liquid-pill text-rose-400 border-rose-400/30 text-xs py-2 px-3.5" onclick="closeModal('detail');deleteAsset(${i})">حذف دارایی</button>
+      <button class="soft-pill flex-1 py-2 text-xs" onclick="closeModal('detail')">بستن</button>
+      <button class="soft-pill text-xs py-2 px-3.5" style="color: var(--badge-down-text); border-color: var(--badge-down-border);" onclick="closeModal('detail');deleteAsset(${i})">حذف دارایی</button>
     </div>`;
   openModal('detail');
 }
@@ -1757,7 +1822,7 @@ function saveDebt() {
   const g = id => el$(id)?.value || '';
   const gn = id => parseFloat(el$(id)?.value) || 0;
   S.debts.push({ label: g('d-label') || 'بدهی', type: g('d-type'), total: gn('d-total'), remaining: gn('d-remaining'), note: g('d-note'), addedAt: Date.now() });
-  DB.set('debts', S.debts); closeModal('addDebt'); renderAll(); toast('✅ بدهی ثبت شد', 'gold');
+  DB.set('debts', S.debts); closeModal('addDebt'); renderAll(); toast('✅ بدهی ثبت شد');
 }
 function deleteDebt(i) {
   if (!confirm('حذف شود؟')) return;
@@ -1810,7 +1875,7 @@ async function pasteFromClipboard() {
     el$('smartPasteInput').value = text;
     previewExtractedPrices();
   } catch(e) {
-    toast('متن را مستقیماً در کادر بچسبانید', 'gold');
+    toast('متن را مستقیماً در کادر بچسبانید');
   }
 }
 
@@ -1835,9 +1900,9 @@ function previewExtractedPrices() {
 
   itemsBox.innerHTML = keys.map(k => {
     const def = PRICE_DEF[k] || { name: k, icon: '📌' };
-    return `<div class="liquid-glass p-2 rounded-xl">
-      <div class="text-[10px] text-[var(--text-muted)]">${def.icon} ${def.name}</div>
-      <div class="number text-xs font-bold text-[var(--accent)] mt-0.5">${fmt(parsed[k])}</div>
+    return `<div class="frost-card p-2 rounded-xl">
+      <div class="text-[10px]" style="color: var(--text-secondary);">${def.icon} ${def.name}</div>
+      <div class="number text-xs font-bold mt-0.5" style="color: var(--accent);">${fmt(parsed[k])}</div>
     </div>`;
   }).join('');
 }
@@ -1853,7 +1918,7 @@ function applySmartPaste() {
   closeModal('smartPaste');
   renderAll();
   saveSnapshot();
-  toast('✅ نرخ‌های تلگرام در سیستم ثبت شدند', 'gold');
+  toast('✅ نرخ‌های تلگرام در سیستم ثبت شدند');
 }
 
 function exportCSV() {
@@ -1861,19 +1926,20 @@ function exportCSV() {
   S.assets.forEach(a => rows.push([a.label, TC[a.type]?.label, a.qty, a.unit||'', assetVal(a), a.buyPrice||'-', new Date(a.addedAt).toLocaleDateString('fa-IR')]));
   const csv = '\uFEFF' + rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
-  a.download = 'my-wealth-liquid.csv'; a.click();
+  a.download = 'my-wealth-serene.csv'; a.click();
 }
 
-function toast(msg, type='gold') {
+function toast(msg) {
   const t = document.createElement('div');
   t.textContent = msg;
   Object.assign(t.style, {
     position:'fixed', top:'20px', left:'50%', transform:'translateX(-50%)',
-    background: 'var(--modal-bg)', color: 'var(--text-main)',
+    background: 'var(--modal-bg)', color: 'var(--text-primary)',
     border: '1px solid var(--glass-border)', padding:'10px 22px', borderRadius:'9999px',
-    fontSize:'12px', fontWeight:'700', zIndex:'999', boxShadow:'0 16px 40px rgba(0,0,0,0.6)',
-    transition:'opacity 0.3s', fontFamily:'inherit', backdropFilter:'blur(28px)',
-    WebkitBackdropFilter:'blur(28px)'
+    fontSize:'12px', fontWeight:'600', zIndex:'999',
+    boxShadow:'0 8px 32px var(--glass-shadow)',
+    transition:'opacity 0.3s', fontFamily:'inherit',
+    backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)'
   });
   document.body.appendChild(t);
   setTimeout(() => { t.style.opacity='0'; setTimeout(()=>t.remove(), 300); }, 3000);
